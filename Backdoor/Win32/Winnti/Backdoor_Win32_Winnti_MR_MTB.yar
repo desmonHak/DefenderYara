@@ -1,0 +1,13 @@
+
+rule Backdoor_Win32_Winnti_MR_MTB{
+	meta:
+		description = "Backdoor:Win32/Winnti.MR!MTB,SIGNATURE_TYPE_PEHSTR_EXT,11 00 11 00 03 00 00 "
+		
+	strings :
+		$a_01_0 = {8b 45 0c 83 c0 28 8b 4d 18 8b 10 89 11 8b 50 04 89 51 04 8b 50 08 89 51 08 8b 40 0c 89 41 0c } //10
+		$a_01_1 = {56 45 74 57 53 55 38 74 53 31 5a 4b 54 6c 51 74 54 6b 52 47 56 30 67 74 56 55 46 58 53 46 59 74 57 6b 5a 61 55 46 49 3d } //5 VEtWSU8tS1ZKTlQtTkRGV0gtVUFXSFYtWkZaUFI=
+		$a_01_2 = {61 2e 72 6f 6f 72 6f 61 64 2e 63 6f 6d 3a 35 33 } //2 a.rooroad.com:53
+	condition:
+		((#a_01_0  & 1)*10+(#a_01_1  & 1)*5+(#a_01_2  & 1)*2) >=17
+ 
+}

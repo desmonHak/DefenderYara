@@ -1,0 +1,12 @@
+
+rule Backdoor_Linux_Mirai_LQ_MTB{
+	meta:
+		description = "Backdoor:Linux/Mirai.LQ!MTB,SIGNATURE_TYPE_ELFHSTR_EXT,04 00 04 00 02 00 00 "
+		
+	strings :
+		$a_01_0 = {00 00 51 e3 01 10 41 e2 0f 00 00 da 01 e0 d4 e4 00 c0 d5 e7 41 30 4e e2 41 20 4c e2 19 00 53 e3 60 e0 8e 93 19 00 52 e3 60 c0 8c 93 0c 00 5e e1 01 00 80 e2 00 00 a0 13 f0 ff ff 1a 06 00 50 e1 ee ff ff 1a 04 00 67 e0 f0 80 bd e8 } //2
+		$a_01_1 = {00 30 d0 e5 00 00 53 e3 03 c0 a0 01 04 00 00 0a 00 c0 a0 e3 01 c0 8c e2 00 30 dc e7 00 00 53 e3 fb ff ff 1a 00 30 d1 e5 00 00 53 e3 03 20 a0 01 04 00 00 0a 00 20 a0 e3 01 20 82 e2 01 30 d2 e7 00 00 53 e3 fb ff ff 1a 0c 00 52 e1 02 c0 a0 01 07 00 00 0a 00 00 a0 e3 0e f0 a0 e1 } //2
+	condition:
+		((#a_01_0  & 1)*2+(#a_01_1  & 1)*2) >=4
+ 
+}

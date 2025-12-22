@@ -13,3 +13,18 @@ rule Trojan_Win32_GuLoader_RBQ_MTB{
 		((#a_81_0  & 1)*1+(#a_81_1  & 1)*1+(#a_81_2  & 1)*1+(#a_81_3  & 1)*1+(#a_81_4  & 1)*1) >=5
  
 }
+rule Trojan_Win32_GuLoader_RBQ_MTB_2{
+	meta:
+		description = "Trojan:Win32/GuLoader.RBQ!MTB,SIGNATURE_TYPE_PEHSTR_EXT,06 00 06 00 06 00 00 "
+		
+	strings :
+		$a_81_0 = {5c 52 61 73 70 62 65 72 72 79 33 33 5c 50 72 6f 67 72 61 6d 75 64 76 69 6b 6c 69 6e 67 73 } //1 \Raspberry33\Programudviklings
+		$a_81_1 = {25 62 69 62 65 68 6f 6c 64 74 65 73 25 5c 62 65 6c 75 72 65 64 65 73 } //1 %bibeholdtes%\beluredes
+		$a_81_2 = {6b 6f 6e 6f 6d 65 74 72 69 73 6b 65 5c 53 74 69 6c 73 69 6b 72 65 32 32 31 5c 74 75 64 6b 6f 70 70 65 72 6e 65 73 } //1 konometriske\Stilsikre221\tudkoppernes
+		$a_81_3 = {5c 61 61 64 73 65 6c 67 72 61 76 65 72 6e 65 73 5c 66 6f 72 6c 62 65 72 65 6e 73 2e 6a 70 67 } //1 \aadselgravernes\forlberens.jpg
+		$a_81_4 = {55 6e 76 65 6e 65 72 61 74 65 64 2e 6f 62 6f } //1 Unvenerated.obo
+		$a_81_5 = {67 79 6d 6e 6f 74 6f 6b 61 2e 72 65 61 } //1 gymnotoka.rea
+	condition:
+		((#a_81_0  & 1)*1+(#a_81_1  & 1)*1+(#a_81_2  & 1)*1+(#a_81_3  & 1)*1+(#a_81_4  & 1)*1+(#a_81_5  & 1)*1) >=6
+ 
+}

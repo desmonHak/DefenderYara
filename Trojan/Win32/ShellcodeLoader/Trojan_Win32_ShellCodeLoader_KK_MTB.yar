@@ -1,0 +1,13 @@
+
+rule Trojan_Win32_ShellCodeLoader_KK_MTB{
+	meta:
+		description = "Trojan:Win32/ShellCodeLoader.KK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,23 00 23 00 03 00 00 "
+		
+	strings :
+		$a_01_0 = {20 20 20 20 20 20 20 20 6a b1 04 00 00 10 00 00 00 88 02 00 00 04 } //20
+		$a_01_1 = {40 00 00 c0 20 20 20 20 20 20 20 20 ec 40 00 00 00 c0 09 00 00 38 00 00 00 3a 04 } //10
+		$a_03_2 = {40 2e 74 68 65 6d 69 64 61 00 ?? ?? 00 00 ?? 0f 00 00 ?? ?? 00 00 ?? 07 } //5
+	condition:
+		((#a_01_0  & 1)*20+(#a_01_1  & 1)*10+(#a_03_2  & 1)*5) >=35
+ 
+}

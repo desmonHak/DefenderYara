@@ -1,0 +1,12 @@
+
+rule Trojan_Win32_Prometei_AHC_MTB{
+	meta:
+		description = "Trojan:Win32/Prometei.AHC!MTB,SIGNATURE_TYPE_PEHSTR_EXT,32 00 32 00 02 00 00 "
+		
+	strings :
+		$a_03_0 = {8a 4d fc 02 c8 30 0f 3b c3 74 ?? 8b 4d f8 48 01 4d fc 47 8d 8f ?? ?? ?? ?? 3b ce 7c } //20
+		$a_01_1 = {c6 45 de 6c c6 45 df 69 c6 45 e0 64 c6 45 e1 20 c6 45 e2 63 c6 45 e3 6f 88 5d e4 89 5d ec } //30
+	condition:
+		((#a_03_0  & 1)*20+(#a_01_1  & 1)*30) >=50
+ 
+}

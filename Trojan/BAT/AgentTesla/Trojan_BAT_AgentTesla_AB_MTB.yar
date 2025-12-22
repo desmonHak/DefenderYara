@@ -25,6 +25,27 @@ rule Trojan_BAT_AgentTesla_AB_MTB_2{
 }
 rule Trojan_BAT_AgentTesla_AB_MTB_3{
 	meta:
+		description = "Trojan:BAT/AgentTesla.AB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,04 00 04 00 02 00 00 "
+		
+	strings :
+		$a_03_0 = {2b 29 11 16 1f 41 61 13 16 11 16 1f 4b 59 45 06 00 00 00 0b 00 00 00 1c 00 00 00 34 00 00 00 43 00 00 00 59 00 00 00 66 00 00 00 1f 42 28 ?? 00 00 06 13 16 2b cc 11 0c 11 0d fe 01 16 fe 01 13 0e 1f 0e 13 16 2b bb 11 08 11 0b 5f 11 0a 1f 1f 5f 63 13 0d 1f 3d 28 ?? 00 00 06 13 16 2b a3 } //2
+		$a_01_1 = {24 36 64 61 65 63 31 31 39 2d 31 63 32 31 2d 34 37 61 62 2d 39 37 63 66 2d 61 35 31 38 35 35 62 64 34 34 34 31 } //2 $6daec119-1c21-47ab-97cf-a51855bd4441
+	condition:
+		((#a_03_0  & 1)*2+(#a_01_1  & 1)*2) >=4
+ 
+}
+rule Trojan_BAT_AgentTesla_AB_MTB_4{
+	meta:
+		description = "Trojan:BAT/AgentTesla.AB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 01 00 00 "
+		
+	strings :
+		$a_03_0 = {26 11 06 20 ?? 00 00 00 91 1a 5b 13 05 2b b5 16 0a 1b 13 05 2b ae 0e 04 05 61 1f 6e 59 06 61 45 ?? ?? ?? ?? ?? ?? ?? ?? 1d 13 05 2b 97 11 06 20 dd 00 00 00 91 11 06 20 d3 00 00 00 91 59 2b e9 12 02 fe ?? 21 00 00 01 08 0b 11 06 1f 50 91 13 05 38 ?? ff ff ff 02 8c 01 00 00 1b 03 04 6f ?? 00 00 0a 0b 1a 13 05 38 ?? ff ff ff 06 17 58 0a 05 25 5a 0d 05 09 58 0d 11 06 20 f0 00 00 00 91 1f 0d 59 13 05 38 ?? ff ff ff } //5
+	condition:
+		((#a_03_0  & 1)*5) >=5
+ 
+}
+rule Trojan_BAT_AgentTesla_AB_MTB_5{
+	meta:
 		description = "Trojan:BAT/AgentTesla.AB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,09 00 09 00 09 00 00 "
 		
 	strings :

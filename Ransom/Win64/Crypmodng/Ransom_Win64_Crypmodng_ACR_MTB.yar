@@ -1,0 +1,11 @@
+
+rule Ransom_Win64_Crypmodng_ACR_MTB{
+	meta:
+		description = "Ransom:Win64/Crypmodng.ACR!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
+		
+	strings :
+		$a_03_0 = {48 83 ec 28 48 8d 0d a5 34 07 00 ff 15 ?? ?? ?? ?? 48 8d 15 c1 34 07 00 48 89 c1 ff 15 ?? ?? ?? ?? 48 8d 15 68 ff ff ff 48 85 c0 48 0f 44 c2 48 89 05 ca 97 05 00 48 83 c4 28 48 ff e0 } //1
+	condition:
+		((#a_03_0  & 1)*1) >=1
+ 
+}

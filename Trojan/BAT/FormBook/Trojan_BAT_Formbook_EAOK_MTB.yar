@@ -1,0 +1,11 @@
+
+rule Trojan_BAT_Formbook_EAOK_MTB{
+	meta:
+		description = "Trojan:BAT/Formbook.EAOK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,02 00 02 00 01 00 00 "
+		
+	strings :
+		$a_03_0 = {00 11 10 1f 1f 5a 11 18 1d 5a 58 08 58 07 09 58 61 13 19 00 02 11 10 11 18 ?? ?? ?? ?? ?? 13 1a 04 03 ?? ?? ?? ?? ?? 59 13 1b 11 1b 13 1c 11 1c 19 fe 02 13 22 11 22 2c 03 } //2
+	condition:
+		((#a_03_0  & 1)*2) >=2
+ 
+}

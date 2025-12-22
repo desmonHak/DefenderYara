@@ -1,0 +1,12 @@
+
+rule Trojan_BAT_SnakeKeylogger_PPD_MTB{
+	meta:
+		description = "Trojan:BAT/SnakeKeylogger.PPD!MTB,SIGNATURE_TYPE_PEHSTR_EXT,0a 00 0a 00 02 00 00 "
+		
+	strings :
+		$a_03_0 = {11 08 11 13 1f 3d 5a 61 13 14 00 02 11 12 11 13 6f ?? 00 00 0a 13 15 04 03 6f ?? 00 00 0a 59 13 16 11 16 13 17 11 17 19 fe 02 13 1d 11 1d } //6
+		$a_03_1 = {58 19 5d 13 1b 19 8d 5f 00 00 01 13 1c 11 1c 16 12 15 28 ?? 00 00 0a 9c 11 1c 17 12 15 28 ?? 00 00 0a 9c 11 1c 18 12 15 28 ?? 00 00 0a 9c 11 17 16 fe 02 13 1f 11 1f 2c 12 00 11 19 13 20 03 11 1c 11 20 91 6f ?? 00 00 0a 00 00 11 17 17 fe 02 13 21 11 21 } //4
+	condition:
+		((#a_03_0  & 1)*6+(#a_03_1  & 1)*4) >=10
+ 
+}

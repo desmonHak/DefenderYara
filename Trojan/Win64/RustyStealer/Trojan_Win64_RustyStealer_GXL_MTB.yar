@@ -1,0 +1,16 @@
+
+rule Trojan_Win64_RustyStealer_GXL_MTB{
+	meta:
+		description = "Trojan:Win64/RustyStealer.GXL!MTB,SIGNATURE_TYPE_PEHSTR_EXT,06 00 06 00 06 00 00 "
+		
+	strings :
+		$a_01_0 = {64 69 73 63 6f 72 64 5f 63 6f 6e 74 72 6f 6c 2e 70 64 62 } //1 discord_control.pdb
+		$a_01_1 = {6d 69 73 73 69 6f 6e 73 4c 33 42 } //1 missionsL3B
+		$a_01_2 = {72 65 61 63 74 69 6f 6e 75 65 73 70 65 6d 6f 73 61 72 65 6e 65 67 79 6c 6d 6f 64 6e 61 72 6f 64 73 65 74 79 62 64 65 74 } //1 reactionuespemosarenegylmodnarodsetybdet
+		$a_01_3 = {69 64 61 6c 65 72 74 5f 73 79 73 74 65 6d 5f 6d 65 73 72 75 6c 65 5f 74 72 69 67 67 65 72 } //1 idalert_system_mesrule_trigger
+		$a_01_4 = {41 73 65 63 2d 77 65 62 73 6f 63 6b 65 74 2d 76 65 73 65 63 2d 77 65 62 73 6f 63 6b 65 74 2d 6b 65 62 73 6f 63 6b 65 74 2d 70 72 6f 74 6f 63 6f 6c 73 65 63 } //1 Asec-websocket-vesec-websocket-kebsocket-protocolsec
+		$a_01_5 = {47 65 74 41 64 61 70 74 65 72 73 41 64 64 72 65 73 73 65 73 } //1 GetAdaptersAddresses
+	condition:
+		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1+(#a_01_4  & 1)*1+(#a_01_5  & 1)*1) >=6
+ 
+}

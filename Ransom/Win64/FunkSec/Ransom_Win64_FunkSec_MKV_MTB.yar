@@ -1,0 +1,14 @@
+
+rule Ransom_Win64_FunkSec_MKV_MTB{
+	meta:
+		description = "Ransom:Win64/FunkSec.MKV!MTB,SIGNATURE_TYPE_PEHSTR_EXT,08 00 08 00 04 00 00 "
+		
+	strings :
+		$a_01_0 = {59 6f 75 20 68 61 76 65 20 62 65 65 6e 20 63 6f 6e 74 72 6f 6c 6c 65 64 2e 20 59 6f 75 72 20 73 79 73 74 65 6d 73 20 61 72 65 20 6e 6f 74 20 73 65 63 75 72 65 } //2 You have been controlled. Your systems are not secure
+		$a_01_1 = {48 65 6c 6c 6f 20 69 64 69 6f 74 73 20 2c 20 77 65 20 61 72 65 20 47 68 6f 73 74 20 41 6c 67 } //2 Hello idiots , we are Ghost Alg
+		$a_01_2 = {64 61 72 6b 66 75 6e 6b 2e 70 64 62 } //3 darkfunk.pdb
+		$a_01_3 = {44 6f 20 4e 4f 54 20 61 74 74 65 6d 70 74 20 74 6f 20 74 72 61 63 65 20 66 75 6e 6b 73 65 63 27 73 20 61 63 74 69 76 69 74 69 65 73 2e } //1 Do NOT attempt to trace funksec's activities.
+	condition:
+		((#a_01_0  & 1)*2+(#a_01_1  & 1)*2+(#a_01_2  & 1)*3+(#a_01_3  & 1)*1) >=8
+ 
+}

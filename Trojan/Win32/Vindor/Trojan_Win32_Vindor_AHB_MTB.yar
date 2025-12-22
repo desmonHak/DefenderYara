@@ -1,0 +1,13 @@
+
+rule Trojan_Win32_Vindor_AHB_MTB{
+	meta:
+		description = "Trojan:Win32/Vindor.AHB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,3c 00 3c 00 03 00 00 "
+		
+	strings :
+		$a_03_0 = {33 f6 03 df ff 15 ?? ?? ?? 00 25 ?? ?? ?? ?? 79 ?? 48 0d ?? ?? ?? ?? 40 88 04 33 46 83 fe ?? 7c ?? 8d 8c 24 d0 03 00 00 } //30
+		$a_01_1 = {41 44 41 4d 41 4e 44 50 52 41 53 48 41 4e 54 41 52 45 41 57 45 53 4f 4d 45 } //20 ADAMANDPRASHANTAREAWESOME
+		$a_01_2 = {5b 21 5d 46 61 69 6c 65 64 20 74 6f 20 67 65 74 20 65 63 68 6f 20 70 6f 72 74 20 66 72 6f 6d 20 73 65 72 76 65 72 } //10 [!]Failed to get echo port from server
+	condition:
+		((#a_03_0  & 1)*30+(#a_01_1  & 1)*20+(#a_01_2  & 1)*10) >=60
+ 
+}

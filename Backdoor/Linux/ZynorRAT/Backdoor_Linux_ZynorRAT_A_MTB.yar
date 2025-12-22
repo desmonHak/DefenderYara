@@ -1,0 +1,14 @@
+
+rule Backdoor_Linux_ZynorRAT_A_MTB{
+	meta:
+		description = "Backdoor:Linux/ZynorRAT.A!MTB,SIGNATURE_TYPE_ELFHSTR_EXT,04 00 04 00 04 00 00 "
+		
+	strings :
+		$a_01_0 = {6d 61 69 6e 2e 68 61 6e 64 6c 65 53 68 65 6c 6c 43 6f 6d 6d 61 6e 64 } //1 main.handleShellCommand
+		$a_01_1 = {6d 61 69 6e 2e 68 61 6e 64 6c 65 50 65 72 73 69 73 74 65 6e 63 65 } //1 main.handlePersistence
+		$a_01_2 = {6d 61 69 6e 2e 73 65 6e 64 44 6f 63 75 6d 65 6e 74 } //1 main.sendDocument
+		$a_01_3 = {6d 61 69 6e 2e 68 61 6e 64 6c 65 53 63 72 65 65 6e 73 68 6f 74 } //1 main.handleScreenshot
+	condition:
+		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1) >=4
+ 
+}

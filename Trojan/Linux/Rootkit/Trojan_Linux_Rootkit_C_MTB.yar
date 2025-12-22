@@ -1,0 +1,16 @@
+
+rule Trojan_Linux_Rootkit_C_MTB{
+	meta:
+		description = "Trojan:Linux/Rootkit.C!MTB,SIGNATURE_TYPE_ELFHSTR_EXT,06 00 06 00 06 00 00 "
+		
+	strings :
+		$a_01_0 = {2f 61 6d 69 74 73 63 68 65 6e 64 65 6c 2f 63 75 72 69 6e 67 2f 70 6b 67 2f 73 65 72 76 65 72 2e 68 61 6e 64 6c 65 52 65 71 75 65 73 74 } //1 /amitschendel/curing/pkg/server.handleRequest
+		$a_01_1 = {2f 63 75 72 69 6e 67 2f 70 6b 67 2f 73 65 72 76 65 72 2e 4e 65 77 53 65 72 76 65 72 } //1 /curing/pkg/server.NewServer
+		$a_01_2 = {2f 63 75 72 69 6e 67 2f 70 6b 67 2f 63 6f 6e 66 69 67 2e 4c 6f 61 64 43 6f 6e 66 69 67 } //1 /curing/pkg/config.LoadConfig
+		$a_01_3 = {2f 72 6f 6f 74 2f 63 75 72 69 6e 67 2f 70 6b 67 2f 73 65 72 76 65 72 2f 73 65 72 76 65 72 2e 67 6f } //1 /root/curing/pkg/server/server.go
+		$a_01_4 = {2f 72 6f 6f 74 2f 63 75 72 69 6e 67 2f 73 65 72 76 65 72 2f 6d 61 69 6e 2e 67 6f } //1 /root/curing/server/main.go
+		$a_01_5 = {2f 73 79 73 63 61 6c 6c 2f 69 6f 5f 75 72 69 6e 67 5f 72 65 67 69 73 74 65 72 2e 67 6f } //1 /syscall/io_uring_register.go
+	condition:
+		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1+(#a_01_4  & 1)*1+(#a_01_5  & 1)*1) >=6
+ 
+}

@@ -1,0 +1,16 @@
+
+rule Trojan_Win32_SusValakSchtasks_MK{
+	meta:
+		description = "Trojan:Win32/SusValakSchtasks.MK,SIGNATURE_TYPE_CMDHSTR_EXT,06 00 06 00 06 00 00 "
+		
+	strings :
+		$a_80_0 = {73 63 68 74 61 73 6b 73 2e 65 78 65 20 2f 43 72 65 61 74 65 20 } //schtasks.exe /Create   1
+		$a_80_1 = {2f 46 20 2f 54 4e 20 } ///F /TN   1
+		$a_80_2 = {20 2f 54 52 20 22 57 53 43 52 49 50 54 2e 65 78 65 20 2f 2f 45 3a 6a 73 63 72 69 70 74 20 } // /TR "WSCRIPT.exe //E:jscript   1
+		$a_80_3 = {22 43 6c 61 73 73 69 63 20 53 6f 75 6e 64 22 } //"Classic Sound"  1
+		$a_80_4 = {2e 62 7a 3a 44 65 66 61 75 6c 74 32 2e 69 6e 69 } //.bz:Default2.ini  1
+		$a_80_5 = {2f 53 43 20 4d 69 6e 75 74 65 20 2f 4d 4f 20 } ///SC Minute /MO   1
+	condition:
+		((#a_80_0  & 1)*1+(#a_80_1  & 1)*1+(#a_80_2  & 1)*1+(#a_80_3  & 1)*1+(#a_80_4  & 1)*1+(#a_80_5  & 1)*1) >=6
+ 
+}

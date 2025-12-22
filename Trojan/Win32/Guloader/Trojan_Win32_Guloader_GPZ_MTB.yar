@@ -1,0 +1,15 @@
+
+rule Trojan_Win32_Guloader_GPZ_MTB{
+	meta:
+		description = "Trojan:Win32/Guloader.GPZ!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 05 00 00 "
+		
+	strings :
+		$a_81_0 = {63 6f 6c 6f 73 73 61 6c 20 61 6e 6e 65 6c 6f 69 64 } //1 colossal anneloid
+		$a_81_1 = {63 68 6f 72 74 6c 65 72 20 63 69 63 61 64 65 6c 6c 69 64 61 65 20 73 6d 69 6c 69 74 72 } //1 chortler cicadellidae smilitr
+		$a_81_2 = {6c 6e 69 6e 64 74 67 74 2e 65 78 65 } //1 lnindtgt.exe
+		$a_81_3 = {6b 76 61 62 73 6f 65 6e 20 74 72 61 61 64 72 65 6e 73 65 72 65 6e } //1 kvabsoen traadrenseren
+		$a_81_4 = {69 6e 69 74 69 61 6c 69 73 65 72 65 64 65 } //1 initialiserede
+	condition:
+		((#a_81_0  & 1)*1+(#a_81_1  & 1)*1+(#a_81_2  & 1)*1+(#a_81_3  & 1)*1+(#a_81_4  & 1)*1) >=5
+ 
+}

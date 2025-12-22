@@ -1,6 +1,30 @@
 
 rule Trojan_BAT_FormBook_SKC_MTB{
 	meta:
+		description = "Trojan:BAT/FormBook.SKC!MTB,SIGNATURE_TYPE_PEHSTR_EXT,03 00 03 00 03 00 00 "
+		
+	strings :
+		$a_02_0 = {00 11 12 20 cb 03 00 00 5a 11 0f 20 f5 03 00 00 5a 61 20 ff 03 00 00 5f 13 13 06 11 13 1b 63 94 17 11 13 1f 1f 5f 1f 1f 5f 62 5f 16 fe 03 13 14 02 11 0f 11 12 6f ?? 00 00 0a 13 15 04 03 } //1
+		$a_81_1 = {54 72 61 76 42 6f 74 2e 50 72 6f 70 65 72 74 69 65 73 2e 52 65 73 6f 75 72 63 65 73 2e 72 65 73 6f 75 72 63 65 73 } //1 TravBot.Properties.Resources.resources
+		$a_81_2 = {24 38 65 33 66 33 61 39 37 2d 65 30 33 34 2d 34 30 64 38 2d 62 36 38 61 2d 33 32 36 35 37 30 37 32 65 65 39 36 } //1 $8e3f3a97-e034-40d8-b68a-32657072ee96
+	condition:
+		((#a_02_0  & 1)*1+(#a_81_1  & 1)*1+(#a_81_2  & 1)*1) >=3
+ 
+}
+rule Trojan_BAT_FormBook_SKC_MTB_2{
+	meta:
+		description = "Trojan:BAT/FormBook.SKC!MTB,SIGNATURE_TYPE_PEHSTR_EXT,03 00 03 00 03 00 00 "
+		
+	strings :
+		$a_00_0 = {11 09 11 10 1f 3d 5a 61 13 11 02 11 0f 11 10 6f 66 00 00 0a 13 12 04 03 6f 67 00 00 0a 59 13 13 11 13 13 14 11 14 19 31 03 19 13 14 11 14 16 2f 03 16 13 14 11 09 16 5f 13 15 11 15 19 5d 13 16 17 11 15 58 19 5d 13 17 18 11 15 58 19 5d 13 18 19 8d 51 00 00 01 } //1
+		$a_81_1 = {43 72 75 64 46 6f 72 6d 2e 50 72 6f 70 65 72 74 69 65 73 } //1 CrudForm.Properties
+		$a_81_2 = {24 46 33 43 38 41 36 44 32 2d 37 42 34 45 2d 34 41 39 46 2d 42 35 43 31 2d 39 45 36 41 32 44 34 46 38 43 37 42 } //1 $F3C8A6D2-7B4E-4A9F-B5C1-9E6A2D4F8C7B
+	condition:
+		((#a_00_0  & 1)*1+(#a_81_1  & 1)*1+(#a_81_2  & 1)*1) >=3
+ 
+}
+rule Trojan_BAT_FormBook_SKC_MTB_3{
+	meta:
 		description = "Trojan:BAT/FormBook.SKC!MTB,SIGNATURE_TYPE_PEHSTR,02 00 02 00 02 00 00 "
 		
 	strings :
@@ -10,7 +34,28 @@ rule Trojan_BAT_FormBook_SKC_MTB{
 		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1) >=2
  
 }
-rule Trojan_BAT_FormBook_SKC_MTB_2{
+rule Trojan_BAT_FormBook_SKC_MTB_4{
+	meta:
+		description = "Trojan:BAT/FormBook.SKC!MTB,SIGNATURE_TYPE_PEHSTR,01 00 01 00 01 00 00 "
+		
+	strings :
+		$a_01_0 = {6f 30 00 00 0a 13 05 04 03 6f 2f 00 00 0a 59 13 06 03 12 05 28 31 00 00 0a 6f 32 00 00 0a 11 06 17 59 25 13 06 16 31 32 03 12 05 28 33 00 00 0a 6f 32 00 00 0a 11 06 17 59 25 13 06 16 31 1b 03 12 05 28 34 00 00 0a 6f 32 00 00 0a 07 17 58 0b 2b 90 06 17 58 0a 16 0b 2b 88 } //1
+	condition:
+		((#a_01_0  & 1)*1) >=1
+ 
+}
+rule Trojan_BAT_FormBook_SKC_MTB_5{
+	meta:
+		description = "Trojan:BAT/FormBook.SKC!MTB,SIGNATURE_TYPE_PEHSTR,01 00 01 00 02 00 00 "
+		
+	strings :
+		$a_01_0 = {00 11 0b 17 58 1f 25 5a 11 0e 17 58 1f 65 5a 61 07 61 13 0f 11 0f 11 0d 23 00 00 00 00 00 40 8f 40 5a 69 61 13 0f 02 11 0b 11 0e 6f 1a 00 00 0a 13 10 04 03 6f 1b 00 00 0a 59 } //1
+		$a_01_1 = {00 11 12 20 cb 03 00 00 5a 11 0f 20 f5 03 00 00 5a 61 20 ff 03 00 00 5f 13 13 06 11 13 1b 63 94 17 11 13 1f 1f 5f 1f 1f 5f 62 5f 16 fe 03 13 14 } //1
+	condition:
+		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1) >=1
+ 
+}
+rule Trojan_BAT_FormBook_SKC_MTB_6{
 	meta:
 		description = "Trojan:BAT/FormBook.SKC!MTB,SIGNATURE_TYPE_PEHSTR,01 00 01 00 01 00 00 "
 		

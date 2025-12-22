@@ -1,0 +1,12 @@
+
+rule Trojan_BAT_AsyncRat_PPQ_MTB{
+	meta:
+		description = "Trojan:BAT/AsyncRat.PPQ!MTB,SIGNATURE_TYPE_PEHSTR_EXT,0b 00 0b 00 02 00 00 "
+		
+	strings :
+		$a_03_0 = {02 00 04 28 ?? 05 00 06 80 ?? 00 00 04 7e ?? 00 00 04 73 ?? 00 00 06 80 ?? 00 00 04 7e ?? 00 00 04 7e ?? 00 00 04 7e } //10
+		$a_01_1 = {50 61 73 74 65 5f 62 69 6e 00 42 53 5f 4f 44 00 48 77 5f 69 64 00 44 65 5f 6c 61 79 00 47 72 6f 75 70 00 41 6e 74 69 5f 50 72 6f 63 65 73 73 00 41 6e 5f 74 69 } //1
+	condition:
+		((#a_03_0  & 1)*10+(#a_01_1  & 1)*1) >=11
+ 
+}

@@ -6,7 +6,7 @@ rule SupportScam_Win32_Screcwon_MA_MTB{
 	strings :
 		$a_81_0 = {43 3a 5c 55 73 65 72 73 5c 6a 6d 6f 72 67 61 6e 5c 53 6f 75 72 63 65 5c 63 77 63 6f 6e 74 72 6f 6c 5c 4d 69 73 63 5c 42 6f 6f 74 73 74 72 61 70 70 65 72 5c 52 65 6c 65 61 73 65 5c 43 6c 69 63 6b 4f 6e 63 65 52 75 6e 6e 65 72 2e 70 64 62 } //20 C:\Users\jmorgan\Source\cwcontrol\Misc\Bootstrapper\Release\ClickOnceRunner.pdb
 		$a_81_1 = {43 3a 5c 55 73 65 72 73 5c 6a 6d 6f 72 67 61 6e 5c 53 6f 75 72 63 65 5c 63 77 63 6f 6e 74 72 6f 6c 5c 43 75 73 74 6f 6d 5c 44 6f 74 4e 65 74 52 75 6e 6e 65 72 5c 52 65 6c 65 61 73 65 5c 44 6f 74 4e 65 74 52 75 6e 6e 65 72 2e 70 64 62 } //20 C:\Users\jmorgan\Source\cwcontrol\Custom\DotNetRunner\Release\DotNetRunner.pdb
-		$a_81_2 = {2e 74 6f 70 } //1 .top
+		$a_81_2 = {2e 74 6f 70 26 70 3d 38 38 38 30 } //1 .top&p=8880
 		$a_81_3 = {2e 69 6e 6e 6f 63 72 65 65 64 2e 63 6f 6d } //1 .innocreed.com
 		$a_81_4 = {2e 63 6f 6e 74 72 6f 6c 68 75 62 2e 65 73 } //1 .controlhub.es
 		$a_81_5 = {2e 72 61 74 6f 73 63 72 65 65 6e 63 6f 2e 63 6f 6d } //1 .ratoscreenco.com

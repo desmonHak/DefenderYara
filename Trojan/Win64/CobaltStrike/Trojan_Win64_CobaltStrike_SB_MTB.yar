@@ -9,3 +9,16 @@ rule Trojan_Win64_CobaltStrike_SB_MTB{
 		((#a_03_0  & 1)*1) >=1
  
 }
+rule Trojan_Win64_CobaltStrike_SB_MTB_2{
+	meta:
+		description = "Trojan:Win64/CobaltStrike.SB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,04 00 04 00 04 00 00 "
+		
+	strings :
+		$a_00_0 = {48 8b c1 c7 44 24 40 3a 51 7c ab 83 e0 0f c7 44 24 44 0e 15 70 0f c7 44 24 48 22 19 a4 b3 c7 44 24 4c 76 5d 18 97 0f 28 44 24 40 66 0f 7f 44 24 60 0f b6 44 04 60 32 84 11 b8 99 01 00 88 44 0c 50 48 ff c1 48 83 f9 0c 72 b6 } //1
+		$a_81_1 = {44 6c 6c 43 61 6e 55 6e 6c 6f 61 64 4e 6f 77 } //1 DllCanUnloadNow
+		$a_81_2 = {44 6c 6c 47 65 74 43 6c 61 73 73 4f 62 6a 65 63 74 } //1 DllGetClassObject
+		$a_81_3 = {72 75 6e 57 6f 72 6b 65 72 } //1 runWorker
+	condition:
+		((#a_00_0  & 1)*1+(#a_81_1  & 1)*1+(#a_81_2  & 1)*1+(#a_81_3  & 1)*1) >=4
+ 
+}

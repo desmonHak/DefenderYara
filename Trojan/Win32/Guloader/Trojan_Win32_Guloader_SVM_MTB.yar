@@ -1,7 +1,7 @@
 
-rule Trojan_Win32_Guloader_SVM_MTB{
+rule Trojan_Win32_GuLoader_SVM_MTB{
 	meta:
-		description = "Trojan:Win32/Guloader.SVM!MTB,SIGNATURE_TYPE_PEHSTR_EXT,0f 00 0f 00 08 00 00 "
+		description = "Trojan:Win32/GuLoader.SVM!MTB,SIGNATURE_TYPE_PEHSTR_EXT,0f 00 0f 00 08 00 00 "
 		
 	strings :
 		$a_81_0 = {71 75 61 64 72 69 63 69 6c 69 61 74 65 2e 74 78 74 } //2 quadriciliate.txt
@@ -14,5 +14,22 @@ rule Trojan_Win32_Guloader_SVM_MTB{
 		$a_81_7 = {73 6b 72 75 65 74 72 6b 6b 65 72 65 73 2e 6d 75 73 } //1 skruetrkkeres.mus
 	condition:
 		((#a_81_0  & 1)*2+(#a_81_1  & 1)*2+(#a_81_2  & 1)*2+(#a_81_3  & 1)*2+(#a_81_4  & 1)*2+(#a_81_5  & 1)*2+(#a_81_6  & 1)*2+(#a_81_7  & 1)*1) >=15
+ 
+}
+rule Trojan_Win32_GuLoader_SVM_MTB_2{
+	meta:
+		description = "Trojan:Win32/GuLoader.SVM!MTB,SIGNATURE_TYPE_PEHSTR_EXT,08 00 08 00 08 00 00 "
+		
+	strings :
+		$a_81_0 = {5c 53 6b 72 69 67 65 64 75 6b 6b 65 72 5c 66 69 64 75 73 6d 61 6c 65 72 73 } //1 \Skrigedukker\fidusmalers
+		$a_81_1 = {5c 74 6f 72 74 6f 69 73 65 5c 4c 61 75 72 62 72 73 31 35 35 2e 69 6e 69 } //1 \tortoise\Laurbrs155.ini
+		$a_81_2 = {42 65 6e 7a 6f 70 68 65 6e 6f 74 68 69 61 7a 69 6e 65 31 31 33 2e 74 78 74 } //1 Benzophenothiazine113.txt
+		$a_81_3 = {48 79 70 6f 72 68 61 63 68 69 73 2e 6b 75 65 } //1 Hyporhachis.kue
+		$a_81_4 = {67 61 76 73 74 72 69 6b 6b 65 72 6e 65 73 2e 74 69 74 } //1 gavstrikkernes.tit
+		$a_81_5 = {6f 76 65 72 62 75 72 64 65 6e 69 6e 67 6c 79 2e 72 65 63 } //1 overburdeningly.rec
+		$a_81_6 = {74 65 74 72 61 73 70 6f 72 61 6e 67 69 61 2e 76 65 6e } //1 tetrasporangia.ven
+		$a_81_7 = {5c 66 6f 74 6f 67 72 61 66 69 73 2e 7a 69 70 } //1 \fotografis.zip
+	condition:
+		((#a_81_0  & 1)*1+(#a_81_1  & 1)*1+(#a_81_2  & 1)*1+(#a_81_3  & 1)*1+(#a_81_4  & 1)*1+(#a_81_5  & 1)*1+(#a_81_6  & 1)*1+(#a_81_7  & 1)*1) >=8
  
 }

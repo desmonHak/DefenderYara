@@ -1,0 +1,12 @@
+
+rule Trojan_Win64_Rugmi_YBH_MTB{
+	meta:
+		description = "Trojan:Win64/Rugmi.YBH!MTB,SIGNATURE_TYPE_PEHSTR_EXT,02 00 02 00 02 00 00 "
+		
+	strings :
+		$a_01_0 = {48 83 ec 30 48 8b 05 94 ab 0c 00 48 bb 32 a2 df 2d 99 2b 00 00 } //1
+		$a_01_1 = {4c 0f be 37 41 b8 40 00 00 00 4c 03 f7 41 8b 4e 04 45 8b 7e 08 89 4d 77 41 8b d7 } //1
+	condition:
+		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1) >=2
+ 
+}

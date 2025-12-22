@@ -1,0 +1,12 @@
+
+rule Trojan_BAT_Taskun_ARCB_MTB{
+	meta:
+		description = "Trojan:BAT/Taskun.ARCB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,07 00 07 00 02 00 00 "
+		
+	strings :
+		$a_03_0 = {12 00 06 7b ?? 00 00 04 08 11 07 28 ?? ?? 00 06 61 09 5a 0e 06 23 00 00 00 00 00 40 8f 40 5a 23 00 00 00 00 00 00 f0 3f 58 69 58 7d } //5
+		$a_03_1 = {03 12 0b 28 ?? 00 00 0a 6f ?? 00 00 0a 00 03 12 0b 28 ?? 00 00 0a 6f ?? 00 00 0a 11 11 } //2
+	condition:
+		((#a_03_0  & 1)*5+(#a_03_1  & 1)*2) >=7
+ 
+}

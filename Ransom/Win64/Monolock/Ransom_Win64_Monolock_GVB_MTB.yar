@@ -1,0 +1,12 @@
+
+rule Ransom_Win64_Monolock_GVB_MTB{
+	meta:
+		description = "Ransom:Win64/Monolock.GVB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,03 00 03 00 02 00 00 "
+		
+	strings :
+		$a_01_0 = {48 8b 30 48 33 35 d1 29 db 00 48 8b 78 08 48 31 df 48 89 c3 48 89 f8 48 89 d7 48 f7 e6 90 90 90 48 31 d0 90 48 83 c1 f0 48 8d 73 10 48 89 fa 48 89 c3 48 89 f0 48 83 f9 10 77 c5 } //1
+		$a_01_1 = {6d 61 69 6e 2e 28 2a 78 4d 76 30 48 43 6b 48 49 79 6a 29 2e 52 65 70 6c 61 63 65 } //2 main.(*xMv0HCkHIyj).Replace
+	condition:
+		((#a_01_0  & 1)*1+(#a_01_1  & 1)*2) >=3
+ 
+}

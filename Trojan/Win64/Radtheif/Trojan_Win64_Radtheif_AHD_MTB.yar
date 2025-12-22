@@ -1,0 +1,12 @@
+
+rule Trojan_Win64_Radtheif_AHD_MTB{
+	meta:
+		description = "Trojan:Win64/Radtheif.AHD!MTB,SIGNATURE_TYPE_PEHSTR_EXT,32 00 32 00 02 00 00 "
+		
+	strings :
+		$a_03_0 = {48 8b 94 24 90 90 00 00 00 48 ff c2 48 8b 44 24 58 48 8b 8c 24 50 01 00 00 48 8b 5c 24 50 0f 1f 40 ?? 48 83 fa } //30
+		$a_03_1 = {48 f7 ea 48 01 f2 48 c1 fa ?? 48 29 da 48 8d 14 92 48 c1 e2 ?? 48 29 d6 48 39 f1 0f } //20
+	condition:
+		((#a_03_0  & 1)*30+(#a_03_1  & 1)*20) >=50
+ 
+}

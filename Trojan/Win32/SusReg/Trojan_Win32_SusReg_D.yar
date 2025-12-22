@@ -1,0 +1,30 @@
+
+rule Trojan_Win32_SusReg_D{
+	meta:
+		description = "Trojan:Win32/SusReg.D,SIGNATURE_TYPE_CMDHSTR_EXT,05 00 05 00 05 00 00 "
+		
+	strings :
+		$a_80_0 = {63 6d 64 2e 65 78 65 20 2f 63 20 73 79 73 74 65 6d 69 6e 66 6f } //cmd.exe /c systeminfo  1
+		$a_80_1 = {41 70 70 44 61 74 61 5c 4c 6f 63 61 6c 5c 54 65 6d 70 5c 74 65 6d 70 2e 69 6e 69 } //AppData\Local\Temp\temp.ini  1
+		$a_80_2 = {74 61 73 6b 6c 69 73 74 } //tasklist  1
+		$a_80_3 = {6d 61 6b 65 63 61 62 } //makecab  1
+		$a_80_4 = {74 65 6d 70 2e 63 61 62 } //temp.cab  1
+	condition:
+		((#a_80_0  & 1)*1+(#a_80_1  & 1)*1+(#a_80_2  & 1)*1+(#a_80_3  & 1)*1+(#a_80_4  & 1)*1) >=5
+ 
+}
+rule Trojan_Win32_SusReg_D_2{
+	meta:
+		description = "Trojan:Win32/SusReg.D,SIGNATURE_TYPE_CMDHSTR_EXT,03 00 03 00 06 00 00 "
+		
+	strings :
+		$a_80_0 = {72 65 67 2e 65 78 65 20 71 75 65 72 79 } //reg.exe query  1
+		$a_80_1 = {48 4b 4c 4d 5c 48 41 52 44 57 41 52 45 5c 44 45 56 49 43 45 4d 41 50 5c 53 63 73 69 5c 53 63 73 69 } //HKLM\HARDWARE\DEVICEMAP\Scsi\Scsi  1
+		$a_80_2 = {56 4d 57 41 52 45 } //VMWARE  1
+		$a_80_3 = {51 45 4d 55 } //QEMU  1
+		$a_80_4 = {48 4b 45 59 5f 4c 4f 43 41 4c 5f 4d 41 43 48 49 4e 45 5c 48 61 72 64 77 61 72 65 5c 44 65 73 63 72 69 70 74 69 6f 6e 5c 53 79 73 74 65 6d } //HKEY_LOCAL_MACHINE\Hardware\Description\System  1
+		$a_00_5 = {53 00 79 00 73 00 74 00 65 00 6d 00 42 00 69 00 6f 00 73 00 56 00 65 00 72 00 73 00 69 00 6f 00 6e 00 } //1 SystemBiosVersion
+	condition:
+		((#a_80_0  & 1)*1+(#a_80_1  & 1)*1+(#a_80_2  & 1)*1+(#a_80_3  & 1)*1+(#a_80_4  & 1)*1+(#a_00_5  & 1)*1) >=3
+ 
+}

@@ -1,6 +1,16 @@
 
 rule Ransom_MSIL_FileCoder_AB_MTB{
 	meta:
+		description = "Ransom:MSIL/FileCoder.AB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
+		
+	strings :
+		$a_01_0 = {11 0a 1f 0b 64 11 0a 1f 15 62 60 13 0d 11 1a 20 27 62 a9 d1 5a 20 8e f4 da a2 61 } //1
+	condition:
+		((#a_01_0  & 1)*1) >=1
+ 
+}
+rule Ransom_MSIL_FileCoder_AB_MTB_2{
+	meta:
 		description = "Ransom:MSIL/FileCoder.AB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,04 00 04 00 04 00 00 "
 		
 	strings :
@@ -12,7 +22,7 @@ rule Ransom_MSIL_FileCoder_AB_MTB{
 		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1) >=4
  
 }
-rule Ransom_MSIL_FileCoder_AB_MTB_2{
+rule Ransom_MSIL_FileCoder_AB_MTB_3{
 	meta:
 		description = "Ransom:MSIL/FileCoder.AB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,08 00 08 00 08 00 00 "
 		

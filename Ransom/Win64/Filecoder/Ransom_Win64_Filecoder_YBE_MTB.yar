@@ -1,6 +1,19 @@
 
 rule Ransom_Win64_Filecoder_YBE_MTB{
 	meta:
+		description = "Ransom:Win64/Filecoder.YBE!MTB,SIGNATURE_TYPE_PEHSTR_EXT,04 00 04 00 04 00 00 "
+		
+	strings :
+		$a_01_0 = {2e 4c 6f 63 6b 65 64 41 } //1 .LockedA
+		$a_01_1 = {49 00 6e 00 66 00 6f 00 72 00 6d 00 61 00 74 00 69 00 6f 00 6e 00 2e 00 48 00 54 00 41 00 } //1 Information.HTA
+		$a_01_2 = {44 6f 6e 74 44 65 6c 65 74 65 54 68 69 73 46 6f 6c 64 65 72 5c 45 6e 63 2e 6b 65 79 } //1 DontDeleteThisFolder\Enc.key
+		$a_01_3 = {53 00 79 00 73 00 74 00 65 00 6d 00 20 00 56 00 6f 00 6c 00 75 00 6d 00 65 00 20 00 49 00 6e 00 66 00 6f 00 72 00 6d 00 61 00 74 00 69 00 6f 00 6e 00 } //1 System Volume Information
+	condition:
+		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1) >=4
+ 
+}
+rule Ransom_Win64_Filecoder_YBE_MTB_2{
+	meta:
 		description = "Ransom:Win64/Filecoder.YBE!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 05 00 00 "
 		
 	strings :

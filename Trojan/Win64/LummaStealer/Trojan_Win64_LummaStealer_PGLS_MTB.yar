@@ -24,12 +24,22 @@ rule Trojan_Win64_LummaStealer_PGLS_MTB_3{
 		description = "Trojan:Win64/LummaStealer.PGLS!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 01 00 00 "
 		
 	strings :
-		$a_03_0 = {48 63 44 24 ?? 48 8b 4c 24 20 69 04 81 95 e9 d1 5b 89 c1 c1 e9 ?? 31 c1 69 c1 95 e9 d1 5b 69 5c 24 ?? 95 e9 d1 5b 31 c3 8b 6c 24 ?? 83 c5 ?? 41 ba ?? ?? ?? ?? 41 81 fa ?? ?? ?? ?? 0f 8f ?? ?? ?? ?? e9 } //5
+		$a_03_0 = {0f 94 c0 0f 95 c1 83 3d ?? ?? ?? ?? 0a 0f 9c c3 30 d9 80 f1 01 89 da 08 c2 80 f2 01 08 ca 89 c1 30 d9 20 c8 20 d9 89 c3 80 f3 01 30 c8 80 f1 01 08 d9 80 f1 01 08 c1 } //5
 	condition:
 		((#a_03_0  & 1)*5) >=5
  
 }
 rule Trojan_Win64_LummaStealer_PGLS_MTB_4{
+	meta:
+		description = "Trojan:Win64/LummaStealer.PGLS!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 01 00 00 "
+		
+	strings :
+		$a_03_0 = {48 63 44 24 ?? 48 8b 4c 24 20 69 04 81 95 e9 d1 5b 89 c1 c1 e9 ?? 31 c1 69 c1 95 e9 d1 5b 69 5c 24 ?? 95 e9 d1 5b 31 c3 8b 6c 24 ?? 83 c5 ?? 41 ba ?? ?? ?? ?? 41 81 fa ?? ?? ?? ?? 0f 8f ?? ?? ?? ?? e9 } //5
+	condition:
+		((#a_03_0  & 1)*5) >=5
+ 
+}
+rule Trojan_Win64_LummaStealer_PGLS_MTB_5{
 	meta:
 		description = "Trojan:Win64/LummaStealer.PGLS!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 02 00 00 "
 		

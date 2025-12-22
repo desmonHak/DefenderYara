@@ -1,0 +1,18 @@
+
+rule Trojan_Win64_Mikey_NKD_MTB{
+	meta:
+		description = "Trojan:Win64/Mikey.NKD!MTB,SIGNATURE_TYPE_PEHSTR_EXT,0a 00 0a 00 08 00 00 "
+		
+	strings :
+		$a_81_0 = {68 74 74 70 3a 2f 2f 31 37 38 2e 31 36 2e 35 33 2e 37 2f 62 63 6c 2e 70 66 78 } //2 http://178.16.53.7/bcl.pfx
+		$a_81_1 = {53 6f 66 74 77 61 72 65 5c 4d 69 63 72 6f 73 6f 66 74 5c 57 69 6e 64 6f 77 73 5c 43 75 72 72 65 6e 74 56 65 72 73 69 6f 6e 5c 52 75 6e } //2 Software\Microsoft\Windows\CurrentVersion\Run
+		$a_81_2 = {53 6f 66 74 77 61 72 65 5c 4d 69 63 72 6f 73 6f 66 74 5c 57 69 6e 64 6f 77 73 5c 43 75 72 72 65 6e 74 56 65 72 73 69 6f 6e 5c 45 78 70 6c 6f 72 65 72 5c 41 64 76 61 6e 63 65 64 } //1 Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+		$a_81_3 = {64 73 6f 66 6a 73 64 6f 70 69 66 6a 73 64 6f 69 70 66 6a 78 78 } //1 dsofjsdopifjsdoipfjxx
+		$a_81_4 = {52 65 66 6c 65 63 74 69 76 65 4c 6f 61 64 65 72 } //1 ReflectiveLoader
+		$a_81_5 = {49 6e 74 65 72 6e 65 74 4f 70 65 6e 55 72 6c 57 } //1 InternetOpenUrlW
+		$a_81_6 = {49 6e 74 65 72 6e 65 74 52 65 61 64 46 69 6c 65 } //1 InternetReadFile
+		$a_81_7 = {57 72 69 74 65 50 72 6f 63 65 73 73 4d 65 6d 6f 72 79 } //1 WriteProcessMemory
+	condition:
+		((#a_81_0  & 1)*2+(#a_81_1  & 1)*2+(#a_81_2  & 1)*1+(#a_81_3  & 1)*1+(#a_81_4  & 1)*1+(#a_81_5  & 1)*1+(#a_81_6  & 1)*1+(#a_81_7  & 1)*1) >=10
+ 
+}

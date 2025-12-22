@@ -1,0 +1,12 @@
+
+rule Trojan_Win32_Oyster_CG_MTB{
+	meta:
+		description = "Trojan:Win32/Oyster.CG!MTB,SIGNATURE_TYPE_PEHSTR_EXT,0a 00 0a 00 02 00 00 "
+		
+	strings :
+		$a_03_0 = {e8 00 00 00 00 89 ef 5d 60 80 ?? ?? 90 90 75 06 61 89 fd } //5
+		$a_03_1 = {c2 04 00 01 6d ?? 8d 4d ?? 8d 95 ?? ?? ?? ?? 9a ?? ?? ?? ?? ?? ?? 48 c7 c0 ?? ?? ?? ?? 48 01 c3 48 c7 c3 ?? ?? ?? ?? 48 c1 e0 ?? 48 } //5
+	condition:
+		((#a_03_0  & 1)*5+(#a_03_1  & 1)*5) >=10
+ 
+}

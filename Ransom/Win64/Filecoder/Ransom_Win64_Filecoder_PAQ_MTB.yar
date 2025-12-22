@@ -1,6 +1,20 @@
 
 rule Ransom_Win64_Filecoder_PAQ_MTB{
 	meta:
+		description = "Ransom:Win64/Filecoder.PAQ!MTB,SIGNATURE_TYPE_PEHSTR_EXT,0b 00 0b 00 05 00 00 "
+		
+	strings :
+		$a_00_0 = {67 00 47 00 6c 00 6f 00 62 00 61 00 6c 00 5c 00 7b 00 45 00 37 00 46 00 32 00 41 00 31 00 44 00 30 00 2d 00 42 00 39 00 43 00 34 00 2d 00 34 00 45 00 38 00 46 00 2d 00 39 00 35 00 41 00 33 00 2d 00 36 00 42 00 30 00 44 00 38 00 32 00 43 00 31 00 45 00 34 00 46 00 39 00 7d 00 5f 00 56 00 6f 00 72 00 74 00 65 00 78 00 43 00 72 00 79 00 5f 00 4d 00 75 00 74 00 65 00 78 00 } //3 gGlobal\{E7F2A1D0-B9C4-4E8F-95A3-6B0D82C1E4F9}_VortexCry_Mutex
+		$a_00_1 = {76 63 72 79 5c 78 36 34 5c 52 65 6c 65 61 73 65 5c 76 63 72 79 2e 70 64 62 } //3 vcry\x64\Release\vcry.pdb
+		$a_00_2 = {5c 00 5c 00 2e 00 5c 00 70 00 69 00 70 00 65 00 5c 00 56 00 6f 00 72 00 74 00 65 00 78 00 43 00 72 00 79 00 5f 00 50 00 69 00 70 00 65 00 } //2 \\.\pipe\VortexCry_Pipe
+		$a_01_3 = {0f b6 04 31 34 fe 88 01 48 8d 49 01 48 83 eb 01 75 } //2
+		$a_01_4 = {f3 0f 6f 44 01 f0 0f 57 c2 f3 0f 7f 40 f0 f3 0f 6f 0c 01 0f 57 ca f3 0f 7f 08 f3 0f 6f 44 01 10 0f 57 c2 f3 0f 7f 40 10 f3 0f 6f 4c 01 20 0f 57 ca f3 0f 7f 48 20 48 83 c2 40 48 8d 40 40 49 3b d1 72 } //1
+	condition:
+		((#a_00_0  & 1)*3+(#a_00_1  & 1)*3+(#a_00_2  & 1)*2+(#a_01_3  & 1)*2+(#a_01_4  & 1)*1) >=11
+ 
+}
+rule Ransom_Win64_Filecoder_PAQ_MTB_2{
+	meta:
 		description = "Ransom:Win64/Filecoder.PAQ!MTB,SIGNATURE_TYPE_PEHSTR,07 00 07 00 04 00 00 "
 		
 	strings :

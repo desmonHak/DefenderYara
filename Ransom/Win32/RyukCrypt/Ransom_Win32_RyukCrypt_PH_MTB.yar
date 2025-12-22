@@ -1,6 +1,17 @@
 
 rule Ransom_Win32_RyukCrypt_PH_MTB{
 	meta:
+		description = "Ransom:Win32/RyukCrypt.PH!MTB,SIGNATURE_TYPE_PEHSTR_EXT,02 00 02 00 02 00 00 "
+		
+	strings :
+		$a_03_0 = {83 e9 04 ba ?? ?? ?? ?? 90 13 be ?? ?? ?? ?? ba ?? ?? ?? ?? ba ?? ?? ?? ?? 90 13 ba ?? ?? ?? ?? 31 06 bb ?? ?? ?? ?? 90 13 83 c6 04 83 e9 04 90 13 83 f9 05 7d ?? e9 } //1
+		$a_03_1 = {bb f4 6a 08 fa 30 06 90 13 46 90 13 49 90 13 83 f9 01 7d } //1
+	condition:
+		((#a_03_0  & 1)*1+(#a_03_1  & 1)*1) >=2
+ 
+}
+rule Ransom_Win32_RyukCrypt_PH_MTB_2{
+	meta:
 		description = "Ransom:Win32/RyukCrypt.PH!MTB,SIGNATURE_TYPE_PEHSTR_EXT,04 00 04 00 04 00 00 "
 		
 	strings :

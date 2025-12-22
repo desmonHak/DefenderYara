@@ -1,6 +1,18 @@
 
 rule Ransom_MSIL_Filecoder_NITF_MTB{
 	meta:
+		description = "Ransom:MSIL/Filecoder.NITF!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 03 00 00 "
+		
+	strings :
+		$a_03_0 = {72 01 00 00 70 28 ?? 00 00 06 28 ?? 00 00 06 28 ?? 00 00 06 28 ?? 00 00 06 28 ?? 00 00 06 28 ?? 00 00 06 } //2
+		$a_03_1 = {72 29 01 00 70 28 ?? 00 00 06 72 71 01 00 70 28 ?? 00 00 06 72 c5 01 00 70 28 ?? 00 00 06 72 01 02 00 70 28 ?? 00 00 06 72 41 02 00 70 28 ?? 00 00 06 } //2
+		$a_03_2 = {7e 14 00 00 0a 72 2a 06 00 70 17 6f ?? 00 00 0a 0a 06 72 86 06 00 70 72 93 00 00 70 28 ?? 00 00 0a 6f ?? 00 00 0a 72 93 00 00 70 28 ?? 00 00 0a 6f ?? 00 00 0a de 0a 06 2c 06 06 6f ?? 00 00 0a dc 72 a2 06 00 70 28 ?? 00 00 0a 6f ?? 00 00 0a 72 0e 07 00 70 28 ?? 00 00 0a 28 ?? 00 00 06 de 03 } //1
+	condition:
+		((#a_03_0  & 1)*2+(#a_03_1  & 1)*2+(#a_03_2  & 1)*1) >=5
+ 
+}
+rule Ransom_MSIL_Filecoder_NITF_MTB_2{
+	meta:
 		description = "Ransom:MSIL/Filecoder.NITF!MTB,SIGNATURE_TYPE_PEHSTR_EXT,08 00 08 00 03 00 00 "
 		
 	strings :

@@ -1,0 +1,15 @@
+
+rule Trojan_Win32_Guloader_UAI_MTB{
+	meta:
+		description = "Trojan:Win32/Guloader.UAI!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 05 00 00 "
+		
+	strings :
+		$a_81_0 = {74 6f 72 6e 62 6c 61 64 65 6e 73 } //1 tornbladens
+		$a_81_1 = {61 61 72 68 75 6e 64 72 65 64 73 6b 69 66 74 65 20 6e 61 75 63 72 61 72 } //1 aarhundredskifte naucrar
+		$a_81_2 = {64 75 62 62 65 72 6e 65 20 7a 6f 73 74 65 72 61 63 65 61 65 2e 65 78 65 } //1 dubberne zosteraceae.exe
+		$a_81_3 = {64 69 73 6b 6f 73 6b 61 73 74 65 72 } //1 diskoskaster
+		$a_81_4 = {70 6c 61 6e 6b 6f 6e 6f 6d 69 65 6e 73 20 6c 6f 75 73 69 6e 65 73 73 65 73 } //1 plankonomiens lousinesses
+	condition:
+		((#a_81_0  & 1)*1+(#a_81_1  & 1)*1+(#a_81_2  & 1)*1+(#a_81_3  & 1)*1+(#a_81_4  & 1)*1) >=5
+ 
+}

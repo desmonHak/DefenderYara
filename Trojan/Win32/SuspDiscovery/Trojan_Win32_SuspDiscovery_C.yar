@@ -1,0 +1,32 @@
+
+rule Trojan_Win32_SuspDiscovery_C{
+	meta:
+		description = "Trojan:Win32/SuspDiscovery.C,SIGNATURE_TYPE_CMDHSTR_EXT,06 00 06 00 06 00 00 "
+		
+	strings :
+		$a_80_0 = {73 63 68 74 61 73 6b 73 2e 65 78 65 20 2f 63 72 65 61 74 65 20 2f 73 63 20 4d 49 4e 55 54 45 20 2f 74 6e } //schtasks.exe /create /sc MINUTE /tn  1
+		$a_80_1 = {57 69 6e 64 6f 77 73 20 55 70 64 61 74 65 20 53 65 63 75 72 69 74 79 20 50 61 74 63 68 65 73 } //Windows Update Security Patches  1
+		$a_00_2 = {2f 00 74 00 72 00 } //1 /tr
+		$a_80_3 = {70 72 6f 67 72 61 6d 64 61 74 61 5c 65 6e 63 2e 65 78 65 } //programdata\enc.exe  1
+		$a_00_4 = {2f 00 46 00 } //1 /F
+		$a_00_5 = {2f 00 6d 00 6f 00 20 00 } //1 /mo 
+	condition:
+		((#a_80_0  & 1)*1+(#a_80_1  & 1)*1+(#a_00_2  & 1)*1+(#a_80_3  & 1)*1+(#a_00_4  & 1)*1+(#a_00_5  & 1)*1) >=6
+ 
+}
+rule Trojan_Win32_SuspDiscovery_C_2{
+	meta:
+		description = "Trojan:Win32/SuspDiscovery.C,SIGNATURE_TYPE_CMDHSTR_EXT,07 00 07 00 07 00 00 "
+		
+	strings :
+		$a_80_0 = {73 63 68 74 61 73 6b 73 2e 65 78 65 20 2f 63 72 65 61 74 65 20 2f 73 63 20 4d 49 4e 55 54 45 20 2f 74 6e } //schtasks.exe /create /sc MINUTE /tn  1
+		$a_80_1 = {57 69 6e 64 6f 77 73 20 55 70 64 61 74 65 20 53 65 63 75 72 69 74 79 } //Windows Update Security  1
+		$a_00_2 = {2f 00 74 00 72 00 } //1 /tr
+		$a_80_3 = {72 65 67 73 76 72 33 32 2e 65 78 65 20 2f 69 } //regsvr32.exe /i  1
+		$a_00_4 = {70 00 72 00 6f 00 67 00 72 00 61 00 6d 00 64 00 61 00 74 00 61 00 5c 00 6e 00 65 00 74 00 77 00 6f 00 72 00 6b 00 2e 00 64 00 6c 00 6c 00 } //1 programdata\network.dll
+		$a_00_5 = {2f 00 46 00 } //1 /F
+		$a_00_6 = {2f 00 6d 00 6f 00 20 00 } //1 /mo 
+	condition:
+		((#a_80_0  & 1)*1+(#a_80_1  & 1)*1+(#a_00_2  & 1)*1+(#a_80_3  & 1)*1+(#a_00_4  & 1)*1+(#a_00_5  & 1)*1+(#a_00_6  & 1)*1) >=7
+ 
+}

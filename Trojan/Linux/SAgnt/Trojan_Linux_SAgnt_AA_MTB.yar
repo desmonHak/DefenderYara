@@ -1,0 +1,12 @@
+
+rule Trojan_Linux_SAgnt_AA_MTB{
+	meta:
+		description = "Trojan:Linux/SAgnt.AA!MTB,SIGNATURE_TYPE_ELFHSTR_EXT,02 00 02 00 02 00 00 "
+		
+	strings :
+		$a_01_0 = {f0 30 00 24 c0 d0 00 03 ba 71 a7 fb ff 48 c0 b0 00 03 d4 0c b9 04 00 82 e3 20 b0 10 00 16 b9 04 00 a3 b9 04 00 94 e3 80 f0 a0 00 24 c0 e5 00 03 54 91 b9 04 00 12 e3 20 b0 04 00 16 50 10 b0 10 c0 e5 00 03 54 87 b9 04 00 12 e3 20 b0 08 00 16 50 10 b0 04 c0 e5 00 03 54 7d b9 04 00 12 e3 20 b0 0c 00 16 50 10 b0 08 c0 e5 00 03 54 73 b9 } //1
+		$a_01_1 = {04 00 12 e3 20 b0 14 00 16 50 10 b0 0c c0 e5 00 03 54 69 50 20 b0 14 12 22 a7 74 00 } //1
+	condition:
+		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1) >=2
+ 
+}

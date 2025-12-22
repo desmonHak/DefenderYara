@@ -1,0 +1,15 @@
+
+rule Trojan_Win64_Lazy_UK_MTB{
+	meta:
+		description = "Trojan:Win64/Lazy.UK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 05 00 00 "
+		
+	strings :
+		$a_81_0 = {54 72 61 6e 73 66 6f 72 6d 69 6e 67 6c 79 20 68 69 64 65 61 77 61 79 } //1 Transformingly hideaway
+		$a_81_1 = {45 75 72 79 70 68 61 72 79 6e 78 20 68 61 6e 64 77 72 69 74 69 6e 67 20 63 6f 72 73 65 73 71 75 65 20 74 61 69 6c 6f 72 79 20 71 75 65 73 74 69 6f 6e 77 69 73 65 } //1 Eurypharynx handwriting corsesque tailory questionwise
+		$a_81_2 = {4e 65 72 69 74 61 20 63 6f 65 6c 6f 6d 61 } //1 Nerita coeloma
+		$a_81_3 = {52 65 67 69 6f 6e 65 64 20 73 63 61 6e 73 6f 72 79 } //1 Regioned scansory
+		$a_81_4 = {53 74 61 6d 6d 65 6c 73 20 74 72 6f 76 61 74 6f 72 65 20 61 6d 70 68 69 6e 65 75 72 6f 75 73 } //1 Stammels trovatore amphineurous
+	condition:
+		((#a_81_0  & 1)*1+(#a_81_1  & 1)*1+(#a_81_2  & 1)*1+(#a_81_3  & 1)*1+(#a_81_4  & 1)*1) >=5
+ 
+}

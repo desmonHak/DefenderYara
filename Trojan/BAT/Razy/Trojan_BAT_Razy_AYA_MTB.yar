@@ -1,0 +1,13 @@
+
+rule Trojan_BAT_Razy_AYA_MTB{
+	meta:
+		description = "Trojan:BAT/Razy.AYA!MTB,SIGNATURE_TYPE_PEHSTR_EXT,08 00 08 00 03 00 00 "
+		
+	strings :
+		$a_00_0 = {72 00 64 00 6d 00 2e 00 39 00 31 00 79 00 75 00 6e 00 6d 00 61 00 2e 00 63 00 6e 00 2f 00 61 00 70 00 69 00 2f 00 75 00 70 00 67 00 72 00 61 00 64 00 65 00 2f 00 71 00 63 00 6f 00 69 00 6e 00 } //5 rdm.91yunma.cn/api/upgrade/qcoin
+		$a_00_1 = {68 00 75 00 61 00 66 00 65 00 69 00 2e 00 39 00 31 00 79 00 75 00 6e 00 6d 00 61 00 2e 00 63 00 6e 00 } //2 huafei.91yunma.cn
+		$a_01_2 = {66 75 6e 63 74 69 6f 6e 20 45 6e 63 72 79 70 74 28 70 61 73 73 77 6f 72 64 2c 20 73 61 6c 74 2c 20 76 63 6f 64 65 29 } //1 function Encrypt(password, salt, vcode)
+	condition:
+		((#a_00_0  & 1)*5+(#a_00_1  & 1)*2+(#a_01_2  & 1)*1) >=8
+ 
+}

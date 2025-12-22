@@ -1,0 +1,12 @@
+
+rule Trojan_Win64_TrickBot_ARAX_MTB{
+	meta:
+		description = "Trojan:Win64/TrickBot.ARAX!MTB,SIGNATURE_TYPE_PEHSTR_EXT,04 00 04 00 02 00 00 "
+		
+	strings :
+		$a_01_0 = {41 0f b6 03 48 ff c1 41 ff ca 88 44 0c 47 ff c3 49 ff c3 48 83 f9 04 0f 85 95 00 00 00 } //2
+		$a_01_1 = {32 c2 88 44 24 41 0f b7 01 66 89 46 fd 0f b6 41 02 33 c9 88 46 ff } //2
+	condition:
+		((#a_01_0  & 1)*2+(#a_01_1  & 1)*2) >=4
+ 
+}

@@ -1,0 +1,12 @@
+
+rule Trojan_Win64_NeverlietStealer_CH_MTB{
+	meta:
+		description = "Trojan:Win64/NeverlietStealer.CH!MTB,SIGNATURE_TYPE_PEHSTR_EXT,02 00 02 00 02 00 00 "
+		
+	strings :
+		$a_01_0 = {47 6f 20 62 75 69 6c 64 20 49 44 3a 20 22 76 59 36 72 71 35 58 71 61 4e 6c 6e 5a 6f 77 6d 35 6a 35 70 2f 64 39 6f 35 6f 41 38 63 6e 58 37 6b 50 45 4b 32 49 39 37 48 2f 77 37 67 4e 64 43 4d 69 47 63 61 6b 43 70 63 6d 6a 67 64 4c 2f 58 61 6d 72 6d 78 68 68 6c 56 67 55 73 57 63 63 4e 33 76 63 22 } //2 Go build ID: "vY6rq5XqaNlnZowm5j5p/d9o5oA8cnX7kPEK2I97H/w7gNdCMiGcakCpcmjgdL/XamrmxhhlVgUsWccN3vc"
+		$a_01_1 = {47 6f 20 62 75 69 6c 64 20 49 44 3a 20 22 48 58 72 61 57 70 55 50 65 6a 6d 44 33 44 66 55 66 2d 45 69 2f 37 63 59 2d 41 53 39 67 70 46 36 48 69 6d 7a 62 46 61 6b 53 2f 67 50 46 41 5f 77 37 72 41 30 6a 36 72 4a 51 6c 44 43 6d 62 2f 6f 41 45 51 4b 4a 2d 4b 56 55 74 6a 78 52 33 6d 71 6b 51 37 22 } //2 Go build ID: "HXraWpUPejmD3DfUf-Ei/7cY-AS9gpF6HimzbFakS/gPFA_w7rA0j6rJQlDCmb/oAEQKJ-KVUtjxR3mqkQ7"
+	condition:
+		((#a_01_0  & 1)*2+(#a_01_1  & 1)*2) >=2
+ 
+}

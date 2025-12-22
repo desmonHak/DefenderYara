@@ -1,7 +1,7 @@
 
 rule Trojan_Win32_AMSI_HardwareBreakPoint_MK{
 	meta:
-		description = "Trojan:Win32/AMSI.HardwareBreakPoint.MK,SIGNATURE_TYPE_PEHSTR_EXT,06 00 06 00 06 00 00 "
+		description = "Trojan:Win32/AMSI.HardwareBreakPoint.MK,SIGNATURE_TYPE_PEHSTR_EXT,06 00 06 00 08 00 00 "
 		
 	strings :
 		$a_01_0 = {41 64 64 56 65 63 74 6f 72 65 64 45 78 63 65 70 74 69 6f 6e 48 61 6e 64 6c 65 72 00 } //1 摁噤捥潴敲䕤捸灥楴湯慈摮敬r
@@ -10,7 +10,9 @@ rule Trojan_Win32_AMSI_HardwareBreakPoint_MK{
 		$a_01_3 = {53 65 74 54 68 72 65 61 64 43 6f 6e 74 65 78 74 00 } //1
 		$a_01_4 = {47 65 74 54 68 72 65 61 64 43 6f 6e 74 65 78 74 00 } //1
 		$a_01_5 = {41 4d 53 49 5f 52 45 53 55 4c 54 5f 43 4c 45 41 4e 00 } //1 䵁䥓剟卅䱕彔䱃䅅N
+		$a_00_6 = {57 69 6e 64 6f 77 73 2e 57 69 6e 33 32 2e 77 69 6e 6d 64 } //-1 Windows.Win32.winmd
+		$a_00_7 = {49 4d 65 74 61 44 61 74 61 57 69 6e 4d 44 49 6d 70 6f 72 74 } //-1 IMetaDataWinMDImport
 	condition:
-		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1+(#a_01_4  & 1)*1+(#a_01_5  & 1)*1) >=6
+		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1+(#a_01_4  & 1)*1+(#a_01_5  & 1)*1+(#a_00_6  & 1)*-1+(#a_00_7  & 1)*-1) >=6
  
 }

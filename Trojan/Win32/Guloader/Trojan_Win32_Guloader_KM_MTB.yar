@@ -1,0 +1,13 @@
+
+rule Trojan_Win32_Guloader_KM_MTB{
+	meta:
+		description = "Trojan:Win32/Guloader.KM!MTB,SIGNATURE_TYPE_PEHSTR_EXT,03 00 03 00 03 00 00 "
+		
+	strings :
+		$a_81_0 = {62 65 74 6e 6b 65 6c 69 67 65 72 65 73 20 6e 61 6d 65 61 62 6c 65 2e 65 78 65 } //1 betnkeligeres nameable.exe
+		$a_81_1 = {73 61 64 64 65 6c 6d 61 67 65 72 61 72 62 65 6a 64 65 72 20 69 73 6f 6c 65 72 69 6e 67 20 6b 6f 6c 6c 65 6b 74 69 76 69 73 74 65 6e } //1 saddelmagerarbejder isolering kollektivisten
+		$a_81_2 = {75 64 6d 61 6c 69 6e 67 73 70 72 6f 63 65 6e 74 65 72 20 6e 6f 6e 63 75 6c 74 75 72 65 } //1 udmalingsprocenter nonculture
+	condition:
+		((#a_81_0  & 1)*1+(#a_81_1  & 1)*1+(#a_81_2  & 1)*1) >=3
+ 
+}

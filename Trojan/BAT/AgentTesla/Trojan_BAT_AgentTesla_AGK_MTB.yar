@@ -4,12 +4,33 @@ rule Trojan_BAT_AgentTesla_AGK_MTB{
 		description = "Trojan:BAT/AgentTesla.AGK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,02 00 02 00 01 00 00 "
 		
 	strings :
-		$a_01_0 = {07 11 06 03 7b 25 00 00 04 11 06 18 03 7b 23 00 00 04 5a 09 5a 58 91 9c 00 11 06 17 58 13 06 11 06 18 7e 31 00 00 04 5a fe 04 13 05 11 05 2d cf } //2
+		$a_01_0 = {06 07 07 5a 61 0a 07 1f 10 28 1a 00 00 06 58 0b 07 1f 14 28 1a 00 00 06 32 e6 } //2
 	condition:
 		((#a_01_0  & 1)*2) >=2
  
 }
 rule Trojan_BAT_AgentTesla_AGK_MTB_2{
+	meta:
+		description = "Trojan:BAT/AgentTesla.AGK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,02 00 02 00 01 00 00 "
+		
+	strings :
+		$a_01_0 = {07 11 06 03 7b 25 00 00 04 11 06 18 03 7b 23 00 00 04 5a 09 5a 58 91 9c 00 11 06 17 58 13 06 11 06 18 7e 31 00 00 04 5a fe 04 13 05 11 05 2d cf } //2
+	condition:
+		((#a_01_0  & 1)*2) >=2
+ 
+}
+rule Trojan_BAT_AgentTesla_AGK_MTB_3{
+	meta:
+		description = "Trojan:BAT/AgentTesla.AGK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,04 00 04 00 02 00 00 "
+		
+	strings :
+		$a_00_0 = {11 0f 1f 49 5a 20 ff 00 00 00 5f d2 13 10 11 04 11 0f 6f 25 00 00 0a 1f 13 8f 3e 00 00 01 25 47 11 10 61 d2 52 11 0f 17 58 13 0f 11 0f 11 07 32 cf } //2
+		$a_81_1 = {57 69 6e 46 6f 72 6d 53 65 72 76 65 72 2e 50 72 6f 70 65 72 74 69 65 73 2e 52 65 73 6f 75 72 63 65 73 2e 72 65 73 6f 75 72 63 65 73 } //2 WinFormServer.Properties.Resources.resources
+	condition:
+		((#a_00_0  & 1)*2+(#a_81_1  & 1)*2) >=4
+ 
+}
+rule Trojan_BAT_AgentTesla_AGK_MTB_4{
 	meta:
 		description = "Trojan:BAT/AgentTesla.AGK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,10 00 10 00 04 00 00 "
 		
@@ -22,7 +43,7 @@ rule Trojan_BAT_AgentTesla_AGK_MTB_2{
 		((#a_03_0  & 1)*10+(#a_80_1  & 1)*2+(#a_80_2  & 1)*2+(#a_80_3  & 1)*2) >=16
  
 }
-rule Trojan_BAT_AgentTesla_AGK_MTB_3{
+rule Trojan_BAT_AgentTesla_AGK_MTB_5{
 	meta:
 		description = "Trojan:BAT/AgentTesla.AGK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,10 00 10 00 04 00 00 "
 		

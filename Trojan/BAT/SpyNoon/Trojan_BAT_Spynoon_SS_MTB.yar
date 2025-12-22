@@ -1,0 +1,11 @@
+
+rule Trojan_BAT_Spynoon_SS_MTB{
+	meta:
+		description = "Trojan:BAT/Spynoon.SS!MTB,SIGNATURE_TYPE_PEHSTR_EXT,0a 00 0a 00 01 00 00 "
+		
+	strings :
+		$a_03_0 = {0d 2b 43 00 09 6c 23 [0-07] 40 5a 0e 05 6c 5b 28 ?? ?? ?? 0a 02 5a 13 04 06 7b ?? ?? ?? 04 09 11 04 23 ?? ?? ?? ?? ?? ?? ?? 40 5a 28 ?? ?? ?? 0a 23 ?? ?? ?? ?? ?? ?? ?? 40 5d d2 9c 00 09 17 58 0d 09 0e 05 fe 04 13 05 11 05 } //10
+	condition:
+		((#a_03_0  & 1)*10) >=10
+ 
+}

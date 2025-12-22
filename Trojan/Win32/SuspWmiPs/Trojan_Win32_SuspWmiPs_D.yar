@@ -1,0 +1,17 @@
+
+rule Trojan_Win32_SuspWmiPs_D{
+	meta:
+		description = "Trojan:Win32/SuspWmiPs.D,SIGNATURE_TYPE_CMDHSTR_EXT,03 00 03 00 07 00 00 "
+		
+	strings :
+		$a_80_0 = {70 6f 77 65 72 73 68 65 6c 6c 2e 65 78 65 20 2d 63 } //powershell.exe -c  1
+		$a_80_1 = {47 65 74 2d 57 6d 69 4f 62 6a 65 63 74 } //Get-WmiObject  1
+		$a_80_2 = {57 69 6e 33 32 5f 50 72 6f 63 65 73 73 6f 72 } //Win32_Processor  1
+		$a_80_3 = {77 69 6e 33 32 5f 64 65 73 6b 74 6f 70 6d 6f 6e 69 74 6f 72 } //win32_desktopmonitor  1
+		$a_80_4 = {77 69 6e 33 32 5f 76 69 64 65 6f 63 6f 6e 74 72 6f 6c 6c 65 72 } //win32_videocontroller  1
+		$a_00_5 = {67 00 64 00 72 00 } //1 gdr
+		$a_80_6 = {2d 50 53 50 72 6f 76 69 64 65 72 } //-PSProvider  1
+	condition:
+		((#a_80_0  & 1)*1+(#a_80_1  & 1)*1+(#a_80_2  & 1)*1+(#a_80_3  & 1)*1+(#a_80_4  & 1)*1+(#a_00_5  & 1)*1+(#a_80_6  & 1)*1) >=3
+ 
+}

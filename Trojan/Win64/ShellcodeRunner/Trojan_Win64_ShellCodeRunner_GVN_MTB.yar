@@ -1,0 +1,12 @@
+
+rule Trojan_Win64_ShellCodeRunner_GVN_MTB{
+	meta:
+		description = "Trojan:Win64/ShellCodeRunner.GVN!MTB,SIGNATURE_TYPE_PEHSTR_EXT,03 00 03 00 02 00 00 "
+		
+	strings :
+		$a_01_0 = {42 0f b6 4c 14 24 44 31 d9 88 4c 24 26 48 8d 5c 24 26 } //2
+		$a_01_1 = {46 0f b6 64 24 24 48 89 c1 4c 89 f8 48 99 49 f7 fa 45 31 dc 66 90 4c 39 d2 0f 83 3b 01 00 00 48 8b 35 10 e1 2a 00 0f b6 14 32 41 31 d4 44 88 64 24 26 48 89 c8 48 8d 5c 24 26 } //1
+	condition:
+		((#a_01_0  & 1)*2+(#a_01_1  & 1)*1) >=3
+ 
+}

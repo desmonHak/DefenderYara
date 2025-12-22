@@ -1,0 +1,12 @@
+
+rule Trojan_Win64_Lazy_KAG_MTB{
+	meta:
+		description = "Trojan:Win64/Lazy.KAG!MTB,SIGNATURE_TYPE_PEHSTR_EXT,1e 00 1e 00 02 00 00 "
+		
+	strings :
+		$a_01_0 = {89 c2 c1 ea 1e 31 c2 69 c2 65 89 07 6c 01 c8 ff c8 89 44 8c 40 48 ff c1 48 81 f9 71 02 00 00 } //20
+		$a_01_1 = {31 d2 48 f7 f3 45 02 04 16 41 0f b6 c0 8a 54 04 30 88 54 0c 30 44 88 4c 04 30 48 ff c1 48 81 f9 00 01 00 00 } //10
+	condition:
+		((#a_01_0  & 1)*20+(#a_01_1  & 1)*10) >=30
+ 
+}

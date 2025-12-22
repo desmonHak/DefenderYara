@@ -1,0 +1,12 @@
+
+rule Trojan_BAT_Taskun_ZQO_MTB{
+	meta:
+		description = "Trojan:BAT/Taskun.ZQO!MTB,SIGNATURE_TYPE_PEHSTR_EXT,0a 00 0a 00 02 00 00 "
+		
+	strings :
+		$a_03_0 = {11 0c 11 14 1f 11 5a 58 13 15 02 11 13 11 14 6f ?? 00 00 0a 13 16 04 03 6f ?? 00 00 0a 59 13 17 11 17 13 18 11 18 19 } //6
+		$a_03_1 = {11 1d 16 12 16 28 ?? 00 00 0a 9c 11 1d 17 12 16 28 ?? 00 00 0a 9c 11 1d 18 12 16 28 ?? 00 00 0a 9c 11 18 16 31 0f } //4
+	condition:
+		((#a_03_0  & 1)*6+(#a_03_1  & 1)*4) >=10
+ 
+}

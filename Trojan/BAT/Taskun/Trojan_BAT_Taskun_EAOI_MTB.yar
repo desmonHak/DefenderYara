@@ -1,0 +1,11 @@
+
+rule Trojan_BAT_Taskun_EAOI_MTB{
+	meta:
+		description = "Trojan:BAT/Taskun.EAOI!MTB,SIGNATURE_TYPE_PEHSTR_EXT,02 00 02 00 01 00 00 "
+		
+	strings :
+		$a_03_0 = {11 07 1f 1d 5a 58 06 11 07 06 8e 69 5d 99 ?? ?? ?? ?? ?? ?? ?? 8f 40 5a 69 61 13 08 07 08 07 08 94 11 08 61 0e 05 1f 0f 5f 58 9e 11 20 } //2
+	condition:
+		((#a_03_0  & 1)*2) >=2
+ 
+}

@@ -1,0 +1,11 @@
+
+rule Trojan_Win64_Jalapeno_AB_MTB{
+	meta:
+		description = "Trojan:Win64/Jalapeno.AB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
+		
+	strings :
+		$a_01_0 = {41 0f b7 09 48 b8 c5 4e ec c4 4e ec c4 4e 48 f7 e1 48 c1 ea 04 48 6b c2 34 48 2b c8 0f b7 44 4c 20 66 41 89 01 } //1
+	condition:
+		((#a_01_0  & 1)*1) >=1
+ 
+}

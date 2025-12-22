@@ -12,3 +12,17 @@ rule Trojan_Win32_GuLoader_RBR_MTB{
 		((#a_81_0  & 1)*1+(#a_81_1  & 1)*1+(#a_81_2  & 1)*1+(#a_81_3  & 1)*1) >=4
  
 }
+rule Trojan_Win32_GuLoader_RBR_MTB_2{
+	meta:
+		description = "Trojan:Win32/GuLoader.RBR!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 05 00 00 "
+		
+	strings :
+		$a_81_0 = {5c 66 6f 72 73 6d 6d 65 6c 73 65 73 5c 67 61 6c 65 68 75 73 } //1 \forsmmelses\galehus
+		$a_81_1 = {5c 77 65 73 74 6c 69 6e 67 5c 73 6b 69 6e 64 68 75 65 72 6e 65 2e 69 6e 69 } //1 \westling\skindhuerne.ini
+		$a_81_2 = {5c 74 72 79 6b 6b 6f 67 65 72 65 73 2e 67 69 66 } //1 \trykkogeres.gif
+		$a_81_3 = {5c 45 6e 64 65 73 74 61 74 69 6f 6e 65 72 73 5c 53 65 6c 76 62 65 66 72 75 67 74 6e 69 6e 67 65 72 6e 65 73 2e 69 6e 69 } //1 \Endestationers\Selvbefrugtningernes.ini
+		$a_81_4 = {5c 4b 72 61 66 74 75 64 66 6f 6c 64 65 6c 73 65 72 5c 43 6f 72 72 69 67 69 62 6c 65 6e 65 73 73 2e 6c 6e 6b } //1 \Kraftudfoldelser\Corrigibleness.lnk
+	condition:
+		((#a_81_0  & 1)*1+(#a_81_1  & 1)*1+(#a_81_2  & 1)*1+(#a_81_3  & 1)*1+(#a_81_4  & 1)*1) >=5
+ 
+}

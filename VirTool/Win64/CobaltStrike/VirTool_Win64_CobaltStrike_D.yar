@@ -1,6 +1,18 @@
 
 rule VirTool_Win64_CobaltStrike_D{
 	meta:
+		description = "VirTool:Win64/CobaltStrike.D,SIGNATURE_TYPE_PEHSTR_EXT,03 00 03 00 03 00 00 "
+		
+	strings :
+		$a_01_0 = {31 c0 49 89 c9 39 d0 7d 13 48 89 c1 83 e1 03 41 8a 0c 08 41 30 0c 01 48 ff c0 eb e9 4c 89 c9 } //1
+		$a_01_1 = {c7 44 24 48 65 00 00 00 c7 44 24 40 70 00 00 00 c7 44 24 38 69 00 00 00 c7 44 24 30 70 00 00 00 } //1
+		$a_01_2 = {25 63 25 63 25 63 25 63 25 63 25 63 25 63 25 63 25 63 4d 53 53 45 2d 25 64 2d 73 65 72 76 65 72 } //1 %c%c%c%c%c%c%c%c%cMSSE-%d-server
+	condition:
+		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1) >=3
+ 
+}
+rule VirTool_Win64_CobaltStrike_D_2{
+	meta:
 		description = "VirTool:Win64/CobaltStrike.D,SIGNATURE_TYPE_PEHSTR_EXT,04 00 04 00 04 00 00 "
 		
 	strings :
@@ -12,7 +24,7 @@ rule VirTool_Win64_CobaltStrike_D{
 		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1) >=4
  
 }
-rule VirTool_Win64_CobaltStrike_D_2{
+rule VirTool_Win64_CobaltStrike_D_3{
 	meta:
 		description = "VirTool:Win64/CobaltStrike.D,SIGNATURE_TYPE_PEHSTR_EXT,03 00 03 00 03 00 00 "
 		
@@ -24,7 +36,7 @@ rule VirTool_Win64_CobaltStrike_D_2{
 		((#a_03_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1) >=3
  
 }
-rule VirTool_Win64_CobaltStrike_D_3{
+rule VirTool_Win64_CobaltStrike_D_4{
 	meta:
 		description = "VirTool:Win64/CobaltStrike.D,SIGNATURE_TYPE_PEHSTR_EXT,04 00 04 00 04 00 00 "
 		
@@ -37,7 +49,7 @@ rule VirTool_Win64_CobaltStrike_D_3{
 		((#a_03_0  & 1)*1+(#a_01_1  & 1)*1+(#a_03_2  & 1)*1+(#a_01_3  & 1)*1) >=4
  
 }
-rule VirTool_Win64_CobaltStrike_D_4{
+rule VirTool_Win64_CobaltStrike_D_5{
 	meta:
 		description = "VirTool:Win64/CobaltStrike.D,SIGNATURE_TYPE_PEHSTR_EXT,04 00 04 00 04 00 00 "
 		
@@ -50,7 +62,7 @@ rule VirTool_Win64_CobaltStrike_D_4{
 		((#a_03_0  & 1)*1+(#a_03_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1) >=4
  
 }
-rule VirTool_Win64_CobaltStrike_D_5{
+rule VirTool_Win64_CobaltStrike_D_6{
 	meta:
 		description = "VirTool:Win64/CobaltStrike.D,SIGNATURE_TYPE_PEHSTR_EXT,03 00 03 00 05 00 00 "
 		
@@ -64,7 +76,7 @@ rule VirTool_Win64_CobaltStrike_D_5{
 		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*-100+(#a_01_4  & 1)*-100) >=3
  
 }
-rule VirTool_Win64_CobaltStrike_D_6{
+rule VirTool_Win64_CobaltStrike_D_7{
 	meta:
 		description = "VirTool:Win64/CobaltStrike.D,SIGNATURE_TYPE_PEHSTR_EXT,04 00 04 00 04 00 00 "
 		

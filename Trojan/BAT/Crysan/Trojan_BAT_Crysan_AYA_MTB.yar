@@ -9,3 +9,16 @@ rule Trojan_BAT_Crysan_AYA_MTB{
 		((#a_03_0  & 1)*1) >=1
  
 }
+rule Trojan_BAT_Crysan_AYA_MTB_2{
+	meta:
+		description = "Trojan:BAT/Crysan.AYA!MTB,SIGNATURE_TYPE_PEHSTR_EXT,0a 00 0a 00 04 00 00 "
+		
+	strings :
+		$a_01_0 = {00 02 08 91 08 20 ff 00 00 00 5f 61 06 08 06 8e 69 5d 91 58 0d 07 08 09 20 ff 00 00 00 5f d2 9c 00 08 17 58 0c 08 02 8e 69 fe 04 13 07 11 07 2d cf } //7
+		$a_00_1 = {4f 00 62 00 66 00 75 00 73 00 63 00 61 00 74 00 65 00 64 00 20 00 70 00 61 00 79 00 6c 00 6f 00 61 00 64 00 20 00 73 00 74 00 6f 00 72 00 65 00 64 00 20 00 69 00 6e 00 20 00 72 00 65 00 67 00 69 00 73 00 74 00 72 00 79 00 } //1 Obfuscated payload stored in registry
+		$a_01_2 = {43 72 65 61 74 65 53 65 71 75 65 6e 74 69 61 6c 50 65 72 73 69 73 74 65 6e 63 65 } //1 CreateSequentialPersistence
+		$a_01_3 = {49 73 57 69 6e 64 6f 77 73 44 65 66 65 6e 64 65 72 45 6e 61 62 6c 65 64 } //1 IsWindowsDefenderEnabled
+	condition:
+		((#a_01_0  & 1)*7+(#a_00_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1) >=10
+ 
+}

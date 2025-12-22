@@ -1,0 +1,12 @@
+
+rule Trojan_Win32_Farfli_KAB_MTB{
+	meta:
+		description = "Trojan:Win32/Farfli.KAB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,1e 00 1e 00 02 00 00 "
+		
+	strings :
+		$a_03_0 = {30 11 f7 65 0c 8b 4d 08 8b 45 0c 41 c1 ea ?? 40 c7 45 08 00 00 00 00 89 45 0c 8d 14 92 03 d2 3b fa 8b 55 08 0f 45 d1 89 55 08 3b c3 7c } //20
+		$a_01_1 = {8b f8 8b 4d 0c 8b 45 14 03 4e 08 0f b6 04 02 33 d2 f7 75 10 b8 } //10
+	condition:
+		((#a_03_0  & 1)*20+(#a_01_1  & 1)*10) >=30
+ 
+}

@@ -1,7 +1,7 @@
 
 rule SupportScam_Win32_Screcwon_MD_MTB{
 	meta:
-		description = "SupportScam:Win32/Screcwon.MD!MTB,SIGNATURE_TYPE_PEHSTR_EXT,32 00 32 00 0a 00 00 "
+		description = "SupportScam:Win32/Screcwon.MD!MTB,SIGNATURE_TYPE_PEHSTR_EXT,32 00 32 00 25 00 00 "
 		
 	strings :
 		$a_81_0 = {52 65 6c 65 61 73 65 5c 43 6c 69 63 6b 4f 6e 63 65 52 75 6e 6e 65 72 2e 70 64 62 } //20 Release\ClickOnceRunner.pdb
@@ -14,7 +14,34 @@ rule SupportScam_Win32_Screcwon_MD_MTB{
 		$a_81_7 = {72 65 6c 61 79 2e 61 6c 65 33 72 74 2e 69 6e } //30 relay.ale3rt.in
 		$a_81_8 = {6d 69 63 72 6f 73 6f 66 66 65 65 64 64 34 61 63 6b 61 70 69 7a 2e 65 6e 74 65 72 70 72 69 73 65 73 6f 6c 75 74 69 6f 6e 73 2e 73 75 } //30 microsoffeedd4ackapiz.enterprisesolutions.su
 		$a_81_9 = {2e 70 75 74 69 6e 73 77 69 6e 2e 65 73 } //30 .putinswin.es
+		$a_81_10 = {64 75 61 6c 2e 73 61 6c 74 75 74 61 2e 63 6f 6d } //30 dual.saltuta.com
+		$a_81_11 = {62 72 6f 76 61 6e 74 69 2e 64 65 } //30 brovanti.de
+		$a_81_12 = {2e 72 61 74 6f 73 63 62 6f 6d 2e 63 6f 6d } //30 .ratoscbom.com
+		$a_81_13 = {70 75 6c 73 65 72 69 73 65 67 6c 6f 62 61 6c 2e 63 6f 6d } //30 pulseriseglobal.com
+		$a_81_14 = {2e 6d 79 65 64 65 6c 74 61 2e 64 65 } //30 .myedelta.de
+		$a_81_15 = {6b 69 6e 67 63 61 72 64 61 6e 6f 2e 69 6f } //30 kingcardano.io
+		$a_81_16 = {2e 76 69 65 77 79 6f 75 72 73 74 61 74 65 6d 65 6e 74 6f 6e 6c 69 6e 65 2e 63 6f 6d } //30 .viewyourstatementonline.com
+		$a_81_17 = {70 72 65 79 69 6e 74 68 65 77 69 6c 64 2e 6f 6e 6c 69 6e 65 } //30 preyinthewild.online
+		$a_81_18 = {64 6f 77 6e 6c 6f 61 64 2e 65 2d 73 74 61 74 65 6d 65 6e 74 2e 65 73 74 61 74 65 } //30 download.e-statement.estate
+		$a_81_19 = {68 70 2e 6e 6f 6c 65 67 67 69 6f 64 69 73 63 69 7a 61 2e 63 6f 6d } //30 hp.noleggiodisciza.com
+		$a_81_20 = {64 65 76 2e 73 6f 75 74 68 73 69 64 65 62 6c 61 63 6b 61 6e 63 65 73 74 72 79 2e 63 6f 6d } //30 dev.southsideblackancestry.com
+		$a_81_21 = {73 65 72 76 65 72 2e 79 67 6f 6f 67 6c 65 79 2e 69 6e } //30 server.ygoogley.in
+		$a_81_22 = {63 61 6d 70 2e 6f 72 67 61 6e 7a 6f 70 65 72 61 74 65 2e 63 6f 6d } //30 camp.organzoperate.com
+		$a_81_23 = {6d 61 69 6c 2e 73 65 63 75 72 65 64 6f 63 75 6d 65 6e 74 66 69 6c 65 64 6f 77 6e 6c 6f 61 64 2e 63 6f 6d } //30 mail.securedocumentfiledownload.com
+		$a_81_24 = {64 6f 63 2d 73 61 73 2e 6d 61 72 71 75 6c 73 6d 69 74 63 68 65 6c 2e 63 6f 6d } //30 doc-sas.marqulsmitchel.com
+		$a_81_25 = {6a 6e 74 6c 2e 73 68 6f 70 } //30 jntl.shop
+		$a_81_26 = {73 6f 6c 61 6e 64 61 6c 75 63 69 61 2d 63 61 72 63 6f 73 6d 65 74 69 63 73 2e 63 6f 6d } //30 solandalucia-carcosmetics.com
+		$a_81_27 = {64 79 6e 6f 6d 61 72 2e 67 61 6e 64 69 7a 6f 6e 2e 63 6f 6d } //30 dynomar.gandizon.com
+		$a_81_28 = {62 77 33 36 62 61 63 6b 39 33 2e 73 69 74 65 } //30 bw36back93.site
+		$a_81_29 = {66 77 33 39 36 62 61 63 6b 36 2e 73 69 74 65 } //30 fw396back6.site
+		$a_81_30 = {72 65 6c 61 79 2e 61 64 6f 62 70 64 66 2e 63 6f 6d } //30 relay.adobpdf.com
+		$a_81_31 = {73 65 6e 74 2e 63 6f 73 74 61 72 69 67 61 2e 64 65 } //30 sent.costariga.de
+		$a_81_32 = {70 69 6c 77 65 72 75 69 2e 72 63 68 65 6c 70 2e 74 6f 70 } //30 pilwerui.rchelp.top
+		$a_81_33 = {72 77 62 68 65 6c 70 2e 74 6f 70 } //30 rwbhelp.top
+		$a_81_34 = {7a 76 68 65 6c 70 2e 74 6f 70 } //30 zvhelp.top
+		$a_81_35 = {6b 63 63 6c 69 76 65 2e 74 6f 70 } //30 kcclive.top
+		$a_81_36 = {6d 61 6e 67 6f 2e 71 75 61 74 72 6f 63 6c 69 63 68 65 2e 63 6f 6d } //30 mango.quatrocliche.com
 	condition:
-		((#a_81_0  & 1)*20+(#a_81_1  & 1)*20+(#a_81_2  & 1)*30+(#a_81_3  & 1)*30+(#a_81_4  & 1)*30+(#a_81_5  & 1)*30+(#a_81_6  & 1)*30+(#a_81_7  & 1)*30+(#a_81_8  & 1)*30+(#a_81_9  & 1)*30) >=50
+		((#a_81_0  & 1)*20+(#a_81_1  & 1)*20+(#a_81_2  & 1)*30+(#a_81_3  & 1)*30+(#a_81_4  & 1)*30+(#a_81_5  & 1)*30+(#a_81_6  & 1)*30+(#a_81_7  & 1)*30+(#a_81_8  & 1)*30+(#a_81_9  & 1)*30+(#a_81_10  & 1)*30+(#a_81_11  & 1)*30+(#a_81_12  & 1)*30+(#a_81_13  & 1)*30+(#a_81_14  & 1)*30+(#a_81_15  & 1)*30+(#a_81_16  & 1)*30+(#a_81_17  & 1)*30+(#a_81_18  & 1)*30+(#a_81_19  & 1)*30+(#a_81_20  & 1)*30+(#a_81_21  & 1)*30+(#a_81_22  & 1)*30+(#a_81_23  & 1)*30+(#a_81_24  & 1)*30+(#a_81_25  & 1)*30+(#a_81_26  & 1)*30+(#a_81_27  & 1)*30+(#a_81_28  & 1)*30+(#a_81_29  & 1)*30+(#a_81_30  & 1)*30+(#a_81_31  & 1)*30+(#a_81_32  & 1)*30+(#a_81_33  & 1)*30+(#a_81_34  & 1)*30+(#a_81_35  & 1)*30+(#a_81_36  & 1)*30) >=50
  
 }

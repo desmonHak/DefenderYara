@@ -39,20 +39,6 @@ rule TrojanDownloader_Linux_Donoff_3{
 }
 rule TrojanDownloader_Linux_Donoff_4{
 	meta:
-		description = "TrojanDownloader:Linux/Donoff,SIGNATURE_TYPE_MACROHSTR_EXT,05 00 05 00 05 00 00 "
-		
-	strings :
-		$a_03_0 = {68 74 74 70 3a 2f 2f [0-40] 3a [0-05] 2f [0-10] 2e 65 78 65 } //1
-		$a_01_1 = {55 52 4c 44 6f 77 6e 6c 6f 61 64 54 6f 46 69 6c 65 } //1 URLDownloadToFile
-		$a_01_2 = {41 75 74 6f 5f 4f 70 65 6e } //1 Auto_Open
-		$a_01_3 = {45 6e 76 69 72 6f 6e } //1 Environ
-		$a_01_4 = {53 68 65 6c 6c } //1 Shell
-	condition:
-		((#a_03_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1+(#a_01_4  & 1)*1) >=5
- 
-}
-rule TrojanDownloader_Linux_Donoff_5{
-	meta:
 		description = "TrojanDownloader:Linux/Donoff,SIGNATURE_TYPE_MACROHSTR_EXT,04 00 04 00 05 00 00 "
 		
 	strings :
@@ -65,7 +51,7 @@ rule TrojanDownloader_Linux_Donoff_5{
 		((#a_00_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_00_3  & 1)*1+(#a_01_4  & 1)*1) >=4
  
 }
-rule TrojanDownloader_Linux_Donoff_6{
+rule TrojanDownloader_Linux_Donoff_5{
 	meta:
 		description = "TrojanDownloader:Linux/Donoff,SIGNATURE_TYPE_MACROHSTR_EXT,02 00 02 00 02 00 00 "
 		
@@ -76,7 +62,7 @@ rule TrojanDownloader_Linux_Donoff_6{
 		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1) >=2
  
 }
-rule TrojanDownloader_Linux_Donoff_7{
+rule TrojanDownloader_Linux_Donoff_6{
 	meta:
 		description = "TrojanDownloader:Linux/Donoff,SIGNATURE_TYPE_MACROHSTR_EXT,06 00 06 00 06 00 00 "
 		
@@ -91,7 +77,7 @@ rule TrojanDownloader_Linux_Donoff_7{
 		((#a_03_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1+(#a_01_4  & 1)*1+(#a_03_5  & 1)*1) >=6
  
 }
-rule TrojanDownloader_Linux_Donoff_8{
+rule TrojanDownloader_Linux_Donoff_7{
 	meta:
 		description = "TrojanDownloader:Linux/Donoff,SIGNATURE_TYPE_MACROHSTR_EXT,03 00 03 00 03 00 00 "
 		
@@ -101,6 +87,21 @@ rule TrojanDownloader_Linux_Donoff_8{
 		$a_00_2 = {4f 70 65 6e 20 22 47 45 54 22 2c 20 47 65 74 53 74 72 69 6e 67 46 72 6f 6d 41 72 72 61 79 28 63 6f 6d 70 75 74 65 72 29 2c 20 46 61 6c 73 65 } //1 Open "GET", GetStringFromArray(computer), False
 	condition:
 		((#a_00_0  & 1)*1+(#a_03_1  & 1)*1+(#a_00_2  & 1)*1) >=3
+ 
+}
+rule TrojanDownloader_Linux_Donoff_8{
+	meta:
+		description = "TrojanDownloader:Linux/Donoff,SIGNATURE_TYPE_MACROHSTR_EXT,05 00 05 00 06 00 00 "
+		
+	strings :
+		$a_03_0 = {68 74 74 70 3a 2f 2f [0-40] 3a [0-05] 2f [0-10] 2e 65 78 65 } //1
+		$a_01_1 = {55 52 4c 44 6f 77 6e 6c 6f 61 64 54 6f 46 69 6c 65 } //1 URLDownloadToFile
+		$a_01_2 = {41 75 74 6f 5f 4f 70 65 6e } //1 Auto_Open
+		$a_01_3 = {45 6e 76 69 72 6f 6e } //1 Environ
+		$a_01_4 = {53 68 65 6c 6c } //1 Shell
+		$a_01_5 = {68 74 74 70 3a 2f 2f 77 77 77 2e 6e 69 73 73 61 79 2e 63 6f 2e 6a 70 2f 6b 6f 6a 69 6e 2f 73 68 6f 68 69 6e } //-100 http://www.nissay.co.jp/kojin/shohin
+	condition:
+		((#a_03_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1+(#a_01_4  & 1)*1+(#a_01_5  & 1)*-100) >=5
  
 }
 rule TrojanDownloader_Linux_Donoff_9{

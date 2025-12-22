@@ -11,3 +11,15 @@ rule Trojan_Win64_GhostRAT_ARA_MTB{
 		((#a_01_0  & 1)*2+(#a_01_1  & 1)*2+(#a_01_2  & 1)*2) >=6
  
 }
+rule Trojan_Win64_GhostRAT_ARA_MTB_2{
+	meta:
+		description = "Trojan:Win64/GhostRAT.ARA!MTB,SIGNATURE_TYPE_PEHSTR_EXT,06 00 06 00 03 00 00 "
+		
+	strings :
+		$a_01_0 = {2f 00 53 00 43 00 20 00 4f 00 4e 00 4c 00 4f 00 47 00 4f 00 4e 00 20 00 2f 00 52 00 4c 00 20 00 48 00 49 00 47 00 48 00 45 00 53 00 54 00 20 00 2f 00 46 00 20 00 2f 00 52 00 55 00 20 00 53 00 59 00 53 00 54 00 45 00 4d 00 } //2 /SC ONLOGON /RL HIGHEST /F /RU SYSTEM
+		$a_01_1 = {31 35 36 2e 32 32 36 2e 31 38 33 2e 32 33 37 } //2 156.226.183.237
+		$a_01_2 = {73 00 63 00 68 00 74 00 61 00 73 00 6b 00 73 00 20 00 2f 00 43 00 52 00 45 00 } //2 schtasks /CRE
+	condition:
+		((#a_01_0  & 1)*2+(#a_01_1  & 1)*2+(#a_01_2  & 1)*2) >=6
+ 
+}

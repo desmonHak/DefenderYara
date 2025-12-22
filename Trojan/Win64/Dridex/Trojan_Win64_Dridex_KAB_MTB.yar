@@ -1,0 +1,13 @@
+
+rule Trojan_Win64_Dridex_KAB_MTB{
+	meta:
+		description = "Trojan:Win64/Dridex.KAB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,23 00 23 00 03 00 00 "
+		
+	strings :
+		$a_03_0 = {8a 9c 24 bf 00 00 00 80 f3 ?? 88 9c 24 bf 00 00 00 44 8b 5c 24 2c 8b 7c 24 38 41 01 fb 48 8b 44 24 30 48 83 c0 } //20
+		$a_03_1 = {48 8b 0c 24 48 81 f1 ?? ?? ?? ?? 48 89 4c 24 40 48 8b 4c 24 28 48 8b 54 24 18 44 8a 04 0a 44 8a 4c 24 39 } //10
+		$a_01_2 = {5a 6c 53 4f 2b 66 72 36 4c 71 2a 4b 2a 32 77 34 6d } //5 ZlSO+fr6Lq*K*2w4m
+	condition:
+		((#a_03_0  & 1)*20+(#a_03_1  & 1)*10+(#a_01_2  & 1)*5) >=35
+ 
+}

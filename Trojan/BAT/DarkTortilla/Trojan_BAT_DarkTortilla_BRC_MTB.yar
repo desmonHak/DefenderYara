@@ -1,0 +1,12 @@
+
+rule Trojan_BAT_DarkTortilla_BRC_MTB{
+	meta:
+		description = "Trojan:BAT/DarkTortilla.BRC!MTB,SIGNATURE_TYPE_PEHSTR_EXT,09 00 09 00 02 00 00 "
+		
+	strings :
+		$a_03_0 = {2c 07 7e 98 01 00 04 2b 16 7e 97 01 00 04 fe 06 4f 03 00 06 73 e0 02 00 0a 25 80 98 01 00 04 28 ?? 00 00 2b 28 ?? 00 00 2b a2 14 14 14 28 ?? 01 00 0a 14 } //4
+		$a_01_1 = {04 1a 5d 2c 03 03 2b 07 03 20 f3 00 00 00 61 b4 0a 2b 00 06 2a } //5
+	condition:
+		((#a_03_0  & 1)*4+(#a_01_1  & 1)*5) >=9
+ 
+}

@@ -1,0 +1,11 @@
+
+rule Trojan_Win32_Scarsi_GTB_MTB{
+	meta:
+		description = "Trojan:Win32/Scarsi.GTB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,0a 00 0a 00 01 00 00 "
+		
+	strings :
+		$a_03_0 = {6b c8 00 c6 81 ?? ?? ?? ?? 6b ba 01 00 00 00 c1 e2 00 c6 82 ?? ?? ?? ?? 65 b8 01 00 00 00 d1 e0 c6 80 ?? ?? ?? ?? 72 b9 01 00 00 00 6b d1 03 c6 82 ?? ?? ?? ?? 6e b8 01 00 00 00 c1 e0 02 c6 80 ?? ?? ?? ?? 65 b9 01 00 00 00 6b d1 05 c6 82 ?? ?? ?? ?? 6c b8 01 00 00 00 6b c8 06 c6 81 ?? ?? ?? ?? 33 ba 01 00 00 00 6b c2 07 c6 80 } //10
+	condition:
+		((#a_03_0  & 1)*10) >=10
+ 
+}

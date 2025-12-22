@@ -1,0 +1,11 @@
+
+rule Trojan_BAT_Amadey_SLBE_MTB{
+	meta:
+		description = "Trojan:BAT/Amadey.SLBE!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 01 00 00 "
+		
+	strings :
+		$a_03_0 = {0a 2d 0b 73 ?? 00 00 06 28 ?? 00 00 0a 2a 20 ?? ?? ?? ?? ?? ?? 00 00 06 0c 20 ?? ?? ?? ?? ?? ?? 00 00 06 0d 20 ?? ?? ?? ?? ?? ?? 00 00 06 13 04 1f 24 28 19 00 00 0a 25 08 28 ?? 00 00 0a 0a } //5
+	condition:
+		((#a_03_0  & 1)*5) >=5
+ 
+}

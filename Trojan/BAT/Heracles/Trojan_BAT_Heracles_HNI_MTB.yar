@@ -1,0 +1,11 @@
+
+rule Trojan_BAT_Heracles_HNI_MTB{
+	meta:
+		description = "Trojan:BAT/Heracles.HNI!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
+		
+	strings :
+		$a_01_0 = {42 00 61 00 63 00 6b 00 00 07 54 00 61 00 62 00 00 03 20 00 00 11 5b 00 45 00 4e 00 54 00 45 00 52 00 5d 00 0a 00 00 0d 5b 00 45 00 53 00 43 00 5d 00 0a 00 00 0d 5b 00 42 00 61 00 63 00 6b 00 5d } //1
+	condition:
+		((#a_01_0  & 1)*1) >=1
+ 
+}

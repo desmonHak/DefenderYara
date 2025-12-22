@@ -1,0 +1,16 @@
+
+rule Trojan_MacOS_SuspAmosDownloadAgent_A{
+	meta:
+		description = "Trojan:MacOS/SuspAmosDownloadAgent.A,SIGNATURE_TYPE_MACHOHSTR_EXT,2a 00 2a 00 06 00 00 "
+		
+	strings :
+		$a_00_0 = {6b 69 6c 6c 61 6c 6c 20 54 65 72 6d 69 6e 61 6c } //10 killall Terminal
+		$a_02_1 = {63 75 72 6c 20 22 68 74 74 70 [0-60] 20 7c 20 6f 73 61 73 63 72 69 70 74 } //10
+		$a_02_2 = {63 75 72 6c 20 2d 78 20 70 6f 73 74 20 2d 2d 6d 61 78 2d 74 69 6d 65 [0-60] 2e 7a 69 70 } //10
+		$a_00_3 = {6f 73 61 73 63 72 69 70 74 20 2d 65 20 27 64 69 73 70 6c 61 79 20 64 69 61 6c 6f 67 } //10 osascript -e 'display dialog
+		$a_00_4 = {2f 64 65 76 2f 6e 75 6c 6c } //1 /dev/null
+		$a_00_5 = {5f 73 79 73 74 65 6d } //1 _system
+	condition:
+		((#a_00_0  & 1)*10+(#a_02_1  & 1)*10+(#a_02_2  & 1)*10+(#a_00_3  & 1)*10+(#a_00_4  & 1)*1+(#a_00_5  & 1)*1) >=42
+ 
+}

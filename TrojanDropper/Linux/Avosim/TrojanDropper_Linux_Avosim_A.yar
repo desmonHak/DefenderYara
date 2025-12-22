@@ -1,7 +1,7 @@
 
 rule TrojanDropper_Linux_Avosim_A{
 	meta:
-		description = "TrojanDropper:Linux/Avosim.A,SIGNATURE_TYPE_MACROHSTR_EXT,05 00 05 00 05 00 00 "
+		description = "TrojanDropper:Linux/Avosim.A,SIGNATURE_TYPE_MACROHSTR_EXT,05 00 05 00 06 00 00 "
 		
 	strings :
 		$a_01_0 = {2e 76 62 73 22 } //1 .vbs"
@@ -9,8 +9,9 @@ rule TrojanDropper_Linux_Avosim_A{
 		$a_01_2 = {22 73 63 68 74 61 73 6b 73 20 2f 63 72 65 61 74 65 20 2f 46 20 2f 73 63 20 6d 69 6e 75 74 65 20 2f 6d 6f } //1 "schtasks /create /F /sc minute /mo
 		$a_01_3 = {3d 20 43 72 65 61 74 65 4f 62 6a 65 63 74 28 22 57 53 63 72 69 70 74 2e 53 68 65 6c 6c 22 29 } //1 = CreateObject("WScript.Shell")
 		$a_01_4 = {22 70 6f 77 65 72 73 68 65 6c 6c 20 } //1 "powershell 
+		$a_01_5 = {68 74 74 70 3a 2f 2f 77 77 77 2e 6e 69 73 73 61 79 2e 63 6f 2e 6a 70 2f 6b 6f 6a 69 6e 2f 73 68 6f 68 69 6e } //-100 http://www.nissay.co.jp/kojin/shohin
 	condition:
-		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1+(#a_01_4  & 1)*1) >=5
+		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1+(#a_01_4  & 1)*1+(#a_01_5  & 1)*-100) >=5
  
 }
 rule TrojanDropper_Linux_Avosim_A_2{

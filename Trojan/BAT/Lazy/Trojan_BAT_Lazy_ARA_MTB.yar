@@ -11,3 +11,14 @@ rule Trojan_BAT_Lazy_ARA_MTB{
 		((#a_03_0  & 1)*2+(#a_80_1  & 1)*2+(#a_80_2  & 1)*2) >=6
  
 }
+rule Trojan_BAT_Lazy_ARA_MTB_2{
+	meta:
+		description = "Trojan:BAT/Lazy.ARA!MTB,SIGNATURE_TYPE_PEHSTR_EXT,04 00 04 00 02 00 00 "
+		
+	strings :
+		$a_01_0 = {11 08 11 0a 8f 17 00 00 01 25 71 17 00 00 01 08 d2 61 d2 81 17 00 00 01 11 0a 20 ff 00 00 00 5f 2d 0b 08 08 5a 20 b7 5c 8a 00 6a 5e 0c 11 0a 17 58 13 0a 11 0a 11 08 8e 69 32 c5 } //2
+		$a_01_1 = {53 79 73 74 65 6d 4d 6f 6e 69 74 6f 72 43 6c 69 65 6e 74 2e 53 79 73 4d 6f 6e 46 72 6f 6d 2e 72 65 73 6f 75 72 63 65 73 } //2 SystemMonitorClient.SysMonFrom.resources
+	condition:
+		((#a_01_0  & 1)*2+(#a_01_1  & 1)*2) >=4
+ 
+}

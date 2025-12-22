@@ -1,0 +1,11 @@
+
+rule Trojan_BAT_ClipBanker_SLOO_MTB{
+	meta:
+		description = "Trojan:BAT/ClipBanker.SLOO!MTB,SIGNATURE_TYPE_PEHSTR_EXT,02 00 02 00 01 00 00 "
+		
+	strings :
+		$a_01_0 = {28 c9 02 00 06 08 8d 5a 00 00 01 13 04 7e e2 00 00 04 02 1a 58 11 04 16 08 28 8d 00 00 0a 28 cf 00 00 0a 11 04 16 11 04 8e 69 6f d0 00 00 0a 13 05 } //2
+	condition:
+		((#a_01_0  & 1)*2) >=2
+ 
+}

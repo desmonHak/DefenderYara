@@ -1,0 +1,11 @@
+
+rule Trojan_Win64_YiBackdoor_YBJ_MTB{
+	meta:
+		description = "Trojan:Win64/YiBackdoor.YBJ!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
+		
+	strings :
+		$a_03_0 = {b9 4c 77 26 07 e8 ?? ?? ?? ?? 48 89 84 24 ?? ?? ?? ?? b9 49 f7 02 78 e8 ?? ?? ?? ?? 48 89 84 24 ?? ?? ?? ?? b9 58 a4 53 e5 e8 } //1
+	condition:
+		((#a_03_0  & 1)*1) >=1
+ 
+}

@@ -1,0 +1,33 @@
+
+rule Trojan_Win32_AgentTesla_YBG_MTB{
+	meta:
+		description = "Trojan:Win32/AgentTesla.YBG!MTB,SIGNATURE_TYPE_PEHSTR_EXT,17 00 17 00 17 00 00 "
+		
+	strings :
+		$a_01_0 = {56 4d 77 61 72 65 } //1 VMware
+		$a_01_1 = {56 69 72 74 75 61 6c 42 6f 78 } //1 VirtualBox
+		$a_01_2 = {73 63 68 74 61 73 6b 73 20 2f 63 72 65 61 74 65 20 2f 66 20 2f 73 63 20 6f 6e 6c 6f 67 6f 6e 20 2f 74 6e } //1 schtasks /create /f /sc onlogon /tn
+		$a_01_3 = {42 72 61 76 65 53 6f 66 74 77 61 72 65 } //1 BraveSoftware
+		$a_01_4 = {4f 70 65 72 61 20 53 6f 66 74 77 61 72 65 } //1 Opera Software
+		$a_01_5 = {56 69 76 61 6c 64 69 5c 55 73 65 72 20 44 61 74 61 } //1 Vivaldi\User Data
+		$a_01_6 = {59 61 6e 64 65 78 } //1 Yandex
+		$a_01_7 = {65 6e 63 72 79 70 74 65 64 5f 6b 65 79 } //1 encrypted_key
+		$a_01_8 = {25 73 5c 44 65 66 61 75 6c 74 5c 57 65 62 20 44 61 74 61 } //1 %s\Default\Web Data
+		$a_01_9 = {25 73 5c 44 65 66 61 75 6c 74 5c 48 69 73 74 6f 72 79 } //1 %s\Default\History
+		$a_01_10 = {53 45 4c 45 43 54 20 68 6f 73 74 5f 6b 65 79 2c 20 6e 61 6d 65 2c 20 65 6e 63 72 79 70 74 65 64 5f 76 61 6c 75 65 20 46 52 4f 4d 20 63 6f 6f 6b 69 65 73 } //1 SELECT host_key, name, encrypted_value FROM cookies
+		$a_01_11 = {53 45 4c 45 43 54 20 6e 61 6d 65 2c 20 76 61 6c 75 65 20 46 52 4f 4d 20 61 75 74 6f 66 69 6c 6c } //1 SELECT name, value FROM autofill
+		$a_01_12 = {53 45 4c 45 43 54 20 6e 61 6d 65 5f 6f 6e 5f 63 61 72 64 2c 20 65 78 70 69 72 61 74 69 6f 6e 5f 6d 6f 6e 74 68 2c 20 65 78 70 69 72 61 74 69 6f 6e 5f 79 65 61 72 2c 20 63 61 72 64 5f 6e 75 6d 62 65 72 5f 65 6e 63 72 79 70 74 65 64 20 46 52 4f 4d 20 63 72 65 64 69 74 5f 63 61 72 64 73 } //10 SELECT name_on_card, expiration_month, expiration_year, card_number_encrypted FROM credit_cards
+		$a_01_13 = {5b 45 6d 70 69 72 65 5d 20 52 65 63 65 6e 74 20 66 69 6c 65 } //1 [Empire] Recent file
+		$a_01_14 = {45 78 6f 64 75 73 5c 65 78 6f 64 75 73 2e 77 61 6c 6c 65 74 } //1 Exodus\exodus.wallet
+		$a_01_15 = {45 6c 65 63 74 72 75 6d 5c 77 61 6c 6c 65 74 73 } //1 Electrum\wallets
+		$a_01_16 = {41 74 6f 6d 69 63 5c 4c 6f 63 61 6c 20 53 74 6f 72 61 67 65 5c 6c 65 76 65 6c 64 62 } //1 Atomic\Local Storage\leveldb
+		$a_01_17 = {43 6f 69 6e 6f 6d 69 5c 77 61 6c 6c 65 74 73 } //1 Coinomi\wallets
+		$a_01_18 = {4a 61 78 78 5c 4c 6f 63 61 6c 20 53 74 6f 72 61 67 65 5c 6c 65 76 65 6c 64 62 } //1 Jaxx\Local Storage\leveldb
+		$a_01_19 = {4c 69 74 65 63 6f 69 6e 5c 77 61 6c 6c 65 74 73 } //1 Litecoin\wallets
+		$a_01_20 = {42 69 74 63 6f 69 6e 5c 77 61 6c 6c 65 74 73 } //1 Bitcoin\wallets
+		$a_01_21 = {44 61 73 68 5c 77 61 6c 6c 65 74 73 } //1 Dash\wallets
+		$a_01_22 = {5a 63 61 73 68 5c 77 61 6c 6c 65 74 73 } //1 Zcash\wallets
+	condition:
+		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1+(#a_01_4  & 1)*1+(#a_01_5  & 1)*1+(#a_01_6  & 1)*1+(#a_01_7  & 1)*1+(#a_01_8  & 1)*1+(#a_01_9  & 1)*1+(#a_01_10  & 1)*1+(#a_01_11  & 1)*1+(#a_01_12  & 1)*10+(#a_01_13  & 1)*1+(#a_01_14  & 1)*1+(#a_01_15  & 1)*1+(#a_01_16  & 1)*1+(#a_01_17  & 1)*1+(#a_01_18  & 1)*1+(#a_01_19  & 1)*1+(#a_01_20  & 1)*1+(#a_01_21  & 1)*1+(#a_01_22  & 1)*1) >=23
+ 
+}

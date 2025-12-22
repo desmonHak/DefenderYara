@@ -9,3 +9,15 @@ rule Trojan_Win32_Fragtor_KAB_MTB{
 		((#a_03_0  & 1)*10) >=10
  
 }
+rule Trojan_Win32_Fragtor_KAB_MTB_2{
+	meta:
+		description = "Trojan:Win32/Fragtor.KAB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,23 00 23 00 03 00 00 "
+		
+	strings :
+		$a_03_0 = {83 f1 55 8d 52 01 66 89 0e 8d b5 ?? ?? ff ff 0f b7 04 56 8d 34 56 8b c8 66 85 c0 75 } //20
+		$a_01_1 = {43 3a 5c 55 73 65 72 73 5c 48 50 5c 73 6f 75 72 63 65 5c 72 65 70 6f 73 5c 50 72 6f 6a 65 63 74 20 52 4f 5c 52 65 6c 65 61 73 65 5c 50 72 6f 6a 65 63 74 20 52 4f 2e 70 64 62 } //8 C:\Users\HP\source\repos\Project RO\Release\Project RO.pdb
+		$a_01_2 = {2e 72 61 67 6e 61 72 6f 6b } //7 .ragnarok
+	condition:
+		((#a_03_0  & 1)*20+(#a_01_1  & 1)*8+(#a_01_2  & 1)*7) >=35
+ 
+}

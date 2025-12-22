@@ -11,6 +11,17 @@ rule Trojan_Win64_FileCoder_NF_MTB{
 }
 rule Trojan_Win64_FileCoder_NF_MTB_2{
 	meta:
+		description = "Trojan:Win64/FileCoder.NF!MTB,SIGNATURE_TYPE_PEHSTR_EXT,03 00 03 00 02 00 00 "
+		
+	strings :
+		$a_01_0 = {66 41 3b 11 41 8d 40 01 0f b7 51 02 41 0f 44 c0 48 83 c1 02 49 83 c1 02 44 8b c0 66 83 fa 3d 75 df } //2
+		$a_01_1 = {49 8b 0a 45 8b c7 66 83 39 2d } //1
+	condition:
+		((#a_01_0  & 1)*2+(#a_01_1  & 1)*1) >=3
+ 
+}
+rule Trojan_Win64_FileCoder_NF_MTB_3{
+	meta:
 		description = "Trojan:Win64/FileCoder.NF!MTB,SIGNATURE_TYPE_PEHSTR_EXT,06 00 06 00 02 00 00 "
 		
 	strings :
@@ -20,7 +31,7 @@ rule Trojan_Win64_FileCoder_NF_MTB_2{
 		((#a_03_0  & 1)*5+(#a_01_1  & 1)*1) >=6
  
 }
-rule Trojan_Win64_FileCoder_NF_MTB_3{
+rule Trojan_Win64_FileCoder_NF_MTB_4{
 	meta:
 		description = "Trojan:Win64/FileCoder.NF!MTB,SIGNATURE_TYPE_PEHSTR_EXT,0a 00 0a 00 07 00 00 "
 		
@@ -36,7 +47,7 @@ rule Trojan_Win64_FileCoder_NF_MTB_3{
 		((#a_01_0  & 1)*2+(#a_01_1  & 1)*1+(#a_01_2  & 1)*2+(#a_01_3  & 1)*1+(#a_01_4  & 1)*1+(#a_01_5  & 1)*2+(#a_01_6  & 1)*1) >=10
  
 }
-rule Trojan_Win64_FileCoder_NF_MTB_4{
+rule Trojan_Win64_FileCoder_NF_MTB_5{
 	meta:
 		description = "Trojan:Win64/FileCoder.NF!MTB,SIGNATURE_TYPE_PEHSTR_EXT,0a 00 0a 00 09 00 00 "
 		
@@ -52,5 +63,25 @@ rule Trojan_Win64_FileCoder_NF_MTB_4{
 		$a_01_8 = {66 69 6c 65 20 64 65 63 72 79 70 74 69 6f 6e 20 69 73 20 69 6d 70 6f 73 73 69 62 6c 65 2e 20 74 68 65 20 64 65 63 72 79 70 74 69 6f 6e 20 6b 65 79 73 20 68 61 76 65 20 61 6c 72 65 61 64 79 20 62 65 65 6e 20 64 65 6c 65 74 65 64 } //1 file decryption is impossible. the decryption keys have already been deleted
 	condition:
 		((#a_01_0  & 1)*2+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1+(#a_01_4  & 1)*1+(#a_01_5  & 1)*1+(#a_01_6  & 1)*1+(#a_01_7  & 1)*1+(#a_01_8  & 1)*1) >=10
+ 
+}
+rule Trojan_Win64_FileCoder_NF_MTB_6{
+	meta:
+		description = "Trojan:Win64/FileCoder.NF!MTB,SIGNATURE_TYPE_PEHSTR_EXT,0e 00 0e 00 0b 00 00 "
+		
+	strings :
+		$a_01_0 = {52 00 61 00 6e 00 73 00 6f 00 6d 00 2e 00 6a 00 70 00 67 00 } //1 Ransom.jpg
+		$a_01_1 = {76 00 73 00 73 00 61 00 64 00 6d 00 69 00 6e 00 20 00 64 00 65 00 6c 00 65 00 74 00 65 00 20 00 73 00 68 00 61 00 64 00 6f 00 77 00 73 00 20 00 2f 00 61 00 6c 00 6c 00 20 00 2f 00 71 00 75 00 69 00 65 00 74 00 } //2 vssadmin delete shadows /all /quiet
+		$a_01_2 = {6b 00 65 00 79 00 6c 00 6f 00 67 00 2e 00 74 00 78 00 74 00 } //1 keylog.txt
+		$a_01_3 = {44 00 69 00 73 00 61 00 62 00 6c 00 65 00 54 00 61 00 73 00 6b 00 4d 00 67 00 72 00 } //1 DisableTaskMgr
+		$a_01_4 = {53 00 65 00 74 00 2d 00 4d 00 70 00 50 00 72 00 65 00 66 00 65 00 72 00 65 00 6e 00 63 00 65 00 20 00 2d 00 44 00 69 00 73 00 61 00 62 00 6c 00 65 00 52 00 65 00 61 00 6c 00 74 00 69 00 6d 00 65 00 4d 00 6f 00 6e 00 69 00 74 00 6f 00 72 00 69 00 6e 00 67 00 20 00 24 00 74 00 72 00 75 00 65 00 } //1 Set-MpPreference -DisableRealtimeMonitoring $true
+		$a_01_5 = {6e 00 65 00 74 00 20 00 73 00 74 00 6f 00 70 00 20 00 57 00 69 00 6e 00 44 00 65 00 66 00 65 00 6e 00 64 00 } //1 net stop WinDefend
+		$a_01_6 = {44 00 45 00 43 00 52 00 59 00 50 00 54 00 5f 00 4f 00 52 00 5f 00 4c 00 4f 00 53 00 45 00 5f 00 45 00 56 00 45 00 52 00 59 00 54 00 48 00 49 00 4e 00 47 00 2e 00 74 00 78 00 74 00 } //2 DECRYPT_OR_LOSE_EVERYTHING.txt
+		$a_01_7 = {59 00 4f 00 55 00 52 00 20 00 53 00 59 00 53 00 54 00 45 00 4d 00 20 00 49 00 53 00 20 00 4c 00 4f 00 43 00 4b 00 45 00 44 00 } //1 YOUR SYSTEM IS LOCKED
+		$a_01_8 = {52 00 61 00 6e 00 73 00 6f 00 6d 00 57 00 69 00 6e 00 64 00 6f 00 77 00 } //2 RansomWindow
+		$a_01_9 = {77 00 6d 00 69 00 63 00 20 00 73 00 68 00 61 00 64 00 6f 00 77 00 63 00 6f 00 70 00 79 00 20 00 63 00 61 00 6c 00 6c 00 20 00 63 00 72 00 65 00 61 00 74 00 65 00 } //1 wmic shadowcopy call create
+		$a_01_10 = {73 00 63 00 20 00 63 00 6f 00 6e 00 66 00 69 00 67 00 20 00 77 00 75 00 61 00 75 00 73 00 65 00 72 00 76 00 20 00 73 00 74 00 61 00 72 00 74 00 3d 00 64 00 69 00 73 00 61 00 62 00 6c 00 65 00 64 00 } //1 sc config wuauserv start=disabled
+	condition:
+		((#a_01_0  & 1)*1+(#a_01_1  & 1)*2+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1+(#a_01_4  & 1)*1+(#a_01_5  & 1)*1+(#a_01_6  & 1)*2+(#a_01_7  & 1)*1+(#a_01_8  & 1)*2+(#a_01_9  & 1)*1+(#a_01_10  & 1)*1) >=14
  
 }

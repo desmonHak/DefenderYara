@@ -1,0 +1,14 @@
+
+rule Trojan_Win64_ChaosBot_AMTB{
+	meta:
+		description = "Trojan:Win64/ChaosBot!AMTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 04 00 00 "
+		
+	strings :
+		$a_01_0 = {8b 4a 20 48 8b 42 28 48 8b 40 18 48 8d 15 6a eb 56 00 e9 d9 00 00 00 48 8b 4a 20 48 8b 42 28 48 8b 40 18 48 8d 15 93 eb 56 00 41 b8 13 00 00 00 48 83 c4 40 5e 48 ff e0 48 8b 4a 20 48 8b 42 28 48 8b 40 18 48 8d 15 1b eb 56 00 e9 c1 00 00 00 48 8b 4a 20 48 8b 42 28 48 8b 40 18 } //2
+		$a_80_1 = {64 69 73 63 6f 72 64 5f 63 6f 6e 74 72 6f 6c 2e 70 64 62 } //discord_control.pdb  2
+		$a_80_2 = {67 75 69 6c 64 5f 73 63 68 65 64 75 6c 65 64 5f 77 65 6c 63 6f 6d 65 5f 63 68 61 6e 6e 65 6c 73 70 72 65 6d 69 75 6d 5f 73 75 62 73 63 72 69 62 65 72 } //guild_scheduled_welcome_channelspremium_subscriber  1
+		$a_80_3 = {52 55 4c 45 5f 44 45 4c 45 54 45 43 54 49 4f 4e 5f 52 45 4d 4f 56 45 5f 41 4c 4c 2d 43 } //RULE_DELETECTION_REMOVE_ALL-C  1
+	condition:
+		((#a_01_0  & 1)*2+(#a_80_1  & 1)*2+(#a_80_2  & 1)*1+(#a_80_3  & 1)*1) >=5
+ 
+}

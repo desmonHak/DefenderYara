@@ -1,0 +1,12 @@
+
+rule Trojan_BAT_PSWStealer_CZI_MTB{
+	meta:
+		description = "Trojan:BAT/PSWStealer.CZI!MTB,SIGNATURE_TYPE_PEHSTR_EXT,04 00 04 00 02 00 00 "
+		
+	strings :
+		$a_01_0 = {6f 79 00 00 0a 6f 13 00 00 0a 25 72 46 0d 00 70 28 11 00 00 0a 0b 72 68 0d 00 70 28 11 00 00 0a 28 60 00 00 0a 6f 61 00 00 0a 6f 62 00 00 0a 07 17 28 18 00 00 0a 07 1c 28 7a 00 00 0a 07 28 11 00 00 06 06 6f 44 00 00 0a 2d af } //2
+		$a_01_1 = {72 02 0d 00 70 02 72 08 0d 00 70 28 15 00 00 0a 0a 03 06 17 28 18 00 00 0a de 03 } //2
+	condition:
+		((#a_01_0  & 1)*2+(#a_01_1  & 1)*2) >=4
+ 
+}

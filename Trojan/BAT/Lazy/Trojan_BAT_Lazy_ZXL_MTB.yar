@@ -1,0 +1,11 @@
+
+rule Trojan_BAT_Lazy_ZXL_MTB{
+	meta:
+		description = "Trojan:BAT/Lazy.ZXL!MTB,SIGNATURE_TYPE_PEHSTR_EXT,0a 00 0a 00 01 00 00 "
+		
+	strings :
+		$a_03_0 = {11 26 11 2a 8f ?? 00 00 01 25 47 7e ?? 00 00 04 11 2a 20 ff 00 00 00 5d 58 d2 61 d2 52 00 11 2a 17 58 13 2a 11 2a 11 26 8e 69 fe 04 13 2b 11 2b 2d cd } //10
+	condition:
+		((#a_03_0  & 1)*10) >=10
+ 
+}

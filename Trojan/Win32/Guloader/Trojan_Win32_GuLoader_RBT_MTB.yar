@@ -4,6 +4,20 @@ rule Trojan_Win32_GuLoader_RBT_MTB{
 		description = "Trojan:Win32/GuLoader.RBT!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 05 00 00 "
 		
 	strings :
+		$a_81_0 = {67 61 64 65 6b 61 73 65 72 6e 65 6e 73 5c 6e 6f 6e 6e 65 67 6c 69 67 65 6e 74 5c 73 75 70 65 72 67 61 6c 6c 61 6e 74 6e 65 73 73 } //1 gadekasernens\nonnegligent\supergallantness
+		$a_81_1 = {25 73 74 69 63 6b 69 65 73 74 25 5c 63 68 72 69 73 74 65 6e 65 72 5c 75 64 73 74 65 6e 69 6e 67 65 6e } //1 %stickiest%\christener\udsteningen
+		$a_81_2 = {5c 73 70 61 72 61 62 6c 65 2e 62 69 6e } //1 \sparable.bin
+		$a_81_3 = {68 79 70 65 72 62 61 74 62 61 74 61 20 74 77 65 6c 76 65 6d 6f } //1 hyperbatbata twelvemo
+		$a_81_4 = {68 79 70 6f 74 68 65 73 65 73 20 63 61 72 62 6f 64 79 6e 61 6d 69 74 65 2e 65 78 65 } //1 hypotheses carbodynamite.exe
+	condition:
+		((#a_81_0  & 1)*1+(#a_81_1  & 1)*1+(#a_81_2  & 1)*1+(#a_81_3  & 1)*1+(#a_81_4  & 1)*1) >=5
+ 
+}
+rule Trojan_Win32_GuLoader_RBT_MTB_2{
+	meta:
+		description = "Trojan:Win32/GuLoader.RBT!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 05 00 00 "
+		
+	strings :
 		$a_81_0 = {25 72 65 75 6e 69 6f 6e 69 73 6d 25 5c 62 69 6c 6c 61 72 64 65 72 6e 65 5c 74 72 61 6e 73 70 6f 73 69 74 69 76 65 6c 79 } //1 %reunionism%\billarderne\transpositively
 		$a_81_1 = {73 65 72 76 69 63 65 70 72 69 73 65 72 73 20 63 65 64 75 6c 65 20 66 75 72 72 6f 77 6c 69 6b 65 } //1 serviceprisers cedule furrowlike
 		$a_81_2 = {6d 6f 70 70 65 72 6e 65 73 20 66 61 65 6e 67 73 6c 65 6e 64 65 20 73 63 69 6f 70 74 69 63 73 } //1 moppernes faengslende scioptics

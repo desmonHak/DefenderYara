@@ -1,0 +1,13 @@
+
+rule Trojan_BAT_Mint_SPBX_MTB{
+	meta:
+		description = "Trojan:BAT/Mint.SPBX!MTB,SIGNATURE_TYPE_PEHSTR_EXT,06 00 06 00 03 00 00 "
+		
+	strings :
+		$a_03_0 = {07 8e b7 18 da 16 da 17 d6 6b 28 ?? 00 00 0a 5a 28 ?? 00 00 0a 22 ?? ?? ?? 3f 58 6b 6c 28 ?? 00 00 0a b7 13 04 08 07 11 04 93 6f ?? 00 00 0a 26 09 17 d6 0d 09 11 05 31 c2 } //4
+		$a_01_1 = {7a 48 67 75 65 67 59 5a 68 72 64 50 54 6f 61 } //1 zHguegYZhrdPToa
+		$a_01_2 = {4a 73 6a 6e 67 5a 72 72 77 75 52 41 4b 76 4f } //1 JsjngZrrwuRAKvO
+	condition:
+		((#a_03_0  & 1)*4+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1) >=6
+ 
+}

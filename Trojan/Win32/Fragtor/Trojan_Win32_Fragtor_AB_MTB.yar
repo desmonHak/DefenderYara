@@ -1,0 +1,11 @@
+
+rule Trojan_Win32_Fragtor_AB_MTB{
+	meta:
+		description = "Trojan:Win32/Fragtor.AB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,06 00 06 00 01 00 00 "
+		
+	strings :
+		$a_03_0 = {83 c7 0c 83 c3 f4 84 c9 75 73 85 db 0f 84 85 00 00 00 8b 47 04 8b 77 08 8d 4d e0 ba ?? ?? ?? ?? 89 45 f0 68 ?? ?? ?? ?? 6a 19 e8 ?? ?? ?? ?? 83 c4 08 8b 45 e4 3b 75 e8 75 26 56 89 c6 50 ff 75 f0 e8 ?? ?? ?? ?? 83 c4 0c 85 c0 0f 94 c1 8b 45 e0 85 c0 75 16 eb a9 } //6
+	condition:
+		((#a_03_0  & 1)*6) >=6
+ 
+}

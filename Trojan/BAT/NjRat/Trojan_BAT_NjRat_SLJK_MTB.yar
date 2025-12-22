@@ -1,0 +1,12 @@
+
+rule Trojan_BAT_NjRat_SLJK_MTB{
+	meta:
+		description = "Trojan:BAT/NjRat.SLJK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,04 00 04 00 02 00 00 "
+		
+	strings :
+		$a_01_0 = {7e 01 00 00 04 28 04 00 00 0a 72 01 00 00 70 7e 02 00 00 04 28 05 00 00 0a 02 50 28 06 00 00 0a 28 09 00 00 06 26 02 50 2a } //2
+		$a_01_1 = {1b 8d 06 00 00 01 0a 06 16 72 12 d6 0a 70 a2 06 17 7e 01 00 00 04 a2 06 18 72 01 00 00 70 a2 06 19 7e 02 00 00 04 a2 06 1a 72 8e d6 0a 70 a2 06 28 0b 00 00 0a 18 16 15 28 0c 00 00 0a 8c 0b 00 00 01 } //2
+	condition:
+		((#a_01_0  & 1)*2+(#a_01_1  & 1)*2) >=4
+ 
+}

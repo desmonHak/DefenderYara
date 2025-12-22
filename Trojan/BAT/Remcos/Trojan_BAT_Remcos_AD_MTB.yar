@@ -1,0 +1,11 @@
+
+rule Trojan_BAT_Remcos_AD_MTB{
+	meta:
+		description = "Trojan:BAT/Remcos.AD!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 01 00 00 "
+		
+	strings :
+		$a_03_0 = {02 11 06 11 07 6f ?? 00 00 0a 13 09 03 11 05 6f ?? 00 00 0a 59 13 0a 11 05 12 09 28 ?? 00 00 0a 6f ?? 00 00 0a 00 11 0a 17 59 25 13 0a 16 fe 02 16 fe 01 13 14 11 14 2c 05 38 ?? 00 00 00 11 05 12 09 28 ?? 00 00 0a 6f ?? 00 00 0a 00 11 0a 17 59 25 13 0a 16 fe 02 16 fe 01 13 15 11 15 2c 05 } //5
+	condition:
+		((#a_03_0  & 1)*5) >=5
+ 
+}

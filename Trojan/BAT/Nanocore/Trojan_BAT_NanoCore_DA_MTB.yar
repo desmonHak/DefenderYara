@@ -1,6 +1,26 @@
 
 rule Trojan_BAT_NanoCore_DA_MTB{
 	meta:
+		description = "Trojan:BAT/NanoCore.DA!MTB,SIGNATURE_TYPE_PEHSTR_EXT,19 00 19 00 0b 00 00 "
+		
+	strings :
+		$a_81_0 = {4e 61 6e 6f 43 6f 72 65 20 43 6c 69 65 6e 74 } //20 NanoCore Client
+		$a_81_1 = {4b 65 79 62 6f 61 72 64 4c 6f 67 67 69 6e 67 } //1 KeyboardLogging
+		$a_81_2 = {2e 43 6c 69 65 6e 74 50 6c 75 67 69 6e 48 6f 73 74 } //1 .ClientPluginHost
+		$a_81_3 = {43 6c 69 65 6e 74 49 6e 76 6f 6b 65 44 65 6c 65 67 61 74 65 } //1 ClientInvokeDelegate
+		$a_81_4 = {50 69 70 65 43 72 65 61 74 65 64 } //1 PipeCreated
+		$a_81_5 = {67 65 74 5f 43 6c 69 65 6e 74 53 65 74 74 69 6e 67 73 } //1 get_ClientSettings
+		$a_81_6 = {67 65 74 5f 43 6f 6e 6e 65 63 74 65 64 } //1 get_Connected
+		$a_81_7 = {4d 79 2e 43 6f 6d 70 75 74 65 72 } //1 My.Computer
+		$a_81_8 = {53 79 73 74 65 6d 2e 52 75 6e 74 69 6d 65 2e 49 6e 74 65 72 6f 70 53 65 72 76 69 63 65 73 } //1 System.Runtime.InteropServices
+		$a_81_9 = {4d 4f 4e 45 59 20 4d 45 4e 2d 24 24 24 24 } //1 MONEY MEN-$$$$
+		$a_81_10 = {42 79 70 61 73 73 55 73 65 72 41 63 63 6f 75 6e 74 43 6f 6e 74 72 6f 6c } //1 BypassUserAccountControl
+	condition:
+		((#a_81_0  & 1)*20+(#a_81_1  & 1)*1+(#a_81_2  & 1)*1+(#a_81_3  & 1)*1+(#a_81_4  & 1)*1+(#a_81_5  & 1)*1+(#a_81_6  & 1)*1+(#a_81_7  & 1)*1+(#a_81_8  & 1)*1+(#a_81_9  & 1)*1+(#a_81_10  & 1)*1) >=25
+ 
+}
+rule Trojan_BAT_NanoCore_DA_MTB_2{
+	meta:
 		description = "Trojan:BAT/NanoCore.DA!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 05 00 00 "
 		
 	strings :

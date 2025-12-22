@@ -1,0 +1,11 @@
+
+rule Trojan_Win64_Stealer_AB_MTB{
+	meta:
+		description = "Trojan:Win64/Stealer.AB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
+		
+	strings :
+		$a_01_0 = {48 33 c5 48 8b 6c 24 30 48 33 c6 48 8b 74 24 38 48 83 f0 ad 0f b6 c0 49 33 c6 48 8b d0 48 d3 ea 41 8b c8 48 d3 e0 40 0f b6 cf } //1
+	condition:
+		((#a_01_0  & 1)*1) >=1
+ 
+}

@@ -1,0 +1,11 @@
+
+rule Trojan_Win64_Lazy_APT_MTB{
+	meta:
+		description = "Trojan:Win64/Lazy.APT!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 01 00 00 "
+		
+	strings :
+		$a_03_0 = {20 da 41 b0 53 44 20 c0 08 d0 89 ca 40 30 fa 20 da 44 20 c1 08 d1 30 c1 48 8b 44 24 ?? 48 8b 54 24 50 88 0c 10 41 bf ff ff ff ff 44 8b b4 24 84 00 00 00 b8 01 00 00 00 41 01 c6 b8 17 86 00 45 e9 } //5
+	condition:
+		((#a_03_0  & 1)*5) >=5
+ 
+}

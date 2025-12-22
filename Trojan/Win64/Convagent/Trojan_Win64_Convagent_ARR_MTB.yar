@@ -1,0 +1,38 @@
+
+rule Trojan_Win64_Convagent_ARR_MTB{
+	meta:
+		description = "Trojan:Win64/Convagent.ARR!MTB,SIGNATURE_TYPE_PEHSTR_EXT,14 00 14 00 02 00 00 "
+		
+	strings :
+		$a_03_0 = {f7 e7 c1 ea ?? 0f b7 c2 6b c8 ?? 0f b7 c7 41 03 fc 66 2b c1 66 83 c0 ?? 66 31 06 48 8d 76 02 } //15
+		$a_03_1 = {44 33 c1 41 69 c8 ?? ?? ?? ?? 44 0f b7 00 48 8d 40 ?? 45 85 c0 75 } //5
+	condition:
+		((#a_03_0  & 1)*15+(#a_03_1  & 1)*5) >=20
+ 
+}
+rule Trojan_Win64_Convagent_ARR_MTB_2{
+	meta:
+		description = "Trojan:Win64/Convagent.ARR!MTB,SIGNATURE_TYPE_PEHSTR_EXT,14 00 14 00 04 00 00 "
+		
+	strings :
+		$a_81_0 = {24 67 44 77 50 4c 62 46 6d 56 58 77 61 6c 59 66 68 6a 68 43 6d 40 4b 4d 54 72 64 78 54 50 56 40 46 40 43 78 62 40 40 63 53 6b 59 40 67 49 5a 4b 61 49 54 64 44 40 41 40 59 40 } //6 $gDwPLbFmVXwalYfhjhCm@KMTrdxTPV@F@Cxb@@cSkY@gIZKaITdD@A@Y@
+		$a_01_1 = {78 2f 55 6c 78 2f 39 6e 78 2f 39 6e 2a } //4 x/Ulx/9nx/9n*
+		$a_81_2 = {24 45 77 49 4c 71 42 52 4d 67 4d 5a 59 56 46 73 74 61 75 75 45 40 50 50 74 4b 51 59 40 51 4c 4c 40 40 62 75 4d 4f 4e 70 6e 78 4a 51 73 40 58 40 } //8 $EwILqBRMgMZYVFstauuE@PPtKQY@QLL@@buMONpnxJQs@X@
+		$a_03_3 = {48 63 d0 8b 14 91 48 63 c8 83 f2 ?? 89 c1 81 c1 } //2
+	condition:
+		((#a_81_0  & 1)*6+(#a_01_1  & 1)*4+(#a_81_2  & 1)*8+(#a_03_3  & 1)*2) >=20
+ 
+}
+rule Trojan_Win64_Convagent_ARR_MTB_3{
+	meta:
+		description = "Trojan:Win64/Convagent.ARR!MTB,SIGNATURE_TYPE_PEHSTR_EXT,1e 00 1e 00 04 00 00 "
+		
+	strings :
+		$a_03_0 = {44 33 f8 41 8b c1 c1 e8 ?? 44 33 f8 41 8d 04 12 } //13
+		$a_03_1 = {8b c7 c1 c8 ?? 44 03 e1 45 03 63 c8 33 d0 45 03 63 ec 8b c7 c1 e8 } //10
+		$a_01_2 = {43 6c 69 65 6e 74 50 61 63 6b 65 74 73 2e 50 61 73 73 77 6f 72 64 50 61 63 6b 65 74 70 61 73 73 77 6f 72 64 } //5 ClientPackets.PasswordPacketpassword
+		$a_81_3 = {43 3a 5c 55 73 65 72 73 5c 64 65 63 65 6c 5c 76 63 70 6b 67 5c 62 75 69 6c 64 74 72 65 65 73 5c 61 62 73 65 69 6c 5c 73 72 63 5c 32 30 32 35 30 31 32 37 2e 31 2d 61 30 61 32 31 39 62 66 37 32 2e 63 6c 65 61 6e 5c 61 62 73 6c 5c 73 79 6e 63 68 72 6f 6e 69 7a 61 74 69 6f 6e 5c 6d 75 74 65 78 2e 63 63 } //2 C:\Users\decel\vcpkg\buildtrees\abseil\src\20250127.1-a0a219bf72.clean\absl\synchronization\mutex.cc
+	condition:
+		((#a_03_0  & 1)*13+(#a_03_1  & 1)*10+(#a_01_2  & 1)*5+(#a_81_3  & 1)*2) >=30
+ 
+}

@@ -1,0 +1,11 @@
+
+rule Trojan_BAT_Jalapeno_SLFG_MTB{
+	meta:
+		description = "Trojan:BAT/Jalapeno.SLFG!MTB,SIGNATURE_TYPE_PEHSTR_EXT,02 00 02 00 01 00 00 "
+		
+	strings :
+		$a_01_0 = {02 28 13 00 00 0a 0a 1f 10 8d 17 00 00 01 0b 06 16 07 16 1f 10 28 14 00 00 0a 00 06 8e 69 1f 10 59 8d 17 00 00 01 0c } //2
+	condition:
+		((#a_01_0  & 1)*2) >=2
+ 
+}

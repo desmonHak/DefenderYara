@@ -1,6 +1,18 @@
 
 rule Trojan_BAT_AgentTesla_PD_MTB{
 	meta:
+		description = "Trojan:BAT/AgentTesla.PD!MTB,SIGNATURE_TYPE_PEHSTR_EXT,0a 00 0a 00 03 00 00 "
+		
+	strings :
+		$a_01_0 = {16 06 7b 49 00 00 04 6f 78 00 00 0a 28 79 00 00 0a 06 fe 06 81 00 00 06 73 7a 00 00 0a 28 01 00 00 2b 06 fe 06 82 00 00 06 73 7c 00 00 0a 28 02 00 00 2b 06 7b 47 00 00 04 7e 50 00 00 04 25 2d 17 26 7e 4e 00 00 04 fe 06 8b 00 00 06 73 7e 00 00 0a 25 80 50 00 00 04 28 03 00 00 2b 0b 2b 00 } //6
+		$a_01_1 = {4d 6f 64 75 6c 61 72 43 61 6c 63 75 6c 61 74 6f 72 2e 50 72 6f 70 65 72 74 69 65 73 2e 52 65 73 6f 75 72 63 65 73 2e 72 65 73 6f 75 72 63 65 73 } //2 ModularCalculator.Properties.Resources.resources
+		$a_01_2 = {24 38 61 39 66 36 65 31 65 2d 35 62 33 63 2d 34 64 37 61 2d 38 65 32 66 2d 31 63 33 64 34 65 35 66 36 61 37 62 } //2 $8a9f6e1e-5b3c-4d7a-8e2f-1c3d4e5f6a7b
+	condition:
+		((#a_01_0  & 1)*6+(#a_01_1  & 1)*2+(#a_01_2  & 1)*2) >=10
+ 
+}
+rule Trojan_BAT_AgentTesla_PD_MTB_2{
+	meta:
 		description = "Trojan:BAT/AgentTesla.PD!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 05 00 00 "
 		
 	strings :
@@ -13,7 +25,7 @@ rule Trojan_BAT_AgentTesla_PD_MTB{
 		((#a_03_0  & 1)*1+(#a_03_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1+(#a_01_4  & 1)*1) >=5
  
 }
-rule Trojan_BAT_AgentTesla_PD_MTB_2{
+rule Trojan_BAT_AgentTesla_PD_MTB_3{
 	meta:
 		description = "Trojan:BAT/AgentTesla.PD!MTB,SIGNATURE_TYPE_PEHSTR,01 00 01 00 01 00 00 "
 		

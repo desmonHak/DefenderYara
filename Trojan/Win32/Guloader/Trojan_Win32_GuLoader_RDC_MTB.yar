@@ -1,0 +1,15 @@
+
+rule Trojan_Win32_GuLoader_RDC_MTB{
+	meta:
+		description = "Trojan:Win32/GuLoader.RDC!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 05 00 00 "
+		
+	strings :
+		$a_81_0 = {72 65 63 6f 6e 74 72 61 63 74 69 6e 67 5c 53 61 78 6f 6e 69 63 61 6c 32 34 33 5c 6c 6f 63 68 } //1 recontracting\Saxonical243\loch
+		$a_81_1 = {25 66 6f 72 6d 6f 64 65 64 65 25 5c 69 6e 61 63 71 75 61 69 6e 74 61 6e 63 65 } //1 %formodede%\inacquaintance
+		$a_81_2 = {36 5c 61 64 69 6e 69 64 61 6e 5c 66 75 6e 6e 65 64 2e 69 6e 69 } //1 6\adinidan\funned.ini
+		$a_81_3 = {6d 62 61 79 61 20 73 6b 72 75 70 73 65 6e 74 69 6d 65 6e 74 61 6c 65 } //1 mbaya skrupsentimentale
+		$a_81_4 = {73 6b 69 70 70 69 6e 67 20 6b 6c 61 72 69 6e 67 65 6e 73 2e 65 78 65 } //1 skipping klaringens.exe
+	condition:
+		((#a_81_0  & 1)*1+(#a_81_1  & 1)*1+(#a_81_2  & 1)*1+(#a_81_3  & 1)*1+(#a_81_4  & 1)*1) >=5
+ 
+}

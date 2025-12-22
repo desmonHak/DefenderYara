@@ -1,0 +1,12 @@
+
+rule Ransom_Win64_IndomieCrypt_PA_MTB{
+	meta:
+		description = "Ransom:Win64/IndomieCrypt.PA!MTB,SIGNATURE_TYPE_PEHSTR_EXT,04 00 04 00 02 00 00 "
+		
+	strings :
+		$a_01_0 = {42 43 72 79 70 74 45 6e 63 72 79 70 74 } //1 BCryptEncrypt
+		$a_03_1 = {5c 49 6e 64 6f 6d 69 65 20 52 61 6e 73 6f 6d 77 61 72 65 5c [0-40] 5c 49 6e 64 6f 6d 69 65 20 52 61 6e 73 6f 6d 77 61 72 65 2e 70 64 62 } //3
+	condition:
+		((#a_01_0  & 1)*1+(#a_03_1  & 1)*3) >=4
+ 
+}

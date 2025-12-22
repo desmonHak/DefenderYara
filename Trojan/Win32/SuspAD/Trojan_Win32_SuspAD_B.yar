@@ -1,0 +1,13 @@
+
+rule Trojan_Win32_SuspAD_B{
+	meta:
+		description = "Trojan:Win32/SuspAD.B,SIGNATURE_TYPE_CMDHSTR_EXT,03 00 03 00 03 00 00 "
+		
+	strings :
+		$a_80_0 = {70 6f 77 65 72 73 68 65 6c 6c 2e 65 78 65 20 2d 63 } //powershell.exe -c  1
+		$a_80_1 = {47 65 74 2d 57 4d 49 4f 62 6a 65 63 74 20 57 69 6e 33 32 5f 4e 54 44 6f 6d 61 69 6e } //Get-WMIObject Win32_NTDomain  1
+		$a_80_2 = {66 69 6e 64 73 74 72 20 44 6f 6d 61 69 6e 43 6f 6e 74 72 6f 6c 6c 65 72 } //findstr DomainController  1
+	condition:
+		((#a_80_0  & 1)*1+(#a_80_1  & 1)*1+(#a_80_2  & 1)*1) >=3
+ 
+}

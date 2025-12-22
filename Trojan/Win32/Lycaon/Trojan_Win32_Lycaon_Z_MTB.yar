@@ -1,0 +1,12 @@
+
+rule Trojan_Win32_Lycaon_Z_MTB{
+	meta:
+		description = "Trojan:Win32/Lycaon.Z!MTB,SIGNATURE_TYPE_PEHSTR,02 00 02 00 02 00 00 "
+		
+	strings :
+		$a_01_0 = {95 de f7 ff ff b8 65 00 00 00 66 89 85 e0 f7 ff ff b9 6c 00 00 00 66 89 8d e2 f7 ff ff ba 33 00 00 00 66 89 95 e4 f7 ff ff b8 32 00 00 00 66 89 85 e6 f7 ff ff b9 2e 00 00 00 66 89 8d e8 f7 ff } //1
+		$a_01_1 = {95 9c fb ff ff 83 c2 02 89 95 9c fb ff ff 66 8b 85 86 fa ff ff 66 89 85 60 ff ff ff 8b 8d 98 fb ff ff 66 8b 11 66 89 95 84 fa ff ff 8b 85 98 fb ff ff 83 c0 02 89 85 98 fb ff ff 66 8b 8d 84 fa } //1
+	condition:
+		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1) >=2
+ 
+}

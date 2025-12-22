@@ -1,0 +1,17 @@
+
+rule Trojan_Win32_SusBootLogonAutostart_D{
+	meta:
+		description = "Trojan:Win32/SusBootLogonAutostart.D,SIGNATURE_TYPE_CMDHSTR_EXT,05 00 05 00 07 00 00 "
+		
+	strings :
+		$a_80_0 = {70 6f 77 65 72 73 68 65 6c 6c 2e 65 78 65 20 2d 63 } //powershell.exe -c  1
+		$a_00_1 = {2e 00 74 00 78 00 74 00 } //1 .txt
+		$a_80_2 = {41 70 70 44 61 74 61 5c 4c 6f 63 61 6c 5c 54 65 6d 70 } //AppData\Local\Temp  1
+		$a_00_3 = {3d 00 74 00 79 00 70 00 65 00 } //1 =type
+		$a_80_4 = {4e 65 77 2d 49 74 65 6d 20 2d 46 6f 72 63 65 20 2d 49 74 65 6d 54 79 70 65 20 53 79 6d 62 6f 6c 69 63 4c 69 6e 6b 20 2d 50 61 74 68 } //New-Item -Force -ItemType SymbolicLink -Path  1
+		$a_00_5 = {2d 00 56 00 61 00 6c 00 75 00 65 00 } //1 -Value
+		$a_00_6 = {2d 00 4e 00 61 00 6d 00 65 00 } //1 -Name
+	condition:
+		((#a_80_0  & 1)*1+(#a_00_1  & 1)*1+(#a_80_2  & 1)*1+(#a_00_3  & 1)*1+(#a_80_4  & 1)*1+(#a_00_5  & 1)*1+(#a_00_6  & 1)*1) >=5
+ 
+}

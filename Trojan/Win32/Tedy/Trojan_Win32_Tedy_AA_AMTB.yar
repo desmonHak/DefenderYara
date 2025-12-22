@@ -1,0 +1,14 @@
+
+rule Trojan_Win32_Tedy_AA_AMTB{
+	meta:
+		description = "Trojan:Win32/Tedy.AA!AMTB,SIGNATURE_TYPE_PEHSTR_EXT,04 00 04 00 04 00 00 "
+		
+	strings :
+		$a_80_0 = {6e 69 67 68 74 6c 69 67 68 74 2e 65 78 65 } //nightlight.exe  1
+		$a_80_1 = {6e 69 67 68 74 6c 69 67 68 74 2e 70 64 62 } //nightlight.pdb  1
+		$a_80_2 = {53 65 6e 74 20 73 63 72 65 65 6e 73 68 6f 74 20 66 61 69 6c 75 72 65 20 6d 65 73 73 61 67 65 20 74 6f 20 77 65 62 68 6f 6f 6b } //Sent screenshot failure message to webhook  1
+		$a_80_3 = {45 78 74 72 61 63 74 69 6e 67 20 44 69 73 63 6f 72 64 20 74 6f 6b 65 6e } //Extracting Discord token  1
+	condition:
+		((#a_80_0  & 1)*1+(#a_80_1  & 1)*1+(#a_80_2  & 1)*1+(#a_80_3  & 1)*1) >=4
+ 
+}

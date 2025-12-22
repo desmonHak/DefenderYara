@@ -1,6 +1,18 @@
 
 rule Trojan_BAT_Remcos_PD_MTB{
 	meta:
+		description = "Trojan:BAT/Remcos.PD!MTB,SIGNATURE_TYPE_PEHSTR_EXT,0b 00 0b 00 03 00 00 "
+		
+	strings :
+		$a_00_0 = {46 65 64 61 6c 69 72 75 61 6e 74 2e 52 65 73 74 75 72 6e 69 67 69 2e 70 6e 67 } //7 Fedaliruant.Resturnigi.png
+		$a_03_1 = {16 8d 03 00 00 01 14 14 14 28 ?? 01 00 0a 74 15 00 00 1b 13 05 73 7f 01 00 0a 13 07 11 05 8e 69 17 da 13 09 16 13 06 2b 15 11 07 11 06 11 05 11 06 9a 6f ?? 01 00 0a 00 11 06 17 d6 13 06 11 06 11 09 31 e5 } //2
+		$a_03_2 = {01 00 0a 13 0a 2b 2d 12 0a 28 ?? 01 00 0a 13 0b 12 0b 28 ?? 01 00 0a 07 6f ?? 01 00 0a 13 0c 11 0c 2c 0f 09 12 0b 28 ?? 01 00 0a 6f ?? 01 00 0a 00 00 00 00 12 0a 28 ?? 01 00 0a 13 0d 11 0d 2d c6 } //2
+	condition:
+		((#a_00_0  & 1)*7+(#a_03_1  & 1)*2+(#a_03_2  & 1)*2) >=11
+ 
+}
+rule Trojan_BAT_Remcos_PD_MTB_2{
+	meta:
 		description = "Trojan:BAT/Remcos.PD!MTB,SIGNATURE_TYPE_PEHSTR_EXT,0f 00 0f 00 09 00 00 "
 		
 	strings :

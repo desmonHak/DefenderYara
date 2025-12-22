@@ -1,0 +1,13 @@
+
+rule TrojanDownloader_Win64_CoinMiner_PZM_MTB{
+	meta:
+		description = "TrojanDownloader:Win64/CoinMiner.PZM!MTB,SIGNATURE_TYPE_PEHSTR_EXT,06 00 06 00 03 00 00 "
+		
+	strings :
+		$a_03_0 = {48 8d 85 c0 00 00 00 48 8d 0d ?? ?? 00 00 48 89 c2 e8 ?? ?? ?? ?? 48 8d 45 b0 48 8d 0d ?? ?? 00 00 48 89 c2 e8 ?? ?? ?? ?? 48 8d 95 c0 00 00 00 48 8d 05 ?? ?? 00 00 c7 44 24 28 01 00 00 00 48 c7 44 24 ?? 00 00 00 00 41 b9 00 00 00 00 49 89 d0 48 89 c2 b9 00 00 00 00 48 8b 05 ?? ?? 00 00 ff d0 } //4
+		$a_01_1 = {6c 6f 61 64 65 72 5f 6d 69 6e 65 72 2f 73 74 61 72 74 2e 65 78 65 } //1 loader_miner/start.exe
+		$a_01_2 = {6c 6f 61 64 65 72 5f 6d 69 6e 65 72 2f 75 70 64 61 74 65 43 68 72 6f 6d 65 2e 65 78 65 } //1 loader_miner/updateChrome.exe
+	condition:
+		((#a_03_0  & 1)*4+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1) >=6
+ 
+}

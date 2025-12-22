@@ -1,0 +1,27 @@
+
+rule Trojan_Win32_PromptFilecoder_ZZB_MTB{
+	meta:
+		description = "Trojan:Win32/PromptFilecoder.ZZB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,03 00 03 00 03 00 00 "
+		
+	strings :
+		$a_01_0 = {6c 6c 6d 2d 72 61 6e 73 6f 6d 2f 6c 6c 6d 2e 67 6f } //1 llm-ransom/llm.go
+		$a_01_1 = {6d 61 69 6e 2e 73 65 72 76 65 72 69 70 } //1 main.serverip
+		$a_01_2 = {6d 61 69 6e 2e 6d 6f 64 65 6c } //1 main.model
+	condition:
+		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1) >=3
+ 
+}
+rule Trojan_Win32_PromptFilecoder_ZZB_MTB_2{
+	meta:
+		description = "Trojan:Win32/PromptFilecoder.ZZB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 05 00 00 "
+		
+	strings :
+		$a_02_0 = {2e 67 65 74 65 6e 76 [0-10] 68 6f 73 74 6e 61 6d 65 } //1
+		$a_02_1 = {2e 67 65 74 65 6e 76 [0-10] 75 73 65 72 70 72 6f 66 69 6c 65 } //1
+		$a_02_2 = {2e 67 65 74 65 6e 76 [0-10] 68 6f 6d 65 } //1
+		$a_02_3 = {69 6f 2e 70 6f 70 65 6e [0-10] 70 77 64 } //1
+		$a_01_4 = {62 69 74 33 32 2e 62 78 6f 72 } //1 bit32.bxor
+	condition:
+		((#a_02_0  & 1)*1+(#a_02_1  & 1)*1+(#a_02_2  & 1)*1+(#a_02_3  & 1)*1+(#a_01_4  & 1)*1) >=5
+ 
+}

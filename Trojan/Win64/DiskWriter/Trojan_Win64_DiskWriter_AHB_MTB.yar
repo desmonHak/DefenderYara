@@ -1,0 +1,15 @@
+
+rule Trojan_Win64_DiskWriter_AHB_MTB{
+	meta:
+		description = "Trojan:Win64/DiskWriter.AHB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,ffffff96 00 ffffff96 00 05 00 00 "
+		
+	strings :
+		$a_81_0 = {48 6f 72 72 69 62 6c 65 20 63 68 6f 69 73 65 21 } //50 Horrible choise!
+		$a_81_1 = {59 6f 75 20 61 72 65 20 61 62 6f 75 74 20 74 6f 20 72 75 6e 20 48 79 64 72 61 7a 69 6e 65 } //40 You are about to run Hydrazine
+		$a_81_2 = {54 68 65 20 64 65 73 74 72 75 63 74 69 6f 6e 20 69 73 20 75 6e 72 65 63 6f 76 65 72 61 62 6c 65 21 } //30 The destruction is unrecoverable!
+		$a_81_3 = {49 20 61 6d 20 6e 6f 74 20 72 65 73 70 6f 6e 73 69 62 6c 65 } //20 I am not responsible
+		$a_81_4 = {62 65 20 61 77 61 72 65 20 66 6f 72 20 61 6c 6c 20 63 6f 73 74 20 6f 66 20 74 68 69 73 20 6d 61 6c 77 61 72 65 } //10 be aware for all cost of this malware
+	condition:
+		((#a_81_0  & 1)*50+(#a_81_1  & 1)*40+(#a_81_2  & 1)*30+(#a_81_3  & 1)*20+(#a_81_4  & 1)*10) >=150
+ 
+}

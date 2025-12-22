@@ -4,12 +4,22 @@ rule Trojan_Win32_Zusy_AZU_MTB{
 		description = "Trojan:Win32/Zusy.AZU!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		
 	strings :
-		$a_01_0 = {8b c2 c1 e8 18 89 4e 06 0f b6 0c 85 20 5d 5f 00 0f b6 46 0b 8b 0c 8d 20 51 5f 00 0f b6 04 85 20 5d 5f 00 33 0c 85 20 49 5f 00 0f b6 46 0c 0f b6 04 85 20 5d 5f 00 } //1
+		$a_01_0 = {89 44 24 40 c7 44 24 4c 06 00 00 00 8d 05 c3 ab 4c 00 89 44 24 48 c7 44 24 54 08 00 00 00 8d 05 db ae 4c 00 89 44 24 50 8b 44 24 1c 89 44 24 5c 89 54 } //1
 	condition:
 		((#a_01_0  & 1)*1) >=1
  
 }
 rule Trojan_Win32_Zusy_AZU_MTB_2{
+	meta:
+		description = "Trojan:Win32/Zusy.AZU!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
+		
+	strings :
+		$a_01_0 = {8b c2 c1 e8 18 89 4e 06 0f b6 0c 85 20 5d 5f 00 0f b6 46 0b 8b 0c 8d 20 51 5f 00 0f b6 04 85 20 5d 5f 00 33 0c 85 20 49 5f 00 0f b6 46 0c 0f b6 04 85 20 5d 5f 00 } //1
+	condition:
+		((#a_01_0  & 1)*1) >=1
+ 
+}
+rule Trojan_Win32_Zusy_AZU_MTB_3{
 	meta:
 		description = "Trojan:Win32/Zusy.AZU!MTB,SIGNATURE_TYPE_PEHSTR_EXT,03 00 03 00 02 00 00 "
 		
@@ -20,7 +30,7 @@ rule Trojan_Win32_Zusy_AZU_MTB_2{
 		((#a_03_0  & 1)*2+(#a_03_1  & 1)*1) >=3
  
 }
-rule Trojan_Win32_Zusy_AZU_MTB_3{
+rule Trojan_Win32_Zusy_AZU_MTB_4{
 	meta:
 		description = "Trojan:Win32/Zusy.AZU!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		
@@ -30,7 +40,7 @@ rule Trojan_Win32_Zusy_AZU_MTB_3{
 		((#a_01_0  & 1)*1) >=1
  
 }
-rule Trojan_Win32_Zusy_AZU_MTB_4{
+rule Trojan_Win32_Zusy_AZU_MTB_5{
 	meta:
 		description = "Trojan:Win32/Zusy.AZU!MTB,SIGNATURE_TYPE_PEHSTR_EXT,02 00 02 00 02 00 00 "
 		

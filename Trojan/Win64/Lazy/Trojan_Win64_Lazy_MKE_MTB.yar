@@ -1,0 +1,14 @@
+
+rule Trojan_Win64_Lazy_MKE_MTB{
+	meta:
+		description = "Trojan:Win64/Lazy.MKE!MTB,SIGNATURE_TYPE_PEHSTR_EXT,1e 00 1e 00 04 00 00 "
+		
+	strings :
+		$a_01_0 = {b4 a4 28 00 00 d0 cd 01 00 a6 28 00 00 34 ca } //15
+		$a_01_1 = {2e 70 64 61 74 61 00 00 7c 85 04 00 00 00 9a 01 00 86 04 } //10
+		$a_01_2 = {bc be 1b 00 00 d0 71 01 00 c0 1b 00 00 bc 71 01 } //3
+		$a_01_3 = {3e db 2e 00 00 e0 9e 01 00 dc 2e 00 00 56 9b } //2
+	condition:
+		((#a_01_0  & 1)*15+(#a_01_1  & 1)*10+(#a_01_2  & 1)*3+(#a_01_3  & 1)*2) >=30
+ 
+}

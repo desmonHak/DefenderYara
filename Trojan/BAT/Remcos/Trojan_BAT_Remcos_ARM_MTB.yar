@@ -4,7 +4,7 @@ rule Trojan_BAT_Remcos_ARM_MTB{
 		description = "Trojan:BAT/Remcos.ARM!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		
 	strings :
-		$a_03_0 = {26 16 13 22 2b 2f 11 07 11 06 8e 69 5d 13 23 11 06 11 23 11 21 11 22 91 9c 03 11 21 11 22 91 6f ?? 00 00 0a 11 07 17 58 } //1
+		$a_03_0 = {11 05 1f 1f 5a 11 06 1f 11 5a 58 09 74 ?? ?? ?? 1b 8e 69 17 59 5f 13 08 11 1b 20 ?? ?? ?? ?? 91 19 5b 13 1a } //1
 	condition:
 		((#a_03_0  & 1)*1) >=1
  
@@ -14,7 +14,7 @@ rule Trojan_BAT_Remcos_ARM_MTB_2{
 		description = "Trojan:BAT/Remcos.ARM!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		
 	strings :
-		$a_03_0 = {16 0a 2b 38 16 0b 2b 21 08 06 07 28 ?? ?? ?? 06 13 09 09 12 09 28 ?? ?? ?? 0a 8c 07 00 00 01 28 ?? ?? ?? 06 26 07 17 58 0b 07 08 28 ?? ?? ?? 06 fe 04 13 06 11 06 2d d0 } //1
+		$a_03_0 = {26 16 13 22 2b 2f 11 07 11 06 8e 69 5d 13 23 11 06 11 23 11 21 11 22 91 9c 03 11 21 11 22 91 6f ?? 00 00 0a 11 07 17 58 } //1
 	condition:
 		((#a_03_0  & 1)*1) >=1
  
@@ -24,12 +24,22 @@ rule Trojan_BAT_Remcos_ARM_MTB_3{
 		description = "Trojan:BAT/Remcos.ARM!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		
 	strings :
-		$a_03_0 = {16 13 0c 2b 21 00 11 07 11 0c 11 06 08 11 06 6f ?? 00 00 0a 6f ?? 00 00 0a 6f ?? 00 00 0a 9d 00 11 0c 17 58 13 0c 11 0c 11 07 8e 69 fe 04 13 0d 11 0d 2d d1 } //1
+		$a_03_0 = {16 0a 2b 38 16 0b 2b 21 08 06 07 28 ?? ?? ?? 06 13 09 09 12 09 28 ?? ?? ?? 0a 8c 07 00 00 01 28 ?? ?? ?? 06 26 07 17 58 0b 07 08 28 ?? ?? ?? 06 fe 04 13 06 11 06 2d d0 } //1
 	condition:
 		((#a_03_0  & 1)*1) >=1
  
 }
 rule Trojan_BAT_Remcos_ARM_MTB_4{
+	meta:
+		description = "Trojan:BAT/Remcos.ARM!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
+		
+	strings :
+		$a_03_0 = {16 13 0c 2b 21 00 11 07 11 0c 11 06 08 11 06 6f ?? 00 00 0a 6f ?? 00 00 0a 6f ?? 00 00 0a 9d 00 11 0c 17 58 13 0c 11 0c 11 07 8e 69 fe 04 13 0d 11 0d 2d d1 } //1
+	condition:
+		((#a_03_0  & 1)*1) >=1
+ 
+}
+rule Trojan_BAT_Remcos_ARM_MTB_5{
 	meta:
 		description = "Trojan:BAT/Remcos.ARM!MTB,SIGNATURE_TYPE_PEHSTR_EXT,02 00 02 00 02 00 00 "
 		
@@ -40,7 +50,7 @@ rule Trojan_BAT_Remcos_ARM_MTB_4{
 		((#a_01_0  & 1)*1+(#a_03_1  & 1)*1) >=2
  
 }
-rule Trojan_BAT_Remcos_ARM_MTB_5{
+rule Trojan_BAT_Remcos_ARM_MTB_6{
 	meta:
 		description = "Trojan:BAT/Remcos.ARM!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		
@@ -50,7 +60,7 @@ rule Trojan_BAT_Remcos_ARM_MTB_5{
 		((#a_03_0  & 1)*1) >=1
  
 }
-rule Trojan_BAT_Remcos_ARM_MTB_6{
+rule Trojan_BAT_Remcos_ARM_MTB_7{
 	meta:
 		description = "Trojan:BAT/Remcos.ARM!MTB,SIGNATURE_TYPE_PEHSTR_EXT,02 00 02 00 02 00 00 "
 		
@@ -61,7 +71,17 @@ rule Trojan_BAT_Remcos_ARM_MTB_6{
 		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1) >=2
  
 }
-rule Trojan_BAT_Remcos_ARM_MTB_7{
+rule Trojan_BAT_Remcos_ARM_MTB_8{
+	meta:
+		description = "Trojan:BAT/Remcos.ARM!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
+		
+	strings :
+		$a_03_0 = {09 16 9a 13 04 19 8d ?? 00 00 01 25 16 02 7b ?? 00 00 04 a2 25 17 02 7b ?? 00 00 04 a2 25 18 72 ?? 08 00 70 a2 13 05 72 ?? 08 00 70 17 8d ?? 00 00 01 25 16 1f 58 9d 28 } //1
+	condition:
+		((#a_03_0  & 1)*1) >=1
+ 
+}
+rule Trojan_BAT_Remcos_ARM_MTB_9{
 	meta:
 		description = "Trojan:BAT/Remcos.ARM!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		
@@ -71,7 +91,7 @@ rule Trojan_BAT_Remcos_ARM_MTB_7{
 		((#a_01_0  & 1)*1) >=1
  
 }
-rule Trojan_BAT_Remcos_ARM_MTB_8{
+rule Trojan_BAT_Remcos_ARM_MTB_10{
 	meta:
 		description = "Trojan:BAT/Remcos.ARM!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		
@@ -81,7 +101,7 @@ rule Trojan_BAT_Remcos_ARM_MTB_8{
 		((#a_03_0  & 1)*1) >=1
  
 }
-rule Trojan_BAT_Remcos_ARM_MTB_9{
+rule Trojan_BAT_Remcos_ARM_MTB_11{
 	meta:
 		description = "Trojan:BAT/Remcos.ARM!MTB,SIGNATURE_TYPE_PEHSTR_EXT,03 00 03 00 02 00 00 "
 		
@@ -92,7 +112,7 @@ rule Trojan_BAT_Remcos_ARM_MTB_9{
 		((#a_03_0  & 1)*2+(#a_03_1  & 1)*1) >=3
  
 }
-rule Trojan_BAT_Remcos_ARM_MTB_10{
+rule Trojan_BAT_Remcos_ARM_MTB_12{
 	meta:
 		description = "Trojan:BAT/Remcos.ARM!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		
@@ -102,7 +122,7 @@ rule Trojan_BAT_Remcos_ARM_MTB_10{
 		((#a_03_0  & 1)*1) >=1
  
 }
-rule Trojan_BAT_Remcos_ARM_MTB_11{
+rule Trojan_BAT_Remcos_ARM_MTB_13{
 	meta:
 		description = "Trojan:BAT/Remcos.ARM!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 03 00 00 "
 		
@@ -114,7 +134,7 @@ rule Trojan_BAT_Remcos_ARM_MTB_11{
 		((#a_01_0  & 1)*2+(#a_03_1  & 1)*2+(#a_01_2  & 1)*1) >=5
  
 }
-rule Trojan_BAT_Remcos_ARM_MTB_12{
+rule Trojan_BAT_Remcos_ARM_MTB_14{
 	meta:
 		description = "Trojan:BAT/Remcos.ARM!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		
@@ -124,7 +144,7 @@ rule Trojan_BAT_Remcos_ARM_MTB_12{
 		((#a_03_0  & 1)*1) >=1
  
 }
-rule Trojan_BAT_Remcos_ARM_MTB_13{
+rule Trojan_BAT_Remcos_ARM_MTB_15{
 	meta:
 		description = "Trojan:BAT/Remcos.ARM!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		
@@ -134,7 +154,7 @@ rule Trojan_BAT_Remcos_ARM_MTB_13{
 		((#a_01_0  & 1)*1) >=1
  
 }
-rule Trojan_BAT_Remcos_ARM_MTB_14{
+rule Trojan_BAT_Remcos_ARM_MTB_16{
 	meta:
 		description = "Trojan:BAT/Remcos.ARM!MTB,SIGNATURE_TYPE_PEHSTR_EXT,02 00 02 00 02 00 00 "
 		
@@ -145,7 +165,7 @@ rule Trojan_BAT_Remcos_ARM_MTB_14{
 		((#a_03_0  & 1)*1+(#a_01_1  & 1)*1) >=2
  
 }
-rule Trojan_BAT_Remcos_ARM_MTB_15{
+rule Trojan_BAT_Remcos_ARM_MTB_17{
 	meta:
 		description = "Trojan:BAT/Remcos.ARM!MTB,SIGNATURE_TYPE_PEHSTR_EXT,06 00 06 00 03 00 00 "
 		
@@ -157,7 +177,7 @@ rule Trojan_BAT_Remcos_ARM_MTB_15{
 		((#a_03_0  & 1)*1+(#a_03_1  & 1)*2+(#a_03_2  & 1)*3) >=6
  
 }
-rule Trojan_BAT_Remcos_ARM_MTB_16{
+rule Trojan_BAT_Remcos_ARM_MTB_18{
 	meta:
 		description = "Trojan:BAT/Remcos.ARM!MTB,SIGNATURE_TYPE_PEHSTR_EXT,09 00 09 00 09 00 00 "
 		
@@ -175,7 +195,7 @@ rule Trojan_BAT_Remcos_ARM_MTB_16{
 		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1+(#a_01_4  & 1)*1+(#a_01_5  & 1)*1+(#a_01_6  & 1)*1+(#a_01_7  & 1)*1+(#a_01_8  & 1)*1) >=9
  
 }
-rule Trojan_BAT_Remcos_ARM_MTB_17{
+rule Trojan_BAT_Remcos_ARM_MTB_19{
 	meta:
 		description = "Trojan:BAT/Remcos.ARM!MTB,SIGNATURE_TYPE_PEHSTR_EXT,09 00 09 00 07 00 00 "
 		

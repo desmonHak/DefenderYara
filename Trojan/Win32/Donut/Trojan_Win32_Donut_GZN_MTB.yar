@@ -1,0 +1,12 @@
+
+rule Trojan_Win32_Donut_GZN_MTB{
+	meta:
+		description = "Trojan:Win32/Donut.GZN!MTB,SIGNATURE_TYPE_PEHSTR_EXT,0a 00 0a 00 02 00 00 "
+		
+	strings :
+		$a_03_0 = {2b c6 d1 f8 03 c2 03 c7 6a 04 8d 74 18 01 68 00 10 00 00 8d 0c 36 51 6a 00 ff 15 ?? ?? ?? ?? 8b f8 85 f6 } //5
+		$a_03_1 = {6a 00 6a 00 68 ?? ?? ?? ?? 8b f0 56 6a 00 ff 15 ?? ?? ?? ?? 68 00 80 00 00 6a 00 56 ff 15 } //5
+	condition:
+		((#a_03_0  & 1)*5+(#a_03_1  & 1)*5) >=10
+ 
+}

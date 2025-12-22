@@ -1,0 +1,15 @@
+
+rule MonitoringTool_AndroidOS_PhoneSpy_J_MTB{
+	meta:
+		description = "MonitoringTool:AndroidOS/PhoneSpy.J!MTB,SIGNATURE_TYPE_DEXHSTR_EXT,04 00 04 00 05 00 00 "
+		
+	strings :
+		$a_01_0 = {6d 73 70 61 70 70 74 72 61 6b 61 70 70 2f 61 6c 61 72 6d 2f 50 68 6f 6e 65 43 61 6c 6c 52 65 63 65 69 76 65 72 } //1 mspapptrakapp/alarm/PhoneCallReceiver
+		$a_01_1 = {6d 73 70 61 70 70 74 72 61 6b 61 70 70 2f 61 6c 61 72 6d 2f 61 63 74 69 76 69 74 69 65 73 2f 50 68 6f 6e 65 41 6c 72 65 61 64 79 52 65 67 69 73 74 65 72 65 64 } //1 mspapptrakapp/alarm/activities/PhoneAlreadyRegistered
+		$a_01_2 = {6d 73 70 61 70 70 74 72 61 6b 61 70 70 2f 61 6c 61 72 6d 2f 73 65 72 76 69 63 65 73 2f 49 6e 69 74 41 64 64 50 68 6f 6e 65 53 65 72 76 69 63 65 } //1 mspapptrakapp/alarm/services/InitAddPhoneService
+		$a_01_3 = {6d 73 70 61 70 70 74 72 61 6b 61 70 70 2f 61 6c 61 72 6d 2f 73 65 72 76 69 63 65 73 2f 54 72 61 63 6b 4c 6f 63 61 74 69 6f 6e } //1 mspapptrakapp/alarm/services/TrackLocation
+		$a_01_4 = {63 6f 6d 2e 73 70 79 61 70 70 2e 77 65 62 62 72 6f 77 73 65 72 } //1 com.spyapp.webbrowser
+	condition:
+		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1+(#a_01_4  & 1)*1) >=4
+ 
+}

@@ -1,0 +1,16 @@
+
+rule Ransom_Win64_Shinyspider_CG_MTB{
+	meta:
+		description = "Ransom:Win64/Shinyspider.CG!MTB,SIGNATURE_TYPE_PEHSTR_EXT,1e 00 1e 00 06 00 00 "
+		
+	strings :
+		$a_01_0 = {6d 61 69 6e 2e 65 6e 63 72 79 70 74 46 69 6c 65 } //5 main.encryptFile
+		$a_01_1 = {6d 61 69 6e 2e 64 65 6f 62 66 75 73 63 61 74 65 44 61 74 61 } //5 main.deobfuscateData
+		$a_01_2 = {6d 61 69 6e 2e 6b 69 6c 6c 42 6c 61 63 6b 6c 69 73 74 65 64 53 65 72 76 69 63 65 73 } //5 main.killBlacklistedServices
+		$a_01_3 = {6d 61 69 6e 2e 65 6e 63 72 79 70 74 4e 65 74 77 6f 72 6b 53 68 61 72 65 73 } //5 main.encryptNetworkShares
+		$a_01_4 = {6d 61 69 6e 2e 64 65 6c 65 74 65 57 69 6e 64 6f 77 73 45 76 65 6e 74 4c 6f 67 73 } //5 main.deleteWindowsEventLogs
+		$a_01_5 = {6d 61 69 6e 2e 64 65 6c 65 74 65 53 65 6c 66 56 69 61 57 4d } //5 main.deleteSelfViaWM
+	condition:
+		((#a_01_0  & 1)*5+(#a_01_1  & 1)*5+(#a_01_2  & 1)*5+(#a_01_3  & 1)*5+(#a_01_4  & 1)*5+(#a_01_5  & 1)*5) >=30
+ 
+}

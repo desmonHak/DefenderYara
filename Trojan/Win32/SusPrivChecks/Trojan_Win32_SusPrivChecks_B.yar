@@ -1,0 +1,16 @@
+
+rule Trojan_Win32_SusPrivChecks_B{
+	meta:
+		description = "Trojan:Win32/SusPrivChecks.B,SIGNATURE_TYPE_CMDHSTR_EXT,06 00 06 00 06 00 00 "
+		
+	strings :
+		$a_80_0 = {70 6f 77 65 72 73 68 65 6c 6c 2e 65 78 65 20 2d 63 } //powershell.exe -c  1
+		$a_80_1 = {55 6e 62 6c 6f 63 6b 2d 46 69 6c 65 } //Unblock-File  1
+		$a_80_2 = {41 70 70 44 61 74 61 5c 4c 6f 63 61 6c 5c 54 65 6d 70 } //AppData\Local\Temp  1
+		$a_80_3 = {47 65 74 2d 57 69 6e 55 70 64 61 74 65 73 } //Get-WinUpdates  1
+		$a_80_4 = {49 6d 70 6f 72 74 2d 4d 6f 64 75 6c 65 } //Import-Module  1
+		$a_80_5 = {2d 43 6f 6d 70 75 74 65 72 4e 61 6d 65 20 6c 6f 63 61 6c 68 6f 73 74 } //-ComputerName localhost  1
+	condition:
+		((#a_80_0  & 1)*1+(#a_80_1  & 1)*1+(#a_80_2  & 1)*1+(#a_80_3  & 1)*1+(#a_80_4  & 1)*1+(#a_80_5  & 1)*1) >=6
+ 
+}

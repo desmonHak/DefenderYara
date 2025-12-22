@@ -1,6 +1,17 @@
 
 rule Trojan_Win32_LummaStealer_NL_MTB{
 	meta:
+		description = "Trojan:Win32/LummaStealer.NL!MTB,SIGNATURE_TYPE_PEHSTR_EXT,03 00 03 00 02 00 00 "
+		
+	strings :
+		$a_01_0 = {89 5c 24 04 89 3c 24 89 f1 ff d5 83 ec 08 89 f0 83 c4 0c 5e 5f 5b 5d } //2
+		$a_01_1 = {03 14 08 ff 74 24 0c 56 ff d2 83 c4 08 89 f0 5e } //1
+	condition:
+		((#a_01_0  & 1)*2+(#a_01_1  & 1)*1) >=3
+ 
+}
+rule Trojan_Win32_LummaStealer_NL_MTB_2{
+	meta:
 		description = "Trojan:Win32/LummaStealer.NL!MTB,SIGNATURE_TYPE_PEHSTR_EXT,06 00 06 00 02 00 00 "
 		
 	strings :
@@ -10,7 +21,7 @@ rule Trojan_Win32_LummaStealer_NL_MTB{
 		((#a_01_0  & 1)*3+(#a_03_1  & 1)*3) >=6
  
 }
-rule Trojan_Win32_LummaStealer_NL_MTB_2{
+rule Trojan_Win32_LummaStealer_NL_MTB_3{
 	meta:
 		description = "Trojan:Win32/LummaStealer.NL!MTB,SIGNATURE_TYPE_PEHSTR_EXT,07 00 07 00 03 00 00 "
 		
@@ -22,7 +33,7 @@ rule Trojan_Win32_LummaStealer_NL_MTB_2{
 		((#a_03_0  & 1)*5+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1) >=7
  
 }
-rule Trojan_Win32_LummaStealer_NL_MTB_3{
+rule Trojan_Win32_LummaStealer_NL_MTB_4{
 	meta:
 		description = "Trojan:Win32/LummaStealer.NL!MTB,SIGNATURE_TYPE_PEHSTR_EXT,03 00 03 00 02 00 00 "
 		
@@ -33,7 +44,7 @@ rule Trojan_Win32_LummaStealer_NL_MTB_3{
 		((#a_03_0  & 1)*2+(#a_03_1  & 1)*1) >=3
  
 }
-rule Trojan_Win32_LummaStealer_NL_MTB_4{
+rule Trojan_Win32_LummaStealer_NL_MTB_5{
 	meta:
 		description = "Trojan:Win32/LummaStealer.NL!MTB,SIGNATURE_TYPE_PEHSTR_EXT,07 00 07 00 04 00 00 "
 		

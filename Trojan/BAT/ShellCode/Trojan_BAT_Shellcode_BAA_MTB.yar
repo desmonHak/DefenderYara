@@ -1,0 +1,11 @@
+
+rule Trojan_BAT_Shellcode_BAA_MTB{
+	meta:
+		description = "Trojan:BAT/Shellcode.BAA!MTB,SIGNATURE_TYPE_PEHSTR_EXT,02 00 02 00 01 00 00 "
+		
+	strings :
+		$a_03_0 = {73 17 00 00 0a 13 04 00 09 11 04 ?? ?? ?? ?? ?? 00 11 04 ?? ?? ?? ?? ?? 13 05 de 5c 11 04 14 fe 01 13 06 11 06 2d 08 11 04 ?? ?? ?? ?? ?? 00 dc 09 14 fe 01 13 06 11 06 2d 07 09 ?? ?? ?? ?? ?? 00 dc } //2
+	condition:
+		((#a_03_0  & 1)*2) >=2
+ 
+}

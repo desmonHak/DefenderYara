@@ -1,0 +1,12 @@
+
+rule Trojan_Win32_Zusy_AHM_MTB{
+	meta:
+		description = "Trojan:Win32/Zusy.AHM!MTB,SIGNATURE_TYPE_PEHSTR_EXT,32 00 32 00 02 00 00 "
+		
+	strings :
+		$a_03_0 = {66 89 84 24 58 01 00 00 0f 1f 84 ?? ?? ?? ?? ?? 8b c1 83 e0 ?? 0f b6 80 ?? ?? ?? ?? 66 33 44 4c 14 66 89 84 4c 40 01 00 00 41 83 f9 ?? 72 } //30
+		$a_03_1 = {66 33 4c 04 2c 66 89 8c 04 5c 01 00 00 0f b7 4c 04 2e 66 33 ca 66 89 8c 04 5e 01 00 00 83 ef ?? 0f } //20
+	condition:
+		((#a_03_0  & 1)*30+(#a_03_1  & 1)*20) >=50
+ 
+}

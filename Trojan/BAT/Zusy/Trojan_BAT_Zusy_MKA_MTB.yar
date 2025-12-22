@@ -1,0 +1,12 @@
+
+rule Trojan_BAT_Zusy_MKA_MTB{
+	meta:
+		description = "Trojan:BAT/Zusy.MKA!MTB,SIGNATURE_TYPE_PEHSTR_EXT,19 00 19 00 02 00 00 "
+		
+	strings :
+		$a_01_0 = {73 09 00 00 06 72 01 00 00 70 72 33 00 00 70 72 4d 00 00 70 72 99 00 00 70 6f 08 00 00 06 dd 06 } //15
+		$a_01_1 = {73 03 00 00 06 0a 73 05 00 00 06 0b 73 07 00 00 06 0c 16 0d 14 13 04 } //10
+	condition:
+		((#a_01_0  & 1)*15+(#a_01_1  & 1)*10) >=25
+ 
+}

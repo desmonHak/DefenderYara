@@ -1,0 +1,11 @@
+
+rule Trojan_Win32_Agentz_A_MTB{
+	meta:
+		description = "Trojan:Win32/Agentz.A!MTB,SIGNATURE_TYPE_PEHSTR,01 00 01 00 01 00 00 "
+		
+	strings :
+		$a_01_0 = {69 2f cb f0 33 1c 7f 69 15 67 54 41 12 59 ee 70 61 9e 3a 91 a3 99 bf 69 54 3c ec 9a ee cf bd 4c 3f f7 c5 15 } //1
+	condition:
+		((#a_01_0  & 1)*1) >=1
+ 
+}

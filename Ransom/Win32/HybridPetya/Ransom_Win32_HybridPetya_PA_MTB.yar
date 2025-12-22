@@ -1,0 +1,14 @@
+
+rule Ransom_Win32_HybridPetya_PA_MTB{
+	meta:
+		description = "Ransom:Win32/HybridPetya.PA!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 04 00 00 "
+		
+	strings :
+		$a_01_0 = {5f 52 65 66 6c 65 63 74 69 76 65 4c 6f 61 64 65 72 40 } //1 _ReflectiveLoader@
+		$a_01_1 = {5c 45 46 49 5c 4d 69 63 72 6f 73 6f 66 74 5c 42 6f 6f 74 5c } //1 \EFI\Microsoft\Boot\
+		$a_01_2 = {59 4f 55 52 5f 46 49 4c 45 53 5f 41 52 45 5f 45 4e 43 52 59 50 54 45 44 2e 54 58 54 } //1 YOUR_FILES_ARE_ENCRYPTED.TXT
+		$a_01_3 = {53 65 6e 64 20 79 6f 75 72 20 42 69 74 63 6f 69 6e 20 77 61 6c 6c 65 74 20 49 44 20 61 6e 64 20 70 65 72 73 6f 6e 61 6c 20 69 6e 73 74 61 6c 6c 61 74 69 6f 6e 20 6b 65 79 20 74 6f 20 65 2d 6d 61 69 6c } //3 Send your Bitcoin wallet ID and personal installation key to e-mail
+	condition:
+		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*3) >=5
+ 
+}

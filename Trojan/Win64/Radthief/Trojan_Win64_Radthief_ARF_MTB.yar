@@ -1,0 +1,11 @@
+
+rule Trojan_Win64_Radthief_ARF_MTB{
+	meta:
+		description = "Trojan:Win64/Radthief.ARF!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
+		
+	strings :
+		$a_03_0 = {48 89 d1 48 89 f7 4c 89 ce e8 ?? ?? ?? ?? 4c 8d 4b 01 48 8b 54 24 48 44 0f b6 54 24 47 48 89 c3 48 89 ce 48 8b 84 24 ?? 2c 09 00 48 8b 4c 24 68 } //1
+	condition:
+		((#a_03_0  & 1)*1) >=1
+ 
+}

@@ -23,6 +23,17 @@ rule Trojan_BAT_LummaStealer_NL_MTB_2{
 }
 rule Trojan_BAT_LummaStealer_NL_MTB_3{
 	meta:
+		description = "Trojan:BAT/LummaStealer.NL!MTB,SIGNATURE_TYPE_PEHSTR_EXT,03 00 03 00 02 00 00 "
+		
+	strings :
+		$a_01_0 = {02 7b 05 00 00 04 26 16 0b de 34 08 02 7b 06 00 00 04 20 18 01 00 00 14 14 14 6f 1f 00 00 0a 26 17 0b } //2
+		$a_01_1 = {28 1c 00 00 0a 02 7b 05 00 00 04 16 6f 1d 00 00 0a 0c 08 14 28 1e 00 00 0a } //1
+	condition:
+		((#a_01_0  & 1)*2+(#a_01_1  & 1)*1) >=3
+ 
+}
+rule Trojan_BAT_LummaStealer_NL_MTB_4{
+	meta:
 		description = "Trojan:BAT/LummaStealer.NL!MTB,SIGNATURE_TYPE_PEHSTR_EXT,06 00 06 00 02 00 00 "
 		
 	strings :
@@ -32,7 +43,7 @@ rule Trojan_BAT_LummaStealer_NL_MTB_3{
 		((#a_03_0  & 1)*5+(#a_01_1  & 1)*1) >=6
  
 }
-rule Trojan_BAT_LummaStealer_NL_MTB_4{
+rule Trojan_BAT_LummaStealer_NL_MTB_5{
 	meta:
 		description = "Trojan:BAT/LummaStealer.NL!MTB,SIGNATURE_TYPE_PEHSTR_EXT,06 00 06 00 02 00 00 "
 		
@@ -43,7 +54,7 @@ rule Trojan_BAT_LummaStealer_NL_MTB_4{
 		((#a_03_0  & 1)*3+(#a_03_1  & 1)*3) >=6
  
 }
-rule Trojan_BAT_LummaStealer_NL_MTB_5{
+rule Trojan_BAT_LummaStealer_NL_MTB_6{
 	meta:
 		description = "Trojan:BAT/LummaStealer.NL!MTB,SIGNATURE_TYPE_PEHSTR_EXT,06 00 06 00 02 00 00 "
 		
@@ -54,7 +65,7 @@ rule Trojan_BAT_LummaStealer_NL_MTB_5{
 		((#a_03_0  & 1)*5+(#a_01_1  & 1)*1) >=6
  
 }
-rule Trojan_BAT_LummaStealer_NL_MTB_6{
+rule Trojan_BAT_LummaStealer_NL_MTB_7{
 	meta:
 		description = "Trojan:BAT/LummaStealer.NL!MTB,SIGNATURE_TYPE_PEHSTR_EXT,06 00 06 00 03 00 00 "
 		
@@ -66,7 +77,7 @@ rule Trojan_BAT_LummaStealer_NL_MTB_6{
 		((#a_01_0  & 1)*2+(#a_01_1  & 1)*2+(#a_01_2  & 1)*2) >=6
  
 }
-rule Trojan_BAT_LummaStealer_NL_MTB_7{
+rule Trojan_BAT_LummaStealer_NL_MTB_8{
 	meta:
 		description = "Trojan:BAT/LummaStealer.NL!MTB,SIGNATURE_TYPE_PEHSTR_EXT,06 00 06 00 02 00 00 "
 		

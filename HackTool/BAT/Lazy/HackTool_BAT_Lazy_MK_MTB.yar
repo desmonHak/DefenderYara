@@ -1,0 +1,12 @@
+
+rule HackTool_BAT_Lazy_MK_MTB{
+	meta:
+		description = "HackTool:BAT/Lazy.MK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,19 00 19 00 02 00 00 "
+		
+	strings :
+		$a_03_0 = {04 03 7b 7b 00 00 04 20 00 00 00 01 41 29 00 00 00 03 03 7b ?? 00 00 04 1e 62 03 7b ?? 00 00 04 6f ?? 01 00 0a d2 60 7d } //15
+		$a_01_1 = {03 02 7b ad 00 00 04 61 0a 02 02 7b ad 00 00 04 1d 28 c6 00 00 06 06 61 7d ad 00 00 04 } //10
+	condition:
+		((#a_03_0  & 1)*15+(#a_01_1  & 1)*10) >=25
+ 
+}

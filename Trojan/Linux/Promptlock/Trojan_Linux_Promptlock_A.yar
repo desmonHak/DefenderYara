@@ -1,0 +1,14 @@
+
+rule Trojan_Linux_Promptlock_A{
+	meta:
+		description = "Trojan:Linux/Promptlock.A,SIGNATURE_TYPE_PEHSTR_EXT,04 00 04 00 04 00 00 "
+		
+	strings :
+		$a_80_0 = {47 65 6e 65 72 61 74 65 20 63 6c 65 61 6e 2c 20 77 6f 72 6b 69 6e 67 20 4c 75 61 20 63 6f 64 } //Generate clean, working Lua cod  1
+		$a_80_1 = {79 6f 75 20 61 72 65 20 61 20 4c 75 61 20 63 6f 64 65 20 76 61 6c 69 64 61 74 6f 72 } //you are a Lua code validator  1
+		$a_80_2 = {2f 6f 6c 6c 61 6d 61 2f } ///ollama/  1
+		$a_80_3 = {53 75 6d 6d 61 72 69 7a 65 20 74 68 65 20 69 6e 66 6f 72 6d 61 74 69 6f 6e 20 77 68 69 63 68 20 77 61 73 20 66 6f 75 6e 64 20 66 6f 72 20 65 61 63 68 20 66 69 6c 65 20 69 6e 20 74 68 65 20 63 6f 6e 74 65 78 74 20 6f 66 20 61 20 63 79 62 65 72 73 65 63 75 72 69 74 79 20 65 78 70 65 72 74 2c } //Summarize the information which was found for each file in the context of a cybersecurity expert,  1
+	condition:
+		((#a_80_0  & 1)*1+(#a_80_1  & 1)*1+(#a_80_2  & 1)*1+(#a_80_3  & 1)*1) >=4
+ 
+}

@@ -4,6 +4,20 @@ rule Trojan_Win32_GuLoader_RBS_MTB{
 		description = "Trojan:Win32/GuLoader.RBS!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 05 00 00 "
 		
 	strings :
+		$a_81_0 = {43 72 65 65 70 68 6f 6c 65 5c 46 6f 64 70 6c 65 6a 65 5c 63 68 65 6d 69 6e 6f 76 61 } //1 Creephole\Fodpleje\cheminova
+		$a_81_1 = {62 6c 69 6e 64 65 74 5c 41 64 6d 69 72 61 6c 65 72 73 31 37 35 } //1 blindet\Admiralers175
+		$a_81_2 = {5c 4d 61 67 74 65 73 6c 73 65 73 74 5c 6f 75 74 67 61 74 65 2e 74 78 74 } //1 \Magteslsest\outgate.txt
+		$a_81_3 = {25 25 5c 6e 6f 6e 66 6f 72 66 65 69 74 75 72 65 5c 75 6e 73 6c 61 63 6b 69 6e 67 2e 69 6e 69 } //1 %%\nonforfeiture\unslacking.ini
+		$a_81_4 = {25 65 6c 65 76 73 6b 6f 6c 65 72 6e 65 25 5c 75 6e 6c 6f 63 61 6c 69 7a 61 62 6c 65 73 5c 79 76 65 74 74 65 } //1 %elevskolerne%\unlocalizables\yvette
+	condition:
+		((#a_81_0  & 1)*1+(#a_81_1  & 1)*1+(#a_81_2  & 1)*1+(#a_81_3  & 1)*1+(#a_81_4  & 1)*1) >=5
+ 
+}
+rule Trojan_Win32_GuLoader_RBS_MTB_2{
+	meta:
+		description = "Trojan:Win32/GuLoader.RBS!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 05 00 00 "
+		
+	strings :
 		$a_81_0 = {2d 5c 67 72 6f 74 65 73 6b 65 73 5c 50 6c 65 74 74 65 6e 31 31 33 5c 66 6c 64 65 73 6b 75 6d 6d 65 6e } //1 -\groteskes\Pletten113\fldeskummen
 		$a_81_1 = {25 73 68 75 66 66 6c 69 6e 67 6c 79 25 5c 72 65 70 6f 72 74 65 72 65 64 65 5c 4e 6f 6e 6e 61 74 69 76 65 73 } //1 %shufflingly%\reporterede\Nonnatives
 		$a_81_2 = {5c 6d 61 79 6f 72 73 68 69 70 73 5c 45 70 69 64 65 6d 69 6f 6c 6f 67 69 65 6e 73 2e 69 6e 69 } //1 \mayorships\Epidemiologiens.ini

@@ -1,0 +1,11 @@
+
+rule Ransom_Win64_Sauron_YAE_MTB{
+	meta:
+		description = "Ransom:Win64/Sauron.YAE!MTB,SIGNATURE_TYPE_PEHSTR_EXT,02 00 02 00 01 00 00 "
+		
+	strings :
+		$a_01_0 = {42 0f b6 4c 05 b8 b8 bf bf 8c 82 83 f1 18 8d 0c cd 48 f8 ff ff f7 e9 03 d1 c1 fa 07 8b c2 c1 e8 1f 03 d0 69 c2 fb 00 00 00 2b c8 b8 bf bf 8c 82 81 c1 fb 00 00 00 f7 e9 } //2
+	condition:
+		((#a_01_0  & 1)*2) >=2
+ 
+}

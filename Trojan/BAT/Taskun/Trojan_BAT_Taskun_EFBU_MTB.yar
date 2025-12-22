@@ -1,0 +1,12 @@
+
+rule Trojan_BAT_Taskun_EFBU_MTB{
+	meta:
+		description = "Trojan:BAT/Taskun.EFBU!MTB,SIGNATURE_TYPE_PEHSTR_EXT,04 00 04 00 02 00 00 "
+		
+	strings :
+		$a_01_0 = {00 11 0c 11 0d 17 58 1d 5a 07 11 0b 11 0d 58 07 8e 69 5d 94 61 58 13 0c } //2
+		$a_01_1 = {08 17 58 07 8e 69 5d 0c 09 07 08 94 11 07 1b 5d 1f 1f 5f 62 61 0d } //2
+	condition:
+		((#a_01_0  & 1)*2+(#a_01_1  & 1)*2) >=4
+ 
+}

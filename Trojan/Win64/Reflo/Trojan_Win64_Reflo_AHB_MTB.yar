@@ -1,0 +1,12 @@
+
+rule Trojan_Win64_Reflo_AHB_MTB{
+	meta:
+		description = "Trojan:Win64/Reflo.AHB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,0f 00 0f 00 02 00 00 "
+		
+	strings :
+		$a_03_0 = {e1 49 c1 f9 ?? 4d 21 e9 44 8b 7c 24 7c 4c 89 e6 4c 8b a4 24 30 02 00 00 4d 01 e7 4c 89 ff 49 f7 df 4d 29 ea 4c 8b ac 24 b8 03 } //10
+		$a_03_1 = {49 89 01 48 8b 74 24 68 48 83 c6 ?? 48 83 c7 ?? 4c 8b 84 24 88 00 00 00 48 8b 44 24 58 48 8b 54 24 70 } //5
+	condition:
+		((#a_03_0  & 1)*10+(#a_03_1  & 1)*5) >=15
+ 
+}

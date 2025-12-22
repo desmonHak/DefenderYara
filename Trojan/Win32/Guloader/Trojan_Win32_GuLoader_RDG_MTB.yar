@@ -1,0 +1,15 @@
+
+rule Trojan_Win32_GuLoader_RDG_MTB{
+	meta:
+		description = "Trojan:Win32/GuLoader.RDG!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 05 00 00 "
+		
+	strings :
+		$a_81_0 = {74 65 72 61 70 69 61 73 73 69 73 74 65 6e 74 65 6e } //1 terapiassistenten
+		$a_81_1 = {73 6b 76 69 73 6e 69 6e 67 65 72 6e 65 73 20 67 72 75 70 70 65 64 69 73 6b 75 73 73 69 6f 6e 65 6e 73 20 65 78 6f 72 63 69 73 74 69 63 } //1 skvisningernes gruppediskussionens exorcistic
+		$a_81_2 = {73 6f 6c 61 6e 64 65 72 73 20 6b 6f 6e 74 6f 72 61 73 73 69 73 74 65 6e 74 65 6e 20 7a 65 64 6f 61 72 69 65 73 } //1 solanders kontorassistenten zedoaries
+		$a_81_3 = {62 6f 72 74 6b 61 73 74 6e 69 6e 67 65 72 6e 65 } //1 bortkastningerne
+		$a_81_4 = {72 65 73 67 73 74 65 6e 73 2e 65 78 65 } //1 resgstens.exe
+	condition:
+		((#a_81_0  & 1)*1+(#a_81_1  & 1)*1+(#a_81_2  & 1)*1+(#a_81_3  & 1)*1+(#a_81_4  & 1)*1) >=5
+ 
+}

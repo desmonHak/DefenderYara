@@ -1,0 +1,12 @@
+
+rule Trojan_Win64_Vidar_AHD_MTB{
+	meta:
+		description = "Trojan:Win64/Vidar.AHD!MTB,SIGNATURE_TYPE_PEHSTR_EXT,32 00 32 00 02 00 00 "
+		
+	strings :
+		$a_03_0 = {48 89 c1 48 b8 ?? ?? ?? ?? ?? ?? ?? ?? 48 f7 e9 48 01 ca 48 d1 fa 48 8d 14 52 48 89 cb 48 29 d1 48 85 c9 75 } //30
+		$a_03_1 = {48 be b8 1e 85 eb 51 b8 9e 3f 48 89 b4 24 ?? ?? ?? ?? 48 be 7b 14 ae 47 e1 7a 84 bf 48 89 b4 24 ?? ?? ?? ?? 48 be 7b 14 ae 47 e1 7a a4 3f } //20
+	condition:
+		((#a_03_0  & 1)*30+(#a_03_1  & 1)*20) >=50
+ 
+}

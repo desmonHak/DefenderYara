@@ -1,0 +1,13 @@
+
+rule Trojan_Win64_Nekark_AR_MTB{
+	meta:
+		description = "Trojan:Win64/Nekark.AR!MTB,SIGNATURE_TYPE_PEHSTR_EXT,14 00 14 00 03 00 00 "
+		
+	strings :
+		$a_01_0 = {8b 45 fc 48 98 48 8d 14 c5 00 00 00 00 48 8b 45 e8 48 01 d0 48 8b 10 8b 45 fc } //2
+		$a_01_1 = {47 6c 6f 62 61 6c 5c 43 72 61 73 68 70 61 64 48 61 6e 64 6c 65 72 4d 75 74 65 78 } //8 Global\CrashpadHandlerMutex
+		$a_01_2 = {25 73 5c 5c 4e 65 74 48 6f 73 74 73 2e 65 78 65 } //10 %s\\NetHosts.exe
+	condition:
+		((#a_01_0  & 1)*2+(#a_01_1  & 1)*8+(#a_01_2  & 1)*10) >=20
+ 
+}

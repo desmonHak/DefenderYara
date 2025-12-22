@@ -1,0 +1,15 @@
+
+rule Trojan_Win32_SuspProxy_L{
+	meta:
+		description = "Trojan:Win32/SuspProxy.L,SIGNATURE_TYPE_CMDHSTR_EXT,05 00 05 00 05 00 00 "
+		
+	strings :
+		$a_80_0 = {70 6f 77 65 72 73 68 65 6c 6c 2e 65 78 65 20 2d 63 } //powershell.exe -c  1
+		$a_80_1 = {47 65 74 2d 45 78 65 63 75 74 69 6f 6e 50 6f 6c 69 63 79 } //Get-ExecutionPolicy  1
+		$a_80_2 = {2d 73 63 6f 70 65 20 43 75 72 72 65 6e 74 55 73 65 72 20 2d 46 6f 72 63 65 } //-scope CurrentUser -Force  1
+		$a_80_3 = {53 65 74 2d 45 78 65 63 75 74 69 6f 6e 50 6f 6c 69 63 79 } //Set-ExecutionPolicy  1
+		$a_80_4 = {55 6e 72 65 73 74 72 69 63 74 65 64 } //Unrestricted  1
+	condition:
+		((#a_80_0  & 1)*1+(#a_80_1  & 1)*1+(#a_80_2  & 1)*1+(#a_80_3  & 1)*1+(#a_80_4  & 1)*1) >=5
+ 
+}

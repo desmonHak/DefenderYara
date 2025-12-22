@@ -1,0 +1,12 @@
+
+rule Trojan_BAT_Barys_AR_MTB{
+	meta:
+		description = "Trojan:BAT/Barys.AR!MTB,SIGNATURE_TYPE_PEHSTR_EXT,1e 00 1e 00 02 00 00 "
+		
+	strings :
+		$a_03_0 = {0b 16 0c 2b ?? 06 08 8f 08 ?? ?? 01 25 71 08 } //5
+		$a_81_1 = {43 3a 5c 57 69 6e 64 6f 77 73 5c 4d 65 64 69 61 5c 6d 70 70 72 2e 65 78 65 } //25 C:\Windows\Media\mppr.exe
+	condition:
+		((#a_03_0  & 1)*5+(#a_81_1  & 1)*25) >=30
+ 
+}

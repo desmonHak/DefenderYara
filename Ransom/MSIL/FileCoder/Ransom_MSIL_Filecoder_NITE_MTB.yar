@@ -11,6 +11,20 @@ rule Ransom_MSIL_Filecoder_NITE_MTB{
 }
 rule Ransom_MSIL_Filecoder_NITE_MTB_2{
 	meta:
+		description = "Ransom:MSIL/Filecoder.NITE!MTB,SIGNATURE_TYPE_PEHSTR_EXT,07 00 07 00 05 00 00 "
+		
+	strings :
+		$a_03_0 = {06 07 9a 0c 73 12 00 00 06 0d 09 08 28 ?? 00 00 0a 6f ?? 00 00 0a 7d 0b 00 00 04 02 7b 02 00 00 04 09 fe 06 13 00 00 06 73 1b 00 00 0a 28 ?? 00 00 2b 2c 42 08 72 ?? 00 00 70 6f ?? 00 00 0a 2d 35 08 28 ?? 00 00 0a 13 04 02 11 04 72 ?? 00 00 70 28 ?? 00 00 06 13 05 08 11 05 28 ?? 00 00 0a 08 08 72 ?? 00 00 70 28 ?? 00 00 0a 28 ?? 00 00 0a de 03 26 de 00 07 17 58 0b 07 06 8e 69 32 80 } //2
+		$a_03_1 = {04 6f 22 00 00 0a 0a 03 8e 69 8d ?? 00 00 01 0b 16 0c 2b 13 07 08 03 08 91 06 08 06 8e 69 5d 91 61 d2 9c 08 17 58 0c 08 03 8e 69 32 e7 07 2a } //2
+		$a_01_2 = {45 6e 63 72 79 70 74 54 61 72 67 65 74 46 6f 6c 64 65 72 73 } //1 EncryptTargetFolders
+		$a_01_3 = {58 6f 72 45 6e 63 72 79 70 74 44 65 63 72 79 70 74 } //1 XorEncryptDecrypt
+		$a_00_4 = {4b 00 65 00 65 00 67 00 61 00 6e 00 73 00 52 00 61 00 6e 00 73 00 6f 00 6d 00 77 00 61 00 72 00 65 00 } //1 KeegansRansomware
+	condition:
+		((#a_03_0  & 1)*2+(#a_03_1  & 1)*2+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1+(#a_00_4  & 1)*1) >=7
+ 
+}
+rule Ransom_MSIL_Filecoder_NITE_MTB_3{
+	meta:
 		description = "Ransom:MSIL/Filecoder.NITE!MTB,SIGNATURE_TYPE_PEHSTR_EXT,08 00 08 00 05 00 00 "
 		
 	strings :

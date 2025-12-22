@@ -1,0 +1,12 @@
+
+rule Trojan_Win64_Zusy_SXJ_MTB{
+	meta:
+		description = "Trojan:Win64/Zusy.SXJ!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 02 00 00 "
+		
+	strings :
+		$a_03_0 = {88 45 7c 48 8d 45 70 f3 0f 7f 85 80 00 00 00 48 89 45 10 f2 0f 10 05 ?? ?? ?? ?? 66 44 89 65 7e f2 0f 11 45 70 44 88 65 7d } //3
+		$a_03_1 = {48 8b 4d 28 48 83 f9 ?? 4c 89 64 24 ?? 4c 8d 45 10 4c 0f 47 45 ?? 48 8d 95 ?? ?? ?? ?? 48 83 bd c8 ?? ?? ?? ?? 48 0f 47 95 } //2
+	condition:
+		((#a_03_0  & 1)*3+(#a_03_1  & 1)*2) >=5
+ 
+}

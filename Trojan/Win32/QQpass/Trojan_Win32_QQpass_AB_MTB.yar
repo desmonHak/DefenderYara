@@ -1,0 +1,11 @@
+
+rule Trojan_Win32_QQpass_AB_MTB{
+	meta:
+		description = "Trojan:Win32/QQpass.AB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
+		
+	strings :
+		$a_01_0 = {83 c9 ff 33 c0 f2 ae f7 d1 2b f9 68 00 18 00 00 8b c1 8b f7 8b fa 83 cb ff c1 e9 02 f3 a5 8b c8 83 e1 03 f3 a4 } //1
+	condition:
+		((#a_01_0  & 1)*1) >=1
+ 
+}

@@ -10,3 +10,19 @@ rule Trojan_Win64_CobaltStrike_RK_MTB{
 		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1) >=2
  
 }
+rule Trojan_Win64_CobaltStrike_RK_MTB_2{
+	meta:
+		description = "Trojan:Win64/CobaltStrike.RK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,06 00 06 00 07 00 00 "
+		
+	strings :
+		$a_01_0 = {41 74 74 65 6d 70 74 69 6e 67 20 54 68 72 65 61 64 20 48 69 6a 61 63 6b 69 6e 67 20 69 6e 74 6f } //1 Attempting Thread Hijacking into
+		$a_01_1 = {41 74 74 65 6d 70 74 69 6e 67 20 41 50 43 20 49 6e 6a 65 63 74 69 6f 6e 20 69 6e 74 6f } //1 Attempting APC Injection into
+		$a_01_2 = {73 68 65 6c 6c 63 6f 64 65 20 69 6e 6a 65 63 74 69 6f 6e 20 69 6e 74 6f } //1 shellcode injection into
+		$a_01_3 = {41 74 74 65 6d 70 74 69 6e 67 20 48 6f 6c 6c 6f 77 69 6e 67 20 77 69 74 68 20 49 41 54 } //1 Attempting Hollowing with IAT
+		$a_01_4 = {41 74 74 65 6d 70 74 69 6e 67 20 50 72 6f 63 65 73 73 20 44 6f 70 70 65 6c 67 } //1 Attempting Process Doppelg
+		$a_01_5 = {50 50 49 44 20 53 70 6f 6f 66 69 6e 67 } //1 PPID Spoofing
+		$a_01_6 = {53 68 65 6c 6c 63 6f 64 65 20 70 61 79 6c 6f 61 64 20 64 65 74 65 63 74 65 64 } //1 Shellcode payload detected
+	condition:
+		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1+(#a_01_4  & 1)*1+(#a_01_5  & 1)*1+(#a_01_6  & 1)*1) >=6
+ 
+}

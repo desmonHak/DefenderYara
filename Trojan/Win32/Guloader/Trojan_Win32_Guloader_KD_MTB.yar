@@ -1,0 +1,14 @@
+
+rule Trojan_Win32_Guloader_KD_MTB{
+	meta:
+		description = "Trojan:Win32/Guloader.KD!MTB,SIGNATURE_TYPE_PEHSTR_EXT,04 00 04 00 04 00 00 "
+		
+	strings :
+		$a_81_0 = {66 6c 6f 70 70 69 65 73 74 20 62 6c 6f 6b 74 72 79 6b 20 74 61 6e 6b 65 6b 6c 61 72 74 } //1 floppiest bloktryk tankeklart
+		$a_81_1 = {66 72 69 7a 7a 6c 65 72 73 20 63 6f 70 75 62 6c 69 73 68 65 72 73 2e 65 78 65 } //1 frizzlers copublishers.exe
+		$a_81_2 = {70 72 6e 75 6d 65 72 61 74 69 6f 6e } //1 prnumeration
+		$a_81_3 = {53 70 69 73 65 76 67 72 69 6e 67 65 72 2e 73 74 69 } //1 Spisevgringer.sti
+	condition:
+		((#a_81_0  & 1)*1+(#a_81_1  & 1)*1+(#a_81_2  & 1)*1+(#a_81_3  & 1)*1) >=4
+ 
+}

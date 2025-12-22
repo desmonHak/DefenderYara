@@ -1,0 +1,15 @@
+
+rule Trojan_Win32_Guloader_KPP_MTB{
+	meta:
+		description = "Trojan:Win32/Guloader.KPP!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 05 00 00 "
+		
+	strings :
+		$a_81_0 = {5c 4d 65 67 61 70 74 65 72 69 6e 65 31 30 39 2e 69 6e 69 } //1 \Megapterine109.ini
+		$a_81_1 = {5c 66 6f 72 62 75 6e 64 73 66 6f 72 6d 61 6e 64 5c 50 67 6e 74 74 72 70 2e 67 69 66 } //1 \forbundsformand\Pgnttrp.gif
+		$a_81_2 = {5c 70 72 6f 64 75 6b 74 69 76 69 74 65 74 5c 47 61 6c 76 61 6e 6f 70 73 79 63 68 69 63 } //1 \produktivitet\Galvanopsychic
+		$a_81_3 = {5c 64 6f 77 6c 2e 74 78 74 } //1 \dowl.txt
+		$a_81_4 = {62 69 6f 74 65 6b 6e 69 6b 6b 65 72 73 } //1 bioteknikkers
+	condition:
+		((#a_81_0  & 1)*1+(#a_81_1  & 1)*1+(#a_81_2  & 1)*1+(#a_81_3  & 1)*1+(#a_81_4  & 1)*1) >=5
+ 
+}

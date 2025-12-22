@@ -1,0 +1,17 @@
+
+rule Trojan_BAT_Basic_AC_MTB{
+	meta:
+		description = "Trojan:BAT/Basic.AC!MTB,SIGNATURE_TYPE_PEHSTR_EXT,07 00 07 00 07 00 00 "
+		
+	strings :
+		$a_81_0 = {44 43 52 61 74 2e 43 6f 64 65 } //1 DCRat.Code
+		$a_81_1 = {6b 65 79 6c 6f 67 67 65 72 64 61 74 61 } //1 keyloggerdata
+		$a_81_2 = {49 6f 6e 69 63 2e 5a 69 70 2e 52 65 73 6f 75 72 63 65 73 2e 5a 69 70 70 65 64 52 65 73 6f 75 72 63 65 73 2e 7a 69 70 } //1 Ionic.Zip.Resources.ZippedResources.zip
+		$a_81_3 = {44 65 62 75 67 67 69 6e 67 4d 6f 64 65 73 } //1 DebuggingModes
+		$a_81_4 = {47 5a 69 70 53 74 72 65 61 6d } //1 GZipStream
+		$a_81_5 = {44 65 62 75 67 67 61 62 6c 65 41 74 74 72 69 62 75 74 65 } //1 DebuggableAttribute
+		$a_01_6 = {46 72 6f 6d 42 61 73 65 36 34 53 74 72 69 6e 67 } //1 FromBase64String
+	condition:
+		((#a_81_0  & 1)*1+(#a_81_1  & 1)*1+(#a_81_2  & 1)*1+(#a_81_3  & 1)*1+(#a_81_4  & 1)*1+(#a_81_5  & 1)*1+(#a_01_6  & 1)*1) >=7
+ 
+}

@@ -57,3 +57,16 @@ rule Trojan_BAT_Quasar_NQ_MTB_5{
 		((#a_03_0  & 1)*5+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1) >=7
  
 }
+rule Trojan_BAT_Quasar_NQ_MTB_6{
+	meta:
+		description = "Trojan:BAT/Quasar.NQ!MTB,SIGNATURE_TYPE_PEHSTR_EXT,06 00 06 00 04 00 00 "
+		
+	strings :
+		$a_03_0 = {73 03 01 00 0a 13 11 11 11 6f ?? 01 00 0a 13 12 08 28 ?? 00 00 0a 2d 10 08 11 12 28 ?? 01 00 0a 16 13 1d dd 72 03 00 00 11 0b 2c 6f 11 05 1f 09 8d 33 00 00 01 13 22 11 22 16 72 de 03 00 70 a2 11 22 17 28 ?? 00 00 0a 6f ?? 00 00 0a a2 11 22 18 72 f2 03 00 70 a2 11 22 19 11 12 a2 11 22 1a 72 f6 03 00 70 a2 11 22 } //3
+		$a_01_1 = {52 65 6d 6f 76 65 2d 49 74 65 6d 20 2d 50 61 74 68 20 24 65 78 65 50 61 74 68 20 2d 46 6f 72 63 65 } //1 Remove-Item -Path $exePath -Force
+		$a_01_2 = {53 74 61 72 74 2d 53 6c 65 65 70 20 2d 53 65 63 6f 6e 64 73 20 31 30 } //1 Start-Sleep -Seconds 10
+		$a_01_3 = {63 75 72 72 65 6e 74 44 69 72 5c 46 69 76 65 6d } //1 currentDir\Fivem
+	condition:
+		((#a_03_0  & 1)*3+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1) >=6
+ 
+}

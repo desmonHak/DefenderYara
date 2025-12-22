@@ -1,0 +1,31 @@
+
+rule Trojan_BAT_Heracles_KK_MTB{
+	meta:
+		description = "Trojan:BAT/Heracles.KK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,1e 00 1e 00 02 00 00 "
+		
+	strings :
+		$a_01_0 = {02 00 70 28 a0 00 00 0a 26 02 28 11 00 00 0a 0a 28 9a 00 00 0a 06 16 06 8e 69 6f 9b 00 00 0a 2a } //20
+		$a_01_1 = {6f 8c 00 00 0a 16 26 26 18 8d 1d 00 00 01 25 16 17 9c 25 17 18 9c 2a } //10
+	condition:
+		((#a_01_0  & 1)*20+(#a_01_1  & 1)*10) >=30
+ 
+}
+rule Trojan_BAT_Heracles_KK_MTB_2{
+	meta:
+		description = "Trojan:BAT/Heracles.KK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,0a 00 0a 00 0a 00 00 "
+		
+	strings :
+		$a_81_0 = {53 74 6f 70 2d 50 72 6f 63 65 73 73 20 2d 4e 61 6d 65 20 27 53 65 63 75 72 69 74 79 48 65 61 6c 74 68 53 79 73 74 72 61 79 27 20 2d 46 6f 72 63 65 20 2d 45 72 72 6f 72 41 63 74 69 6f 6e 20 53 69 6c 65 6e 74 6c 79 43 6f 6e 74 69 6e 75 65 } //1 Stop-Process -Name 'SecurityHealthSystray' -Force -ErrorAction SilentlyContinue
+		$a_81_1 = {41 64 64 2d 4d 70 50 72 65 66 65 72 65 6e 63 65 20 2d 45 78 63 6c 75 73 69 6f 6e 50 72 6f 63 65 73 73 20 27 73 76 63 68 6f 73 74 2e 65 78 65 27 } //1 Add-MpPreference -ExclusionProcess 'svchost.exe'
+		$a_81_2 = {41 64 64 2d 4d 70 50 72 65 66 65 72 65 6e 63 65 20 2d 45 78 63 6c 75 73 69 6f 6e 50 61 74 68 20 27 25 54 45 4d 50 25 27 } //1 Add-MpPreference -ExclusionPath '%TEMP%'
+		$a_81_3 = {41 64 64 2d 4d 70 50 72 65 66 65 72 65 6e 63 65 20 2d 45 78 63 6c 75 73 69 6f 6e 50 72 6f 63 65 73 73 20 27 25 54 45 4d 50 25 5c 73 76 63 68 6f 73 74 2e 65 78 65 27 } //1 Add-MpPreference -ExclusionProcess '%TEMP%\svchost.exe'
+		$a_81_4 = {41 64 64 2d 4d 70 50 72 65 66 65 72 65 6e 63 65 20 2d 45 78 63 6c 75 73 69 6f 6e 50 72 6f 63 65 73 73 20 28 24 65 6e 76 3a 54 45 4d 50 20 2b 20 27 5c 73 76 63 68 6f 73 74 2e 65 78 65 27 29 } //1 Add-MpPreference -ExclusionProcess ($env:TEMP + '\svchost.exe')
+		$a_81_5 = {41 64 64 2d 4d 70 50 72 65 66 65 72 65 6e 63 65 20 2d 45 78 63 6c 75 73 69 6f 6e 50 72 6f 63 65 73 73 20 28 24 65 6e 76 3a 41 50 50 44 41 54 41 20 2b 20 27 5c 4d 69 63 72 6f 73 6f 66 74 5c 57 69 6e 64 6f 77 73 5c 73 76 63 68 6f 73 74 2e 65 78 65 27 29 } //1 Add-MpPreference -ExclusionProcess ($env:APPDATA + '\Microsoft\Windows\svchost.exe')
+		$a_81_6 = {41 64 64 2d 4d 70 50 72 65 66 65 72 65 6e 63 65 20 2d 45 78 63 6c 75 73 69 6f 6e 50 61 74 68 20 28 24 65 6e 76 3a 55 53 45 52 50 52 4f 46 49 4c 45 20 2b 20 27 5c 41 70 70 44 61 74 61 5c 4c 6f 63 61 6c 5c 54 65 6d 70 27 29 } //1 Add-MpPreference -ExclusionPath ($env:USERPROFILE + '\AppData\Local\Temp')
+		$a_81_7 = {41 64 64 2d 4d 70 50 72 65 66 65 72 65 6e 63 65 20 2d 45 78 63 6c 75 73 69 6f 6e 50 61 74 68 20 24 65 6e 76 3a 41 50 50 44 41 54 41 } //1 Add-MpPreference -ExclusionPath $env:APPDATA
+		$a_81_8 = {41 64 64 2d 4d 70 50 72 65 66 65 72 65 6e 63 65 20 2d 45 78 63 6c 75 73 69 6f 6e 50 61 74 68 20 28 24 65 6e 76 3a 41 50 50 44 41 54 41 20 2b 20 27 5c 4d 69 63 72 6f 73 6f 66 74 5c 57 69 6e 64 6f 77 73 27 29 } //1 Add-MpPreference -ExclusionPath ($env:APPDATA + '\Microsoft\Windows')
+		$a_81_9 = {41 64 64 2d 4d 70 50 72 65 66 65 72 65 6e 63 65 20 2d 45 78 63 6c 75 73 69 6f 6e 50 61 74 68 20 28 24 65 6e 76 3a 55 53 45 52 50 52 4f 46 49 4c 45 20 2b 20 27 5c 41 70 70 44 61 74 61 5c 52 6f 61 6d 69 6e 67 5c 4d 69 63 72 6f 73 6f 66 74 5c 57 69 6e 64 6f 77 73 27 29 } //1 Add-MpPreference -ExclusionPath ($env:USERPROFILE + '\AppData\Roaming\Microsoft\Windows')
+	condition:
+		((#a_81_0  & 1)*1+(#a_81_1  & 1)*1+(#a_81_2  & 1)*1+(#a_81_3  & 1)*1+(#a_81_4  & 1)*1+(#a_81_5  & 1)*1+(#a_81_6  & 1)*1+(#a_81_7  & 1)*1+(#a_81_8  & 1)*1+(#a_81_9  & 1)*1) >=10
+ 
+}

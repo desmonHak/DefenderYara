@@ -1,0 +1,12 @@
+
+rule Trojan_Win32_DllExecuteAbuse_B{
+	meta:
+		description = "Trojan:Win32/DllExecuteAbuse.B,SIGNATURE_TYPE_CMDHSTR_EXT,02 00 02 00 02 00 00 "
+		
+	strings :
+		$a_00_0 = {72 00 75 00 6e 00 64 00 6c 00 6c 00 33 00 32 00 5f 00 64 00 6c 00 6c 00 2e 00 64 00 6c 00 6c 00 } //1 rundll32_dll.dll
+		$a_00_1 = {77 00 72 00 69 00 74 00 65 00 74 00 6f 00 74 00 65 00 6d 00 70 00 66 00 69 00 6c 00 65 00 } //1 writetotempfile
+	condition:
+		((#a_00_0  & 1)*1+(#a_00_1  & 1)*1) >=2
+ 
+}

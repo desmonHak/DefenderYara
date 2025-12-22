@@ -1,0 +1,12 @@
+
+rule Trojan_Win64_ShellcodeRunner_AHG_MTB{
+	meta:
+		description = "Trojan:Win64/ShellcodeRunner.AHG!MTB,SIGNATURE_TYPE_PEHSTR_EXT,32 00 32 00 02 00 00 "
+		
+	strings :
+		$a_03_0 = {48 8b 45 10 48 8d 50 01 48 89 55 10 0f b6 00 83 c8 ?? 0f b6 c0 31 45 f8 c7 45 fc } //30
+		$a_01_1 = {48 89 45 b6 48 b8 69 62 72 61 72 79 57 00 48 89 45 bb 48 b8 47 65 74 4d 6f 64 75 6c 48 ba 65 48 61 6e 64 6c 65 41 } //20
+	condition:
+		((#a_03_0  & 1)*30+(#a_01_1  & 1)*20) >=50
+ 
+}

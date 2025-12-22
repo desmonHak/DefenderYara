@@ -1,0 +1,16 @@
+
+rule Trojan_Win64_MuddyWater_DC_MTB{
+	meta:
+		description = "Trojan:Win64/MuddyWater.DC!MTB,SIGNATURE_TYPE_PEHSTR_EXT,12 00 12 00 06 00 00 "
+		
+	strings :
+		$a_81_0 = {70 68 6f 65 6e 69 78 56 34 5c 70 68 6f 65 6e 69 78 56 33 5c 70 68 6f 65 6e 69 78 56 32 5c 78 36 34 5c 44 65 62 75 67 5c 70 68 6f 65 6e 69 78 2e 70 64 62 } //10 phoenixV4\phoenixV3\phoenixV2\x64\Debug\phoenix.pdb
+		$a_81_1 = {66 64 61 73 66 61 73 64 66 67 61 73 67 73 64 66 } //5 fdasfasdfgasgsdf
+		$a_81_2 = {73 6a 64 68 66 67 76 68 73 61 64 67 6a 66 67 68 } //5 sjdhfgvhsadgjfgh
+		$a_81_3 = {49 73 44 65 62 75 67 67 65 72 50 72 65 73 65 6e 74 } //1 IsDebuggerPresent
+		$a_81_4 = {52 61 69 73 65 45 78 63 65 70 74 69 6f 6e } //1 RaiseException
+		$a_81_5 = {43 72 65 61 74 65 52 65 6d 6f 74 65 54 68 72 65 61 64 } //1 CreateRemoteThread
+	condition:
+		((#a_81_0  & 1)*10+(#a_81_1  & 1)*5+(#a_81_2  & 1)*5+(#a_81_3  & 1)*1+(#a_81_4  & 1)*1+(#a_81_5  & 1)*1) >=18
+ 
+}

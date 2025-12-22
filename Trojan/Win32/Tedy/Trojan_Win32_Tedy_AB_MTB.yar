@@ -9,3 +9,13 @@ rule Trojan_Win32_Tedy_AB_MTB{
 		((#a_01_0  & 1)*1) >=1
  
 }
+rule Trojan_Win32_Tedy_AB_MTB_2{
+	meta:
+		description = "Trojan:Win32/Tedy.AB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 01 00 00 "
+		
+	strings :
+		$a_03_0 = {57 ff d6 68 ?? ?? ?? ?? ff b5 8c fb ff ff 89 85 94 fb ff ff ff d6 68 ?? ?? ?? ?? 57 89 85 74 fb ff ff ff d6 68 ?? ?? ?? ?? 57 89 85 78 fb ff ff ff d6 68 ?? ?? ?? ?? 57 89 85 ?? fb ff ff ff d6 68 ?? ?? ?? ?? 57 89 85 6c fb ff ff ff d6 68 ?? ?? ?? ?? 57 89 85 8c fb ff ff ff d6 } //5
+	condition:
+		((#a_03_0  & 1)*5) >=5
+ 
+}

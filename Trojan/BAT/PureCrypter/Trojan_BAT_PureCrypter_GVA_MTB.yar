@@ -1,0 +1,11 @@
+
+rule Trojan_BAT_PureCrypter_GVA_MTB{
+	meta:
+		description = "Trojan:BAT/PureCrypter.GVA!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
+		
+	strings :
+		$a_01_0 = {02 74 44 00 00 01 6f 49 00 00 0a 6f c3 00 00 0a 6f bf 00 00 0a 72 69 04 00 70 72 01 00 00 70 6f c4 00 00 0a 28 c2 00 00 0a 39 2a 00 00 00 02 74 44 00 00 01 6f 49 00 00 0a 6f c3 00 00 0a 6f bf 00 00 0a 72 69 04 00 70 72 01 00 00 70 6f c4 00 00 0a 0a dd 6f 00 00 00 dd 06 00 00 00 26 dd 00 00 00 00 00 02 6f be 00 00 0a 72 7b 04 00 70 6f c5 00 00 0a 02 16 8d 17 00 00 01 6f c6 00 00 0a 6f bf 00 00 0a 28 c2 00 00 0a 39 27 00 00 00 02 6f be 00 00 0a 72 7b 04 00 70 6f c5 00 00 0a } //1
+	condition:
+		((#a_01_0  & 1)*1) >=1
+ 
+}

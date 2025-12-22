@@ -1,0 +1,12 @@
+
+rule Trojan_Win64_Tedy_FBK_MTB{
+	meta:
+		description = "Trojan:Win64/Tedy.FBK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,04 00 04 00 02 00 00 "
+		
+	strings :
+		$a_03_0 = {8b d0 c1 ea ?? 33 d0 69 d2 ?? ?? ?? ?? 03 d1 89 54 8b ?? 8b c2 48 ff c1 48 81 f9 } //2
+		$a_01_1 = {56 00 4d 00 77 00 61 00 72 00 65 00 } //2 VMware
+	condition:
+		((#a_03_0  & 1)*2+(#a_01_1  & 1)*2) >=4
+ 
+}

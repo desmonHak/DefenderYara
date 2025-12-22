@@ -21,6 +21,19 @@ rule Trojan_BAT_Heracles_AHC_MTB_2{
 }
 rule Trojan_BAT_Heracles_AHC_MTB_3{
 	meta:
+		description = "Trojan:BAT/Heracles.AHC!MTB,SIGNATURE_TYPE_PEHSTR_EXT,41 00 41 00 04 00 00 "
+		
+	strings :
+		$a_01_0 = {03 20 00 01 00 00 5d 20 00 01 00 00 58 20 00 01 00 00 5d 10 01 02 03 58 20 00 01 00 00 5d d2 } //30
+		$a_01_1 = {73 65 74 5f 52 61 74 50 69 64 } //20 set_RatPid
+		$a_01_2 = {44 6f 52 65 6d 6f 76 65 57 69 6e 52 45 50 65 72 73 69 73 74 65 6e 63 65 } //10 DoRemoveWinREPersistence
+		$a_01_3 = {57 72 69 74 65 4f 62 66 75 73 63 61 74 65 64 4c 6f 67 46 69 6c 65 } //5 WriteObfuscatedLogFile
+	condition:
+		((#a_01_0  & 1)*30+(#a_01_1  & 1)*20+(#a_01_2  & 1)*10+(#a_01_3  & 1)*5) >=65
+ 
+}
+rule Trojan_BAT_Heracles_AHC_MTB_4{
+	meta:
 		description = "Trojan:BAT/Heracles.AHC!MTB,SIGNATURE_TYPE_PEHSTR_EXT,03 00 03 00 02 00 00 "
 		
 	strings :

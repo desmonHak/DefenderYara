@@ -1,0 +1,11 @@
+
+rule Trojan_BAT_Keylogger_CSI_MTB{
+	meta:
+		description = "Trojan:BAT/Keylogger.CSI!MTB,SIGNATURE_TYPE_PEHSTR_EXT,02 00 02 00 01 00 00 "
+		
+	strings :
+		$a_01_0 = {09 7d 3b 00 00 04 72 3f 0f 00 70 73 c7 00 00 06 80 59 00 00 04 7e b2 00 00 04 25 3a 17 00 00 00 26 7e 7d 00 00 04 fe 06 bc 00 00 06 73 1d 00 00 0a 25 80 b2 00 00 04 73 1e 00 00 0a 28 1f 00 00 0a 00 02 fe 06 73 00 00 06 73 1d 00 00 0a 73 1e 00 00 0a 28 1f 00 00 0a 00 02 7b 44 00 00 04 13 04 11 04 39 20 00 00 00 00 02 7b 46 00 00 04 02 7b 45 00 00 04 02 7b 47 00 00 04 } //2
+	condition:
+		((#a_01_0  & 1)*2) >=2
+ 
+}

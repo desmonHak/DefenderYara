@@ -1,0 +1,11 @@
+
+rule Ransom_Win64_Akira_ARAX_MTB{
+	meta:
+		description = "Ransom:Win64/Akira.ARAX!MTB,SIGNATURE_TYPE_PEHSTR_EXT,02 00 02 00 01 00 00 "
+		
+	strings :
+		$a_01_0 = {48 83 ec 78 48 89 d7 48 89 4c 24 38 48 8d 42 30 48 89 44 24 60 4c 8b 7a 10 48 8b 6a 28 48 8b 72 18 0f b6 5a 38 8a 42 40 88 44 24 2f 48 8b 0a 48 8b 42 08 48 89 44 24 40 4c 8b 72 20 8a 42 41 88 44 24 2e f6 44 24 2e 01 } //2
+	condition:
+		((#a_01_0  & 1)*2) >=2
+ 
+}

@@ -12,3 +12,18 @@ rule Trojan_Win32_GuLoader_RBP_MTB{
 		((#a_81_0  & 1)*1+(#a_81_1  & 1)*1+(#a_81_2  & 1)*1+(#a_81_3  & 1)*1) >=4
  
 }
+rule Trojan_Win32_GuLoader_RBP_MTB_2{
+	meta:
+		description = "Trojan:Win32/GuLoader.RBP!MTB,SIGNATURE_TYPE_PEHSTR_EXT,06 00 06 00 06 00 00 "
+		
+	strings :
+		$a_81_0 = {50 61 72 6b 65 72 20 48 61 6e 6e 69 66 69 6e 20 43 6f 72 70 2e } //1 Parker Hannifin Corp.
+		$a_81_1 = {42 4d 43 20 53 6f 66 74 77 61 72 65 20 49 6e 63 2e } //1 BMC Software Inc.
+		$a_81_2 = {46 65 64 65 72 61 6c 20 4d 6f 67 75 6c 20 43 6f 72 70 2e } //1 Federal Mogul Corp.
+		$a_81_3 = {4c 61 2d 5a 2d 42 6f 79 20 49 6e 63 2e } //1 La-Z-Boy Inc.
+		$a_81_4 = {53 6d 75 72 66 69 74 2d 53 74 6f 6e 65 20 43 6f 6e 74 61 69 6e 65 72 20 43 6f 72 70 } //1 Smurfit-Stone Container Corp
+		$a_81_5 = {6d 61 72 6b 72 65 6e 20 67 65 64 65 6b 69 64 64 65 6e 65 2e 65 78 65 } //1 markren gedekiddene.exe
+	condition:
+		((#a_81_0  & 1)*1+(#a_81_1  & 1)*1+(#a_81_2  & 1)*1+(#a_81_3  & 1)*1+(#a_81_4  & 1)*1+(#a_81_5  & 1)*1) >=6
+ 
+}

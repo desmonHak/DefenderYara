@@ -1,0 +1,20 @@
+
+rule TrojanDropper_O97M_ZooFlip_A_dha{
+	meta:
+		description = "TrojanDropper:O97M/ZooFlip.A!dha,SIGNATURE_TYPE_MACROHSTR_EXT,08 00 08 00 0a 00 00 "
+		
+	strings :
+		$a_01_0 = {63 72 65 61 74 65 69 6d 61 67 65 6c 69 62 22 6b 65 72 6e 65 6c 33 32 22 61 6c 69 61 73 22 63 72 65 61 74 65 70 72 6f 63 65 73 73 77 22 } //1 createimagelib"kernel32"alias"createprocessw"
+		$a_01_1 = {63 6c 6f 73 65 69 6d 61 67 65 6c 69 62 22 6b 65 72 6e 65 6c 33 32 22 61 6c 69 61 73 22 63 6c 6f 73 65 68 61 6e 64 6c 65 22 } //1 closeimagelib"kernel32"alias"closehandle"
+		$a_01_2 = {64 65 6c 65 74 65 69 6d 61 67 65 6c 69 62 22 6b 65 72 6e 65 6c 33 32 22 61 6c 69 61 73 22 63 72 65 61 74 65 66 69 6c 65 77 22 } //1 deleteimagelib"kernel32"alias"createfilew"
+		$a_01_3 = {72 65 61 64 69 6d 61 67 65 6c 69 62 22 6b 65 72 6e 65 6c 33 32 22 61 6c 69 61 73 22 72 65 61 64 66 69 6c 65 22 } //1 readimagelib"kernel32"alias"readfile"
+		$a_01_4 = {77 72 69 74 65 69 6d 61 67 65 6c 69 62 22 6b 65 72 6e 65 6c 33 32 22 61 6c 69 61 73 22 77 72 69 74 65 66 69 6c 65 22 } //1 writeimagelib"kernel32"alias"writefile"
+		$a_01_5 = {67 65 74 69 6d 61 67 65 73 69 7a 65 6c 69 62 22 6b 65 72 6e 65 6c 33 32 22 61 6c 69 61 73 22 67 65 74 66 69 6c 65 73 69 7a 65 22 } //1 getimagesizelib"kernel32"alias"getfilesize"
+		$a_01_6 = {67 65 74 69 6d 61 67 65 72 65 73 6f 6c 75 74 69 6f 6e 6c 69 62 22 6b 65 72 6e 65 6c 33 32 22 61 6c 69 61 73 22 67 65 74 66 69 6c 65 61 74 74 72 69 62 75 74 65 73 77 22 } //1 getimageresolutionlib"kernel32"alias"getfileattributesw"
+		$a_01_7 = {63 6c 73 69 64 34 65 37 37 31 33 31 64 33 36 32 39 34 33 31 63 39 38 31 38 63 35 36 37 39 64 63 38 33 65 38 31 69 6e 70 72 6f 63 73 65 72 76 65 72 33 32 } //1 clsid4e77131d3629431c9818c5679dc83e81inprocserver32
+		$a_01_8 = {63 6c 73 69 64 32 32 32 37 61 32 38 30 33 61 65 61 31 30 36 39 61 32 64 65 30 38 30 30 32 62 33 30 33 30 39 64 69 6e 70 72 6f 63 73 65 72 76 65 72 33 32 } //1 clsid2227a2803aea1069a2de08002b30309dinprocserver32
+		$a_01_9 = {67 65 74 72 67 62 61 70 61 79 6c 6f 61 64 62 79 74 65 73 30 74 68 65 6e 65 78 69 74 66 75 6e 63 74 69 6f 6e 65 6e 64 } //1 getrgbapayloadbytes0thenexitfunctionend
+	condition:
+		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1+(#a_01_4  & 1)*1+(#a_01_5  & 1)*1+(#a_01_6  & 1)*1+(#a_01_7  & 1)*1+(#a_01_8  & 1)*1+(#a_01_9  & 1)*1) >=8
+ 
+}

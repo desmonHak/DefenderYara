@@ -1,0 +1,11 @@
+
+rule Trojan_BAT_Heracles_BAJ_MTB{
+	meta:
+		description = "Trojan:BAT/Heracles.BAJ!MTB,SIGNATURE_TYPE_PEHSTR_EXT,02 00 02 00 01 00 00 "
+		
+	strings :
+		$a_03_0 = {00 07 14 fe 01 0c 08 2c 17 00 72 01 00 00 70 02 72 17 00 00 70 ?? ?? ?? ?? ?? 73 1a 00 00 0a 7a 03 18 73 1b 00 00 0a 0d 00 07 ?? ?? ?? ?? ?? d4 8d 24 00 00 01 13 04 07 11 04 16 11 04 8e 69 ?? ?? ?? ?? ?? 26 09 11 04 16 11 04 8e 69 ?? ?? ?? ?? ?? 00 00 de 0b } //2
+	condition:
+		((#a_03_0  & 1)*2) >=2
+ 
+}

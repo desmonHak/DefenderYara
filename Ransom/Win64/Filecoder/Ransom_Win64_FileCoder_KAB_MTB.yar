@@ -1,0 +1,13 @@
+
+rule Ransom_Win64_FileCoder_KAB_MTB{
+	meta:
+		description = "Ransom:Win64/FileCoder.KAB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,17 00 17 00 03 00 00 "
+		
+	strings :
+		$a_01_0 = {48 89 44 24 60 48 89 5c 24 58 44 0f 11 bc 24 98 00 00 00 44 0f 11 bc 24 a8 00 00 00 48 c7 84 24 a0 00 00 00 08 00 00 00 48 8d 0d } //10
+		$a_01_1 = {43 72 69 74 69 63 61 6c 20 64 61 74 61 20 68 61 73 20 62 65 65 6e 20 65 78 66 69 6c 74 72 61 74 65 64 2e } //8 Critical data has been exfiltrated.
+		$a_01_2 = {46 69 6c 65 73 20 68 61 76 65 20 62 65 65 6e 20 65 6e 63 72 79 70 74 65 64 2e } //5 Files have been encrypted.
+	condition:
+		((#a_01_0  & 1)*10+(#a_01_1  & 1)*8+(#a_01_2  & 1)*5) >=23
+ 
+}

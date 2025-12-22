@@ -1,0 +1,12 @@
+
+rule Trojan_Win64_XLoader_MKV_MTB{
+	meta:
+		description = "Trojan:Win64/XLoader.MKV!MTB,SIGNATURE_TYPE_PEHSTR_EXT,09 00 09 00 02 00 00 "
+		
+	strings :
+		$a_03_0 = {44 8b d2 46 0f b6 54 10 ?? 45 30 10 ff c2 3b d1 7c } //4
+		$a_03_1 = {44 8b d0 41 c1 ea 0c c1 e0 14 41 0b c2 89 02 8b 01 03 02 03 44 24 ?? 89 01 8b 01 41 31 01 41 8b 01 8b c8 } //5
+	condition:
+		((#a_03_0  & 1)*4+(#a_03_1  & 1)*5) >=9
+ 
+}

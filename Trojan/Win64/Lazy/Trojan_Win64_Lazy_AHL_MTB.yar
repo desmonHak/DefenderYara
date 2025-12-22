@@ -1,0 +1,12 @@
+
+rule Trojan_Win64_Lazy_AHL_MTB{
+	meta:
+		description = "Trojan:Win64/Lazy.AHL!MTB,SIGNATURE_TYPE_PEHSTR_EXT,32 00 32 00 02 00 00 "
+		
+	strings :
+		$a_03_0 = {48 01 c1 0f b7 41 ?? 66 85 c0 74 ?? 44 0f b7 41 ?? 83 e8 01 48 8d ?? 80 4a 8d 4c 01 ?? 4c 8d 4c c1 ?? eb 11 } //30
+		$a_03_1 = {0f b7 03 89 c2 66 c1 ea ?? 48 0f a3 d7 73 ?? 25 ?? ?? 00 00 41 03 04 24 44 39 f8 0f } //20
+	condition:
+		((#a_03_0  & 1)*30+(#a_03_1  & 1)*20) >=50
+ 
+}

@@ -1,0 +1,12 @@
+
+rule Trojan_BAT_Zusy_AGCB_MTB{
+	meta:
+		description = "Trojan:BAT/Zusy.AGCB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,07 00 07 00 02 00 00 "
+		
+	strings :
+		$a_01_0 = {fe 09 00 00 fe 0c 02 00 20 01 00 00 00 59 fe 0c 07 00 59 91 fe 09 01 00 fe 0c 02 00 20 01 00 00 00 59 fe 0c 07 00 59 91 fe 01 fe 0e 09 00 fe 0c 09 00 3a 0e 00 00 00 20 00 00 00 00 fe 0e 08 00 dd 33 00 00 00 fe 0c 07 00 20 01 00 00 00 58 fe 0e 07 00 fe 0c 07 00 fe 0c 03 00 fe 04 fe 0e 09 00 fe 0c 09 00 3a } //5
+		$a_01_1 = {fe 09 00 00 8e 69 fe 0e 02 00 fe 0c 02 00 20 80 00 00 00 5d fe 0e 03 00 fe 0c 00 00 d3 fe 0e 04 00 fe 0c 01 00 d3 fe 0e 05 00 fe 0c 00 00 d3 fe 0c 02 00 58 fe 0c 03 00 59 fe 0e 06 00 38 } //2
+	condition:
+		((#a_01_0  & 1)*5+(#a_01_1  & 1)*2) >=7
+ 
+}

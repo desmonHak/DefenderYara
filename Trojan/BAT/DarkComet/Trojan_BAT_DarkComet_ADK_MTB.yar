@@ -4,12 +4,22 @@ rule Trojan_BAT_DarkComet_ADK_MTB{
 		description = "Trojan:BAT/DarkComet.ADK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		
 	strings :
+		$a_03_0 = {16 0a 2b 1b 03 06 7e ?? ?? ?? 04 5d 91 0b 02 06 02 06 91 07 61 28 ?? ?? ?? 0a 9c 06 17 58 0a 06 02 8e 69 } //1
+	condition:
+		((#a_03_0  & 1)*1) >=1
+ 
+}
+rule Trojan_BAT_DarkComet_ADK_MTB_2{
+	meta:
+		description = "Trojan:BAT/DarkComet.ADK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
+		
+	strings :
 		$a_01_0 = {0a 16 0b 2b 1d 16 0c 2b 0f 02 07 02 07 91 06 08 91 61 d2 9c 08 17 58 0c 08 06 8e 69 32 eb 07 17 58 0b 07 02 8e 69 } //1
 	condition:
 		((#a_01_0  & 1)*1) >=1
  
 }
-rule Trojan_BAT_DarkComet_ADK_MTB_2{
+rule Trojan_BAT_DarkComet_ADK_MTB_3{
 	meta:
 		description = "Trojan:BAT/DarkComet.ADK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		
@@ -19,7 +29,7 @@ rule Trojan_BAT_DarkComet_ADK_MTB_2{
 		((#a_01_0  & 1)*1) >=1
  
 }
-rule Trojan_BAT_DarkComet_ADK_MTB_3{
+rule Trojan_BAT_DarkComet_ADK_MTB_4{
 	meta:
 		description = "Trojan:BAT/DarkComet.ADK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,02 00 02 00 01 00 00 "
 		
@@ -29,7 +39,7 @@ rule Trojan_BAT_DarkComet_ADK_MTB_3{
 		((#a_01_0  & 1)*2) >=2
  
 }
-rule Trojan_BAT_DarkComet_ADK_MTB_4{
+rule Trojan_BAT_DarkComet_ADK_MTB_5{
 	meta:
 		description = "Trojan:BAT/DarkComet.ADK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		
@@ -39,7 +49,7 @@ rule Trojan_BAT_DarkComet_ADK_MTB_4{
 		((#a_03_0  & 1)*1) >=1
  
 }
-rule Trojan_BAT_DarkComet_ADK_MTB_5{
+rule Trojan_BAT_DarkComet_ADK_MTB_6{
 	meta:
 		description = "Trojan:BAT/DarkComet.ADK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		
@@ -49,7 +59,7 @@ rule Trojan_BAT_DarkComet_ADK_MTB_5{
 		((#a_03_0  & 1)*1) >=1
  
 }
-rule Trojan_BAT_DarkComet_ADK_MTB_6{
+rule Trojan_BAT_DarkComet_ADK_MTB_7{
 	meta:
 		description = "Trojan:BAT/DarkComet.ADK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		
@@ -59,7 +69,7 @@ rule Trojan_BAT_DarkComet_ADK_MTB_6{
 		((#a_03_0  & 1)*1) >=1
  
 }
-rule Trojan_BAT_DarkComet_ADK_MTB_7{
+rule Trojan_BAT_DarkComet_ADK_MTB_8{
 	meta:
 		description = "Trojan:BAT/DarkComet.ADK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		
@@ -69,7 +79,7 @@ rule Trojan_BAT_DarkComet_ADK_MTB_7{
 		((#a_03_0  & 1)*1) >=1
  
 }
-rule Trojan_BAT_DarkComet_ADK_MTB_8{
+rule Trojan_BAT_DarkComet_ADK_MTB_9{
 	meta:
 		description = "Trojan:BAT/DarkComet.ADK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		
@@ -79,7 +89,7 @@ rule Trojan_BAT_DarkComet_ADK_MTB_8{
 		((#a_03_0  & 1)*1) >=1
  
 }
-rule Trojan_BAT_DarkComet_ADK_MTB_9{
+rule Trojan_BAT_DarkComet_ADK_MTB_10{
 	meta:
 		description = "Trojan:BAT/DarkComet.ADK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		
@@ -89,7 +99,7 @@ rule Trojan_BAT_DarkComet_ADK_MTB_9{
 		((#a_03_0  & 1)*1) >=1
  
 }
-rule Trojan_BAT_DarkComet_ADK_MTB_10{
+rule Trojan_BAT_DarkComet_ADK_MTB_11{
 	meta:
 		description = "Trojan:BAT/DarkComet.ADK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		
@@ -99,7 +109,7 @@ rule Trojan_BAT_DarkComet_ADK_MTB_10{
 		((#a_03_0  & 1)*1) >=1
  
 }
-rule Trojan_BAT_DarkComet_ADK_MTB_11{
+rule Trojan_BAT_DarkComet_ADK_MTB_12{
 	meta:
 		description = "Trojan:BAT/DarkComet.ADK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		
@@ -109,7 +119,7 @@ rule Trojan_BAT_DarkComet_ADK_MTB_11{
 		((#a_01_0  & 1)*1) >=1
  
 }
-rule Trojan_BAT_DarkComet_ADK_MTB_12{
+rule Trojan_BAT_DarkComet_ADK_MTB_13{
 	meta:
 		description = "Trojan:BAT/DarkComet.ADK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,02 00 02 00 02 00 00 "
 		
@@ -120,7 +130,7 @@ rule Trojan_BAT_DarkComet_ADK_MTB_12{
 		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1) >=2
  
 }
-rule Trojan_BAT_DarkComet_ADK_MTB_13{
+rule Trojan_BAT_DarkComet_ADK_MTB_14{
 	meta:
 		description = "Trojan:BAT/DarkComet.ADK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		
@@ -130,7 +140,7 @@ rule Trojan_BAT_DarkComet_ADK_MTB_13{
 		((#a_01_0  & 1)*1) >=1
  
 }
-rule Trojan_BAT_DarkComet_ADK_MTB_14{
+rule Trojan_BAT_DarkComet_ADK_MTB_15{
 	meta:
 		description = "Trojan:BAT/DarkComet.ADK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		
@@ -140,7 +150,7 @@ rule Trojan_BAT_DarkComet_ADK_MTB_14{
 		((#a_03_0  & 1)*1) >=1
  
 }
-rule Trojan_BAT_DarkComet_ADK_MTB_15{
+rule Trojan_BAT_DarkComet_ADK_MTB_16{
 	meta:
 		description = "Trojan:BAT/DarkComet.ADK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		
@@ -150,7 +160,7 @@ rule Trojan_BAT_DarkComet_ADK_MTB_15{
 		((#a_01_0  & 1)*1) >=1
  
 }
-rule Trojan_BAT_DarkComet_ADK_MTB_16{
+rule Trojan_BAT_DarkComet_ADK_MTB_17{
 	meta:
 		description = "Trojan:BAT/DarkComet.ADK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,03 00 03 00 02 00 00 "
 		
@@ -161,7 +171,7 @@ rule Trojan_BAT_DarkComet_ADK_MTB_16{
 		((#a_03_0  & 1)*2+(#a_03_1  & 1)*1) >=3
  
 }
-rule Trojan_BAT_DarkComet_ADK_MTB_17{
+rule Trojan_BAT_DarkComet_ADK_MTB_18{
 	meta:
 		description = "Trojan:BAT/DarkComet.ADK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		
@@ -171,7 +181,7 @@ rule Trojan_BAT_DarkComet_ADK_MTB_17{
 		((#a_03_0  & 1)*1) >=1
  
 }
-rule Trojan_BAT_DarkComet_ADK_MTB_18{
+rule Trojan_BAT_DarkComet_ADK_MTB_19{
 	meta:
 		description = "Trojan:BAT/DarkComet.ADK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 02 00 00 "
 		
@@ -182,7 +192,7 @@ rule Trojan_BAT_DarkComet_ADK_MTB_18{
 		((#a_03_0  & 1)*3+(#a_03_1  & 1)*2) >=5
  
 }
-rule Trojan_BAT_DarkComet_ADK_MTB_19{
+rule Trojan_BAT_DarkComet_ADK_MTB_20{
 	meta:
 		description = "Trojan:BAT/DarkComet.ADK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,04 00 04 00 03 00 00 "
 		
@@ -194,7 +204,7 @@ rule Trojan_BAT_DarkComet_ADK_MTB_19{
 		((#a_01_0  & 1)*2+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1) >=4
  
 }
-rule Trojan_BAT_DarkComet_ADK_MTB_20{
+rule Trojan_BAT_DarkComet_ADK_MTB_21{
 	meta:
 		description = "Trojan:BAT/DarkComet.ADK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,03 00 03 00 02 00 00 "
 		
@@ -205,7 +215,7 @@ rule Trojan_BAT_DarkComet_ADK_MTB_20{
 		((#a_03_0  & 1)*2+(#a_01_1  & 1)*1) >=3
  
 }
-rule Trojan_BAT_DarkComet_ADK_MTB_21{
+rule Trojan_BAT_DarkComet_ADK_MTB_22{
 	meta:
 		description = "Trojan:BAT/DarkComet.ADK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 02 00 00 "
 		

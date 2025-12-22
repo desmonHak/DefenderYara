@@ -1,0 +1,11 @@
+
+rule Trojan_Win32_SalatStealer_EI_MTB{
+	meta:
+		description = "Trojan:Win32/SalatStealer.EI!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
+		
+	strings :
+		$a_01_0 = {8b 3d 68 6e f9 00 0f b6 3c 3a 31 ef 8b 6c 24 48 97 88 04 2b 97 8d 45 01 89 f2 39 c2 7e 1d 8b 0d 6c 6e f9 00 0f b6 2c 18 85 c9 74 26 89 44 24 48 89 d6 99 f7 f9 39 d1 } //1
+	condition:
+		((#a_01_0  & 1)*1) >=1
+ 
+}

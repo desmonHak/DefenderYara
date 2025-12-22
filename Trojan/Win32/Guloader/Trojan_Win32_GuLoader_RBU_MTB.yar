@@ -1,0 +1,15 @@
+
+rule Trojan_Win32_GuLoader_RBU_MTB{
+	meta:
+		description = "Trojan:Win32/GuLoader.RBU!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 05 00 00 "
+		
+	strings :
+		$a_81_0 = {61 6d 61 72 69 74 65 72 6b 75 72 73 75 73 5c 64 65 63 61 65 73 61 72 69 7a 65 5c 45 6b 73 65 6b 76 65 72 62 61 72 } //1 amariterkursus\decaesarize\Eksekverbar
+		$a_81_1 = {45 6c 65 63 74 72 6f 70 6f 74 65 6e 74 69 61 6c 5c 42 72 6f 6d 62 72 72 65 6e 65 73 38 32 5c 50 72 6f 74 65 6c 65 73 } //1 Electropotential\Brombrrenes82\Proteles
+		$a_81_2 = {2e 5c 45 6e 61 6b 74 65 72 65 73 31 30 31 2e 69 6e 69 } //1 .\Enakteres101.ini
+		$a_81_3 = {23 5c 64 6f 6d 6d 65 72 76 61 67 74 73 5c 68 79 70 6f 67 6f 6e 61 64 69 73 6d 2e 6a 70 67 } //1 #\dommervagts\hypogonadism.jpg
+		$a_81_4 = {25 75 6e 6c 61 76 69 73 68 65 64 25 5c 76 69 6e 64 75 65 } //1 %unlavished%\vindue
+	condition:
+		((#a_81_0  & 1)*1+(#a_81_1  & 1)*1+(#a_81_2  & 1)*1+(#a_81_3  & 1)*1+(#a_81_4  & 1)*1) >=5
+ 
+}

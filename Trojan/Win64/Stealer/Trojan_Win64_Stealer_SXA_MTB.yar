@@ -1,0 +1,14 @@
+
+rule Trojan_Win64_Stealer_SXA_MTB{
+	meta:
+		description = "Trojan:Win64/Stealer.SXA!MTB,SIGNATURE_TYPE_PEHSTR_EXT,0a 00 0a 00 04 00 00 "
+		
+	strings :
+		$a_03_0 = {48 63 40 3c 48 8b 4c 24 30 48 03 c8 48 8b c1 48 89 44 24 50 b8 ?? ?? ?? ?? 48 6b c0 ?? 48 8b 4c 24 50 } //5
+		$a_80_1 = {56 6f 69 64 52 41 54 } //VoidRAT  2
+		$a_80_2 = {57 69 6e 48 54 54 50 20 55 70 6c 6f 61 64 65 72 2f 31 2e 30 } //WinHTTP Uploader/1.0  2
+		$a_80_3 = {61 6d 65 72 69 63 61 6e } //american  1
+	condition:
+		((#a_03_0  & 1)*5+(#a_80_1  & 1)*2+(#a_80_2  & 1)*2+(#a_80_3  & 1)*1) >=10
+ 
+}

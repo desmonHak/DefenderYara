@@ -1,0 +1,13 @@
+
+rule Trojan_Win64_EggStremeLoader_G_dha{
+	meta:
+		description = "Trojan:Win64/EggStremeLoader.G!dha,SIGNATURE_TYPE_PEHSTR_EXT,02 00 02 00 03 00 00 "
+		
+	strings :
+		$a_03_0 = {66 c7 41 0a 48 ba [0-10] 66 c7 41 14 41 b8 [0-10] 66 c7 41 1a 49 b9 } //1
+		$a_03_1 = {c7 41 29 48 83 ec 20 [0-10] 66 c7 41 2d 48 b8 [0-10] 66 c7 41 37 ff d0 } //1
+		$a_03_2 = {b9 48 b9 00 00 66 89 8c 24 c0 00 00 00 [0-10] b9 48 ba 00 00 [0-18] b8 41 b8 00 00 [0-18] b8 49 b9 00 00 } //2
+	condition:
+		((#a_03_0  & 1)*1+(#a_03_1  & 1)*1+(#a_03_2  & 1)*2) >=2
+ 
+}

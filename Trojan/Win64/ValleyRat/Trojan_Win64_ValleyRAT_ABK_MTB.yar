@@ -1,0 +1,13 @@
+
+rule Trojan_Win64_ValleyRAT_ABK_MTB{
+	meta:
+		description = "Trojan:Win64/ValleyRAT.ABK!MTB,SIGNATURE_TYPE_PEHSTR_EXT,06 00 06 00 03 00 00 "
+		
+	strings :
+		$a_03_0 = {0f 10 04 02 66 0f ef c1 0f 11 04 02 0f ?? 44 02 10 66 0f ef c1 0f 11 44 02 ?? 83 c0 ?? 3b c6 72 } //2
+		$a_01_1 = {80 34 10 58 40 3b c1 72 } //2
+		$a_01_2 = {78 79 7a 2f } //2 xyz/
+	condition:
+		((#a_03_0  & 1)*2+(#a_01_1  & 1)*2+(#a_01_2  & 1)*2) >=6
+ 
+}

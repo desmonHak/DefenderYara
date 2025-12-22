@@ -1,0 +1,12 @@
+
+rule Trojan_Win64_Lazy_MKD_MTB{
+	meta:
+		description = "Trojan:Win64/Lazy.MKD!MTB,SIGNATURE_TYPE_PEHSTR_EXT,19 00 19 00 02 00 00 "
+		
+	strings :
+		$a_01_0 = {44 8b f8 49 ff c6 48 98 48 8d 14 c5 00 00 00 00 49 03 d5 48 8d 4c 24 30 } //15
+		$a_01_1 = {44 8b fe 48 8d 7c 24 30 48 8b 44 24 48 48 83 f8 0f 48 0f 47 7c 24 30 48 8b 5c 24 40 49 3b df } //10
+	condition:
+		((#a_01_0  & 1)*15+(#a_01_1  & 1)*10) >=25
+ 
+}

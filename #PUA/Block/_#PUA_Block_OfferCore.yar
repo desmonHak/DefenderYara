@@ -26,6 +26,20 @@ rule _#PUA_Block_OfferCore_2{
 }
 rule _#PUA_Block_OfferCore_3{
 	meta:
+		description = "!#PUA:Block:OfferCore,SIGNATURE_TYPE_PEHSTR_EXT,06 00 06 00 05 00 00 "
+		
+	strings :
+		$a_80_0 = {64 74 2d 75 70 64 61 74 65 73 2e 63 6f 6d } //dt-updates.com  2
+		$a_80_1 = {64 74 2e 77 65 62 2d 73 65 61 72 63 68 2d 68 6f 6d 65 2e 63 6f 6d } //dt.web-search-home.com  1
+		$a_80_2 = {42 72 69 67 68 74 56 70 6e 4f 66 66 65 72 } //BrightVpnOffer  1
+		$a_80_3 = {49 41 76 61 73 74 4f 66 66 65 72 } //IAvastOffer  1
+		$a_80_4 = {44 54 57 70 66 49 6e 73 74 61 6c 6c 65 72 2e 70 64 62 } //DTWpfInstaller.pdb  1
+	condition:
+		((#a_80_0  & 1)*2+(#a_80_1  & 1)*1+(#a_80_2  & 1)*1+(#a_80_3  & 1)*1+(#a_80_4  & 1)*1) >=6
+ 
+}
+rule _#PUA_Block_OfferCore_4{
+	meta:
 		description = "!#PUA:Block:OfferCore,SIGNATURE_TYPE_PEHSTR_EXT,04 00 04 00 04 00 00 "
 		
 	strings :
@@ -37,7 +51,40 @@ rule _#PUA_Block_OfferCore_3{
 		((#a_80_0  & 1)*1+(#a_80_1  & 1)*1+(#a_80_2  & 1)*1+(#a_80_3  & 1)*1) >=4
  
 }
-rule _#PUA_Block_OfferCore_4{
+rule _#PUA_Block_OfferCore_5{
+	meta:
+		description = "!#PUA:Block:OfferCore,SIGNATURE_TYPE_PEHSTR_EXT,07 00 07 00 07 00 00 "
+		
+	strings :
+		$a_80_0 = {6f 66 66 65 72 5f 73 69 7a 65 } //offer_size  1
+		$a_80_1 = {79 61 6f 66 66 65 72 } //yaoffer  1
+		$a_80_2 = {59 61 6e 64 65 78 50 61 63 6b 53 65 74 75 70 } //YandexPackSetup  1
+		$a_80_3 = {6f 70 65 72 61 } //opera  1
+		$a_80_4 = {41 76 61 73 74 53 76 63 } //AvastSvc  1
+		$a_80_5 = {62 75 6e 64 6c 65 73 49 6e 73 74 61 6c 6c 65 64 } //bundlesInstalled  1
+		$a_80_6 = {70 69 78 65 6c 73 65 65 2e 65 78 65 } //pixelsee.exe  1
+	condition:
+		((#a_80_0  & 1)*1+(#a_80_1  & 1)*1+(#a_80_2  & 1)*1+(#a_80_3  & 1)*1+(#a_80_4  & 1)*1+(#a_80_5  & 1)*1+(#a_80_6  & 1)*1) >=7
+ 
+}
+rule _#PUA_Block_OfferCore_6{
+	meta:
+		description = "!#PUA:Block:OfferCore,SIGNATURE_TYPE_PEHSTR_EXT,08 00 08 00 08 00 00 "
+		
+	strings :
+		$a_80_0 = {41 63 63 65 70 74 } //Accept  1
+		$a_80_1 = {44 65 63 6c 69 6e 65 } //Decline  1
+		$a_80_2 = {4f 70 74 69 6f 6e 61 6c 20 4f 66 66 65 72 } //Optional Offer  1
+		$a_80_3 = {42 75 6e 64 6c 65 4f 66 66 65 72 41 63 74 69 6f 6e } //BundleOfferAction  1
+		$a_80_4 = {41 4e 20 53 6f 66 74 } //AN Soft  1
+		$a_80_5 = {63 61 6d 70 61 69 67 6e 69 64 } //campaignid  1
+		$a_80_6 = {53 75 72 76 65 79 } //Survey  1
+		$a_80_7 = {50 72 65 6d 69 65 72 4f 70 69 6e 69 6f 6e } //PremierOpinion  1
+	condition:
+		((#a_80_0  & 1)*1+(#a_80_1  & 1)*1+(#a_80_2  & 1)*1+(#a_80_3  & 1)*1+(#a_80_4  & 1)*1+(#a_80_5  & 1)*1+(#a_80_6  & 1)*1+(#a_80_7  & 1)*1) >=8
+ 
+}
+rule _#PUA_Block_OfferCore_7{
 	meta:
 		description = "!#PUA:Block:OfferCore,SIGNATURE_TYPE_PEHSTR_EXT,0c 00 0c 00 06 00 00 "
 		
@@ -52,7 +99,7 @@ rule _#PUA_Block_OfferCore_4{
 		((#a_80_0  & 1)*5+(#a_80_1  & 1)*1+(#a_80_2  & 1)*1+(#a_80_3  & 1)*1+(#a_80_4  & 1)*1+(#a_80_5  & 1)*5) >=12
  
 }
-rule _#PUA_Block_OfferCore_5{
+rule _#PUA_Block_OfferCore_8{
 	meta:
 		description = "!#PUA:Block:OfferCore,SIGNATURE_TYPE_PEHSTR_EXT,06 00 06 00 06 00 00 "
 		
@@ -67,7 +114,7 @@ rule _#PUA_Block_OfferCore_5{
 		((#a_80_0  & 1)*1+(#a_80_1  & 1)*1+(#a_80_2  & 1)*1+(#a_80_3  & 1)*1+(#a_80_4  & 1)*1+(#a_80_5  & 1)*1) >=6
  
 }
-rule _#PUA_Block_OfferCore_6{
+rule _#PUA_Block_OfferCore_9{
 	meta:
 		description = "!#PUA:Block:OfferCore,SIGNATURE_TYPE_PEHSTR_EXT,07 00 07 00 07 00 00 "
 		
@@ -83,7 +130,7 @@ rule _#PUA_Block_OfferCore_6{
 		((#a_80_0  & 1)*1+(#a_80_1  & 1)*1+(#a_80_2  & 1)*1+(#a_80_3  & 1)*1+(#a_80_4  & 1)*1+(#a_80_5  & 1)*1+(#a_80_6  & 1)*1) >=7
  
 }
-rule _#PUA_Block_OfferCore_7{
+rule _#PUA_Block_OfferCore_10{
 	meta:
 		description = "!#PUA:Block:OfferCore,SIGNATURE_TYPE_PEHSTR_EXT,07 00 07 00 07 00 00 "
 		
@@ -99,7 +146,7 @@ rule _#PUA_Block_OfferCore_7{
 		((#a_80_0  & 1)*1+(#a_80_1  & 1)*1+(#a_80_2  & 1)*1+(#a_80_3  & 1)*1+(#a_80_4  & 1)*1+(#a_80_5  & 1)*1+(#a_80_6  & 1)*1) >=7
  
 }
-rule _#PUA_Block_OfferCore_8{
+rule _#PUA_Block_OfferCore_11{
 	meta:
 		description = "!#PUA:Block:OfferCore,SIGNATURE_TYPE_PEHSTR_EXT,07 00 07 00 07 00 00 "
 		
@@ -115,7 +162,7 @@ rule _#PUA_Block_OfferCore_8{
 		((#a_80_0  & 1)*1+(#a_80_1  & 1)*1+(#a_80_2  & 1)*1+(#a_80_3  & 1)*1+(#a_80_4  & 1)*1+(#a_80_5  & 1)*1+(#a_80_6  & 1)*1) >=7
  
 }
-rule _#PUA_Block_OfferCore_9{
+rule _#PUA_Block_OfferCore_12{
 	meta:
 		description = "!#PUA:Block:OfferCore,SIGNATURE_TYPE_PEHSTR_EXT,07 00 07 00 09 00 00 "
 		
@@ -133,7 +180,7 @@ rule _#PUA_Block_OfferCore_9{
 		((#a_80_0  & 1)*1+(#a_80_1  & 1)*1+(#a_80_2  & 1)*1+(#a_80_3  & 1)*1+(#a_80_4  & 1)*1+(#a_80_5  & 1)*1+(#a_80_6  & 1)*1+(#a_80_7  & 1)*1+(#a_80_8  & 1)*1) >=7
  
 }
-rule _#PUA_Block_OfferCore_10{
+rule _#PUA_Block_OfferCore_13{
 	meta:
 		description = "!#PUA:Block:OfferCore,SIGNATURE_TYPE_PEHSTR_EXT,07 00 07 00 09 00 00 "
 		
@@ -151,26 +198,7 @@ rule _#PUA_Block_OfferCore_10{
 		((#a_80_0  & 1)*1+(#a_80_1  & 1)*1+(#a_80_2  & 1)*1+(#a_80_3  & 1)*1+(#a_80_4  & 1)*1+(#a_80_5  & 1)*1+(#a_80_6  & 1)*1+(#a_80_7  & 1)*1+(#a_80_8  & 1)*1) >=7
  
 }
-rule _#PUA_Block_OfferCore_11{
-	meta:
-		description = "!#PUA:Block:OfferCore,SIGNATURE_TYPE_PEHSTR_EXT,09 00 09 00 0a 00 00 "
-		
-	strings :
-		$a_00_0 = {47 45 54 4f 46 46 45 52 53 41 52 52 41 59 } //1 GETOFFERSARRAY
-		$a_00_1 = {47 45 54 49 4e 4a 45 43 54 45 44 50 41 52 41 4d } //1 GETINJECTEDPARAM
-		$a_00_2 = {47 45 54 4f 46 46 45 52 49 4e 44 45 58 42 59 50 41 47 45 } //1 GETOFFERINDEXBYPAGE
-		$a_00_3 = {50 41 47 45 4f 46 46 45 52 43 52 45 41 54 45 } //1 PAGEOFFERCREATE
-		$a_00_4 = {50 61 67 65 4f 66 66 65 72 41 63 74 69 76 61 74 65 } //1 PageOfferActivate
-		$a_80_5 = {63 61 6d 70 61 69 67 6e 5f 69 64 3d 6b 6f 68 6f 74 73 70 6f 74 2d 73 68 69 65 6c 64 } //campaign_id=kohotspot-shield  1
-		$a_80_6 = {4f 70 65 72 61 5c 6f 70 65 72 61 2e 65 78 65 } //Opera\opera.exe  1
-		$a_80_7 = {59 61 6e 64 65 78 5c 59 61 6e 64 65 78 42 72 6f 77 73 65 72 } //Yandex\YandexBrowser  1
-		$a_80_8 = {63 6c 6f 75 64 66 72 6f 6e 74 2e 6e 65 74 2f } //cloudfront.net/  1
-		$a_80_9 = {49 6e 6e 6f 53 65 74 75 70 4c 64 72 57 69 6e 64 6f 77 } //InnoSetupLdrWindow  1
-	condition:
-		((#a_00_0  & 1)*1+(#a_00_1  & 1)*1+(#a_00_2  & 1)*1+(#a_00_3  & 1)*1+(#a_00_4  & 1)*1+(#a_80_5  & 1)*1+(#a_80_6  & 1)*1+(#a_80_7  & 1)*1+(#a_80_8  & 1)*1+(#a_80_9  & 1)*1) >=9
- 
-}
-rule _#PUA_Block_OfferCore_12{
+rule _#PUA_Block_OfferCore_14{
 	meta:
 		description = "!#PUA:Block:OfferCore,SIGNATURE_TYPE_PEHSTR_EXT,0b 00 0b 00 0b 00 00 "
 		

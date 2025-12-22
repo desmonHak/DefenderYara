@@ -1,0 +1,17 @@
+
+rule Trojan_Win32_SuspRegistryModification_E{
+	meta:
+		description = "Trojan:Win32/SuspRegistryModification.E,SIGNATURE_TYPE_CMDHSTR_EXT,06 00 06 00 07 00 00 "
+		
+	strings :
+		$a_80_0 = {72 65 67 2e 65 78 65 20 61 64 64 } //reg.exe add  1
+		$a_80_1 = {68 6b 65 79 5f 6c 6f 63 61 6c 5f 6d 61 63 68 69 6e 65 5c 73 79 73 74 65 6d 5c 63 75 72 72 65 6e 74 63 6f 6e 74 72 6f 6c 73 65 74 5c 73 65 72 76 69 63 65 73 5c 6c 61 6e 6d 61 6e 73 65 72 76 65 72 5c 70 61 72 61 6d 65 74 65 72 73 } //hkey_local_machine\system\currentcontrolset\services\lanmanserver\parameters  1
+		$a_80_2 = {2f 76 20 6d 61 78 6d 70 78 63 74 } ///v maxmpxct  1
+		$a_00_3 = {2f 00 64 00 } //1 /d
+		$a_80_4 = {2f 74 20 72 65 67 5f 64 77 6f 72 64 } ///t reg_dword  1
+		$a_00_5 = {20 00 2f 00 66 00 } //1  /f
+		$a_00_6 = {34 00 62 00 37 00 39 00 66 00 66 00 61 00 62 00 2d 00 61 00 32 00 32 00 30 00 2d 00 34 00 65 00 64 00 35 00 2d 00 61 00 36 00 33 00 64 00 2d 00 31 00 66 00 31 00 61 00 39 00 30 00 34 00 35 00 31 00 31 00 33 00 6d 00 } //-1 4b79ffab-a220-4ed5-a63d-1f1a9045113m
+	condition:
+		((#a_80_0  & 1)*1+(#a_80_1  & 1)*1+(#a_80_2  & 1)*1+(#a_00_3  & 1)*1+(#a_80_4  & 1)*1+(#a_00_5  & 1)*1+(#a_00_6  & 1)*-1) >=6
+ 
+}

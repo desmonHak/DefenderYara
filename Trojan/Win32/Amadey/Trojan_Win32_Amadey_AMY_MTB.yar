@@ -21,6 +21,17 @@ rule Trojan_Win32_Amadey_AMY_MTB_2{
 }
 rule Trojan_Win32_Amadey_AMY_MTB_3{
 	meta:
+		description = "Trojan:Win32/Amadey.AMY!MTB,SIGNATURE_TYPE_PEHSTR_EXT,03 00 03 00 02 00 00 "
+		
+	strings :
+		$a_03_0 = {68 f4 69 42 00 a3 ?? ?? ?? ?? ff d6 85 c0 74 0a 68 10 6a 42 00 50 ff d7 } //2
+		$a_03_1 = {33 c0 68 f4 69 42 00 a3 ?? ?? ?? ?? ff d6 85 c0 74 0a 68 20 6a 42 00 50 ff d7 } //1
+	condition:
+		((#a_03_0  & 1)*2+(#a_03_1  & 1)*1) >=3
+ 
+}
+rule Trojan_Win32_Amadey_AMY_MTB_4{
+	meta:
 		description = "Trojan:Win32/Amadey.AMY!MTB,SIGNATURE_TYPE_PEHSTR_EXT,05 00 05 00 04 00 00 "
 		
 	strings :
@@ -32,7 +43,7 @@ rule Trojan_Win32_Amadey_AMY_MTB_3{
 		((#a_01_0  & 1)*2+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1) >=5
  
 }
-rule Trojan_Win32_Amadey_AMY_MTB_4{
+rule Trojan_Win32_Amadey_AMY_MTB_5{
 	meta:
 		description = "Trojan:Win32/Amadey.AMY!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
 		

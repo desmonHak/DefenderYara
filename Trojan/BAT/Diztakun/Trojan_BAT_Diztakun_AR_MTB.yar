@@ -1,0 +1,13 @@
+
+rule Trojan_BAT_Diztakun_AR_MTB{
+	meta:
+		description = "Trojan:BAT/Diztakun.AR!MTB,SIGNATURE_TYPE_PEHSTR_EXT,19 00 19 00 03 00 00 "
+		
+	strings :
+		$a_01_0 = {53 00 57 00 35 00 6d 00 61 00 57 00 35 00 70 00 64 00 47 00 56 00 43 00 62 00 48 00 56 00 6c 00 4a 00 51 00 3d 00 3d 00 } //10 SW5maW5pdGVCbHVlJQ==
+		$a_01_1 = {06 11 0d 16 11 0b 6f c2 00 00 0a 26 11 0a 11 0d 16 11 0b 11 0c 16 } //8
+		$a_01_2 = {7e 3c 00 00 04 2d 37 72 85 00 00 70 0a 06 28 8c 00 00 0a 0b 28 8d 00 00 0a 07 16 07 8e 69 6f 8e 00 00 0a } //7
+	condition:
+		((#a_01_0  & 1)*10+(#a_01_1  & 1)*8+(#a_01_2  & 1)*7) >=25
+ 
+}

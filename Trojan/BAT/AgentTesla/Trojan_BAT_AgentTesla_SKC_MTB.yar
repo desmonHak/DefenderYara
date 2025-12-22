@@ -27,6 +27,18 @@ rule Trojan_BAT_AgentTesla_SKC_MTB_3{
 		description = "Trojan:BAT/AgentTesla.SKC!MTB,SIGNATURE_TYPE_PEHSTR_EXT,03 00 03 00 03 00 00 "
 		
 	strings :
+		$a_00_0 = {00 11 1b 11 1c 1f 61 5a 61 13 1d 00 02 11 1a 11 1c 6f 6e 00 00 0a 13 1e 04 03 6f 6f 00 00 0a 59 13 1f 11 1f 13 20 11 20 19 fe 02 13 26 11 26 2c 03 19 13 20 11 20 16 fe 04 13 27 11 27 2c 03 16 13 20 } //1
+		$a_01_1 = {24 61 31 62 32 63 33 64 34 2d 65 35 66 36 2d 37 38 39 30 2d 61 62 63 64 2d 31 32 33 34 35 36 37 38 39 61 62 63 } //1 $a1b2c3d4-e5f6-7890-abcd-123456789abc
+		$a_01_2 = {43 53 53 5f 4d 69 6e 69 66 69 65 72 2e 50 72 6f 70 65 72 74 69 65 73 2e 52 65 73 6f 75 72 63 65 73 2e 72 65 73 6f 75 72 63 65 73 } //1 CSS_Minifier.Properties.Resources.resources
+	condition:
+		((#a_00_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1) >=3
+ 
+}
+rule Trojan_BAT_AgentTesla_SKC_MTB_4{
+	meta:
+		description = "Trojan:BAT/AgentTesla.SKC!MTB,SIGNATURE_TYPE_PEHSTR_EXT,03 00 03 00 03 00 00 "
+		
+	strings :
 		$a_00_0 = {06 7b 3f 00 00 04 20 39 05 00 00 61 7d 3f 00 00 04 16 06 7b 41 00 00 04 6f 8a 00 00 0a 28 8b 00 00 0a 06 fe 06 9d 00 00 06 73 8c 00 00 0a 28 05 00 00 2b 06 fe 06 a0 00 00 06 73 8e 00 00 0a 28 06 00 00 2b 28 07 00 00 2b } //1
 		$a_81_1 = {4e 6f 74 65 70 61 64 50 6c 75 73 2e 50 72 6f 70 65 72 74 69 65 73 2e 52 65 73 6f 75 72 63 65 73 2e 72 65 73 6f 75 72 63 65 73 } //1 NotepadPlus.Properties.Resources.resources
 		$a_81_2 = {24 38 37 36 35 34 33 32 31 2d 34 33 32 31 2d 38 37 36 35 2d 34 33 32 31 2d 38 37 36 35 34 33 32 31 38 37 36 35 } //1 $87654321-4321-8765-4321-876543218765
@@ -34,7 +46,7 @@ rule Trojan_BAT_AgentTesla_SKC_MTB_3{
 		((#a_00_0  & 1)*1+(#a_81_1  & 1)*1+(#a_81_2  & 1)*1) >=3
  
 }
-rule Trojan_BAT_AgentTesla_SKC_MTB_4{
+rule Trojan_BAT_AgentTesla_SKC_MTB_5{
 	meta:
 		description = "Trojan:BAT/AgentTesla.SKC!MTB,SIGNATURE_TYPE_PEHSTR,03 00 03 00 03 00 00 "
 		

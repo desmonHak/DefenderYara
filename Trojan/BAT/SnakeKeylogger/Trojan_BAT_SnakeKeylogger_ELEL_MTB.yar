@@ -1,0 +1,11 @@
+
+rule Trojan_BAT_SnakeKeylogger_ELEL_MTB{
+	meta:
+		description = "Trojan:BAT/SnakeKeylogger.ELEL!MTB,SIGNATURE_TYPE_PEHSTR_EXT,02 00 02 00 01 00 00 "
+		
+	strings :
+		$a_03_0 = {2b 27 09 11 04 ?? ?? ?? ?? ?? 13 05 00 06 11 05 0e 05 11 05 61 05 ?? ?? ?? ?? ?? 58 ?? ?? ?? ?? ?? 00 00 11 04 17 58 13 04 11 04 09 ?? ?? ?? ?? ?? 32 cf } //2
+	condition:
+		((#a_03_0  & 1)*2) >=2
+ 
+}

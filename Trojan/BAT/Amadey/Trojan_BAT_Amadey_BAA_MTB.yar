@@ -1,0 +1,11 @@
+
+rule Trojan_BAT_Amadey_BAA_MTB{
+	meta:
+		description = "Trojan:BAT/Amadey.BAA!MTB,SIGNATURE_TYPE_PEHSTR_EXT,02 00 02 00 01 00 00 "
+		
+	strings :
+		$a_01_0 = {11 04 09 6f 3d 00 00 0a 11 04 08 6f 3e 00 00 0a 11 04 17 6f 3f 00 00 0a 73 40 00 00 0a 13 05 11 05 11 04 6f 41 00 00 0a 17 73 42 00 00 0a 13 06 11 06 07 1f 30 07 8e 69 1f 30 59 6f 43 00 00 0a 11 06 6f 44 00 00 0a 03 11 05 6f 45 00 00 0a 28 46 00 00 0a de 0c 11 06 2c 07 11 06 6f 24 00 00 0a dc de 0c 11 05 2c 07 11 05 6f 24 00 00 0a dc } //2
+	condition:
+		((#a_01_0  & 1)*2) >=2
+ 
+}

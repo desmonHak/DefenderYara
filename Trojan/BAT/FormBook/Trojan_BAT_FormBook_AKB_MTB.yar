@@ -1,6 +1,27 @@
 
 rule Trojan_BAT_FormBook_AKB_MTB{
 	meta:
+		description = "Trojan:BAT/FormBook.AKB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,03 00 03 00 02 00 00 "
+		
+	strings :
+		$a_01_0 = {07 06 11 07 1b 5d 1f 1f 5f 63 05 11 07 19 5d 1f 1f 5f 62 61 61 0b 11 21 } //2
+		$a_01_1 = {07 06 61 1f 18 5f 1f 10 fe 01 2b 01 16 13 09 11 09 2d 08 } //1
+	condition:
+		((#a_01_0  & 1)*2+(#a_01_1  & 1)*1) >=3
+ 
+}
+rule Trojan_BAT_FormBook_AKB_MTB_2{
+	meta:
+		description = "Trojan:BAT/FormBook.AKB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,01 00 01 00 01 00 00 "
+		
+	strings :
+		$a_03_0 = {2b 27 00 07 11 1d 11 1e 11 24 94 1f 1f 5f 63 20 ff 00 00 00 5f d2 6f ?? ?? ?? 0a 00 00 11 24 17 58 13 24 11 1f 17 59 13 1f 11 24 19 2f 07 11 1f 16 fe 02 } //1
+	condition:
+		((#a_03_0  & 1)*1) >=1
+ 
+}
+rule Trojan_BAT_FormBook_AKB_MTB_3{
+	meta:
 		description = "Trojan:BAT/FormBook.AKB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,06 00 06 00 03 00 00 "
 		
 	strings :

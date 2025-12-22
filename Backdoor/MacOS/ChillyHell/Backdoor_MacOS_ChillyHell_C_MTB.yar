@@ -1,0 +1,12 @@
+
+rule Backdoor_MacOS_ChillyHell_C_MTB{
+	meta:
+		description = "Backdoor:MacOS/ChillyHell.C!MTB,SIGNATURE_TYPE_MACHOHSTR_EXT,02 00 02 00 02 00 00 "
+		
+	strings :
+		$a_01_0 = {48 f7 f9 48 89 85 f0 fe ff ff 48 8b 8d f0 fe ff ff 48 8b 45 f0 48 89 08 48 8b 8d f0 fe ff ff 48 8b 45 f0 48 89 48 10 48 8b 8d f0 fe ff ff 48 8b 45 f0 48 89 48 30 48 8b 8d f0 fe ff ff 48 8b 45 f0 48 89 48 20 c6 45 ef 01 48 8b 7d e0 } //1
+		$a_01_1 = {55 48 89 e5 48 81 ec b0 00 00 00 48 89 7d f8 48 89 75 f0 c6 45 ef 00 48 8b 7d f8 48 8d b5 58 ff ff ff e8 63 1b 00 00 83 f8 00 0f 85 1e 00 00 00 48 8b 8d 78 ff ff ff 48 8b 45 f0 48 89 08 48 8b 4d 88 48 8b 45 f0 48 89 48 20 c6 45 ef 01 8a 45 ef 24 01 0f b6 c0 48 81 c4 b0 00 00 00 5d } //1
+	condition:
+		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1) >=2
+ 
+}

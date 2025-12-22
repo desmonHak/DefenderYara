@@ -1,0 +1,16 @@
+
+rule Trojan_Linux_SAgnt_AG_MTB{
+	meta:
+		description = "Trojan:Linux/SAgnt.AG!MTB,SIGNATURE_TYPE_ELFHSTR_EXT,06 00 06 00 06 00 00 "
+		
+	strings :
+		$a_01_0 = {6d 61 69 6e 2e 6c 69 76 69 6e 67 6f 66 74 68 65 6c 61 6e 64 } //1 main.livingoftheland
+		$a_01_1 = {6d 61 69 6e 2e 61 75 74 6f 63 6f 6c 6f 72 69 6e 67 } //1 main.autocoloring
+		$a_01_2 = {6d 61 69 6e 2e 53 65 6c 66 53 65 72 76 69 63 65 4f 75 74 } //1 main.SelfServiceOut
+		$a_01_3 = {6d 61 69 6e 2e 48 69 64 64 65 6e 48 6f 6d 65 } //1 main.HiddenHome
+		$a_01_4 = {6d 61 69 6e 2e 64 65 63 6b 65 79 73 } //1 main.deckeys
+		$a_01_5 = {6d 61 69 6e 2e 6d 61 6b 65 45 78 65 63 75 74 61 62 6c 65 } //1 main.makeExecutable
+	condition:
+		((#a_01_0  & 1)*1+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1+(#a_01_4  & 1)*1+(#a_01_5  & 1)*1) >=6
+ 
+}

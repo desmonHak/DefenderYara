@@ -1,0 +1,14 @@
+
+rule Trojan_Win64_PoolInject_SX_MTB{
+	meta:
+		description = "Trojan:Win64/PoolInject.SX!MTB,SIGNATURE_TYPE_PEHSTR_EXT,08 00 08 00 04 00 00 "
+		
+	strings :
+		$a_03_0 = {48 0f 4c d0 48 8d 05 ?? ?? ?? ?? 48 8b 04 d0 48 8b 0d ?? ?? ?? ?? 48 0f af ca 48 ba ?? ?? ?? ?? ?? ?? ?? ?? 48 31 d1 48 29 c8 } //5
+		$a_01_1 = {57 72 69 74 65 50 72 6f 63 65 73 73 4d 65 6d 6f 72 79 } //1 WriteProcessMemory
+		$a_01_2 = {53 68 65 6c 6c 45 78 65 63 75 74 65 45 78 } //1 ShellExecuteEx
+		$a_01_3 = {47 65 74 4d 65 73 73 61 67 65 57 } //1 GetMessageW
+	condition:
+		((#a_03_0  & 1)*5+(#a_01_1  & 1)*1+(#a_01_2  & 1)*1+(#a_01_3  & 1)*1) >=8
+ 
+}

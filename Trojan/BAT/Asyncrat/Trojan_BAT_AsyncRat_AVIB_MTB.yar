@@ -1,0 +1,12 @@
+
+rule Trojan_BAT_AsyncRat_AVIB_MTB{
+	meta:
+		description = "Trojan:BAT/AsyncRat.AVIB!MTB,SIGNATURE_TYPE_PEHSTR_EXT,06 00 06 00 02 00 00 "
+		
+	strings :
+		$a_03_0 = {13 06 14 13 07 1f 18 13 08 11 08 1f 18 fe 04 13 13 11 13 2c 04 1f 18 13 08 11 08 1f 17 d6 1f 18 5b 1f 18 d8 13 08 11 08 17 da 17 d6 8d ?? 00 00 01 13 09 16 13 0a 2b 0d 11 09 11 0a 14 a2 11 0a 17 d6 13 0a 00 11 0a 11 08 17 da fe 04 13 14 11 14 2d e5 } //4
+		$a_01_1 = {72 8d 75 01 70 13 0b 72 95 75 01 70 13 0c 72 9d 75 01 70 13 0d 72 a5 75 01 70 13 0e 11 0b 11 0c 11 0d 11 0e } //2
+	condition:
+		((#a_03_0  & 1)*4+(#a_01_1  & 1)*2) >=6
+ 
+}
